@@ -65,6 +65,16 @@
                     <th>ACCIÓN</th>
                 </tr>
                 </thead>
+                <tr>
+                    <th>ID ORDEN</th>
+                    <th>FECHA ORDEN</th>
+                    <th>CANTIDAD PRENDA</th>
+                    <th>ESTADO ORDEN</th>
+                    <th>ID DATOS FK</th>
+                    <th>ID PRENDA FK</th>
+                    <th></th>
+                    <th>ACCIÓN</th>
+                </tr> 
                 <tbody>
                 <%
                     OrdenVO OrdeVO = new OrdenVO();
@@ -96,7 +106,7 @@
                 </tr>
                 <% } %>
                 </tbody>
-                <tfoot>
+                
                 <tr>
                     <th>ID ORDEN</th>
                     <th>FECHA ORDEN</th>
@@ -107,7 +117,7 @@
                     <th></th>
                     <th>ACCIÓN</th>
                 </tr>    
-                </tfoot>
+                
             </table>
             </div>
         </form>

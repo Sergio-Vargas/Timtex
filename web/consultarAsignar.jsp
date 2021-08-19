@@ -64,6 +64,16 @@
                     <th>ACCIÓN</th>
                 </tr>
                 </thead>
+                <tr>
+                    <th>ID ASIG ORDEN</th>
+                    <th>CANTIDAD PRENDA</th>
+                    <th>FECHA INICIO</th>
+                    <th>FECHA FIN</th>
+                    <th>ID DATOSFK</th>
+                    <th>ID ORDENFK</th>
+                    <th></th>
+                    <th>ACCIÓN</th>
+                </tr> 
                 <tbody>
                 <%
                     AsigOrdenVO AsigVO = new AsigOrdenVO();
@@ -93,7 +103,6 @@
                 </tr>
                 <% } %>
                 </tbody>
-                <tfoot>
                 <tr>
                     <th>ID ASIG ORDEN</th>
                     <th>CANTIDAD PRENDA</th>
@@ -101,9 +110,9 @@
                     <th>FECHA FIN</th>
                     <th>ID DATOSFK</th>
                     <th>ID ORDENFK</th>
+                    <th></th>
                     <th>ACCIÓN</th>
                 </tr>    
-                </tfoot>
             </table>
             </div>
         </form>

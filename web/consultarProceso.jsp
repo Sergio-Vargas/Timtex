@@ -67,7 +67,18 @@
                     <th>ACCIÓN</th>
                 </tr>
                 </thead>
-                
+                <tr>
+                  <th>ID PROCESO</th>
+                    <th>DESCRIPCIÓN PROCESO</th>
+                    <th>FECHA PROCESO</th>
+                    <th>HORA INICIO</th>
+                    <th>HORA FIN</th>
+                    <th>PRENDAS REALIZADAS</th>
+                    <th>ESTADO PROCESO</th>
+                    <th>ID ASIG ORDEN FK</th>
+                    <th></th>
+                    <th>ACCIÓN</th>
+                </tr>
                 <tbody>
                 <%
                     ProcesoVO ProVO = new ProcesoVO();
@@ -100,7 +111,6 @@
                 </tr>
                 <% } %>
                 </tbody>
-                <tfoot>
                 <tr>
                   <th>ID PROCESO</th>
                     <th>DESCRIPCIÓN PROCESO</th>
@@ -113,7 +123,6 @@
                     <th></th>
                     <th>ACCIÓN</th>
                 </tr>    
-                </tfoot>
             </table>
             </div>
         </form>

@@ -66,6 +66,17 @@
                     <th>ACCIÓN</th>
                 </tr>
                 </thead>
+                <tr>
+                    <th>ID PRENDA</th>
+                    <th>IMAGEN PRENDA</th>
+                    <th>NOMBRE PRENDA</th>
+                    <th>TALLA</th>
+                    <th>DESCRIPCION PRENDA</th>
+                    <th>ESTADO PRENDA</th>
+                    <th>ID TIPOPRENDA FK</th>
+                    <th></th>
+                    <th>ACCIÓN</th>
+                </tr> 
                 <tbody>
                 <%
                     PrendaVO PreVO = new PrendaVO();
@@ -97,7 +108,6 @@
                 </tr>
                 <% } %>
                 </tbody>
-                <tfoot>
                 <tr>
                     <th>ID PRENDA</th>
                     <th>IMAGEN PRENDA</th>
@@ -109,7 +119,6 @@
                     <th></th>
                     <th>ACCIÓN</th>
                 </tr>    
-                </tfoot>
             </table>
             </div>
         </form>

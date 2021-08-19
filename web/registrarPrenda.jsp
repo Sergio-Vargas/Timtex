@@ -16,12 +16,12 @@
     <body>
     <center>
         <h1>Registrar Datos</h1>
-         <form method="post" action="Prenda" enctype="multipart/form-data">
+         <form method="post" action="Prenda" >
             <table>
                 <tr>
                     <th>
                         Id prenda<br>
-                        <input type="text" name="textIdPrenda" ><br><br>
+                        <input type="text" name="textIdPrenda"><br><br>
                         Imagen<br>
                         <input type="file" name="textImagenPrenda" ><br><br>
                         Nombre<br>
@@ -29,9 +29,9 @@
                         Talla<br>
                         <input type="text" name="textTalla" ><br><br>
                         Descripción<br>
-                        <input type="text" name="textDescripcionPrenda" ><br><br>
+                        <input type="text" name="textDescripcionPrenda"><br><br>
                         Estado<br>
-                        <input type="text" name="textEstadoPrenda" ><br><br>
+                        <input type="text" name="textEstadoPrenda"><br><br>
                         Tipo Prenda FK<br>
                         <select name="textIdTipoPrendaFK">
                         <option>Seleccione...</option>

@@ -27,6 +27,7 @@
 	box-shadow: 0px 0px 10px 1px gray;
 	height:auto;
 }
+
   @media screen and (max-width: 800px) { 
 	.Ctabla{
 	width:480px;
@@ -69,7 +70,20 @@
                     <th>ACCION</th>                    
                 </tr>
                 </thead>
+                <tr>
+                    <th>ID DATOS</th>
+                    <th>NOMBRE</th>
+                    <th>APELLIDO</th>
+                    <th>DIRECCION</th>
+                    <th>TELEFONO</th>
+                    <th>CORREO</th>
+                    <th>ESTADO</th>
+                    <th>ID USUARIO</th>
+                    <th></th>
+                    <th>ACCION</th> 
+                </tr> 
                 <tbody>
+                    
                 <%
                     DatosPersonalesVO datVO = new DatosPersonalesVO();
                     DatosPersonalesDAO datDAO = new DatosPersonalesDAO();
@@ -101,7 +115,6 @@
                 </tr>
                 <% } %>
                 </tbody>
-                <tfoot>
                 <tr>
                     <th>ID DATOS</th>
                     <th>NOMBRE</th>
@@ -113,8 +126,7 @@
                     <th>ID USUARIO</th>
                     <th></th>
                     <th>ACCION</th> 
-                </tr>    
-                </tfoot>
+                </tr> 
             </table>
             </div>
         </form>
