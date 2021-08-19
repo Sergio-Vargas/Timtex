@@ -4,6 +4,10 @@
     Author     : sergio saenz
 --%>
 
+<%@page import="ModeloDAO.DatosPersonalesDAO"%>
+<%@page import="ModeloVO.DatosPersonalesVO"%>
+<%@page import="ModeloVO.OrdenVO"%>
+<%@page import="ModeloDAO.OrdenDAO"%>
 <%@page import="ModeloVO.AsigOrdenVO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -25,10 +29,32 @@
                     <th>
                         Id Asig Orden<br>
                         <input type="text" name="textAsigOrden" value="<%=AsigVO.getIdAsigOrden()%>"><br><br>
+                        Cantidad Prenda<br>
+                        <input type="text" name="textCantidad" value="<%=AsigVO.getCantidadPrenda()%>"><br><br>
+                        Fecha Inicio<br>
+                        <input type="text" name="textFechaInicio" value="<%=AsigVO.getFechaInicio()%>"><br><br>
+                        Fecha Fin<br>
+                        <input type="text" name="textFechaFin" value="<%=AsigVO.getFechaFin()%>"><br><br>
                         Id Datos FK<br>
-                        <input type="text" name="textIdDatos" value="<%=AsigVO.getIdDatosFK()%>"><br><br>
-                        Id  Orden FK<br>
-                        <input type="text" name="textIdOrden" value="<%=AsigVO.getIdOrdenFK()%>"><br><br>
+                        <select name="textIdDatos">
+                        <option>Seleccione...</option>
+                        <%
+                        DatosPersonalesDAO datDAO = new DatosPersonalesDAO();    
+                        for (DatosPersonalesVO datVO : datDAO.listar()) {
+                        %>
+                        <option value="<%=datVO.getIdDatos()%>"><%=datVO.getNombreDatos()%></option>
+                        <% }%>
+                        </select><br>
+                        Id Orden FK<br>
+                        <select name="textIdOrden">
+                        <option>Seleccione...</option>
+                        <%
+                        OrdenDAO OrdeDAO = new OrdenDAO();    
+                        for (OrdenVO OrdeVO : OrdeDAO.listar()) {
+                        %>
+                        <option value="<%=OrdeVO.getIdOrden()%>"><%=OrdeVO.getIdOrden()%></option>
+                        <% }%>
+                        </select><br>
                 </th>
             </table>
             <button>Actualizar</button>

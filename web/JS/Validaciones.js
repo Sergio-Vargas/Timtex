@@ -48,7 +48,7 @@ function validar(id, nombre, apellido, direccion, telefono, email, estado, idusu
         alert("El teléfono ingresado no es un número");
         return false;
     }
-    else if(email.lenght>30){
+    else if(email.lenght>50){
         alert("El correo es muy largo");
         return false;
     }

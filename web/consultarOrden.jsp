@@ -26,24 +26,19 @@
 	box-shadow: 0px 0px 10px 1px gray;
 	height:auto;
 }
+ @media screen and (max-width: 800px) { 
+	.Ctabla{
+	width:480px;
+	border-radius: 8px;
+	background-color: white;
+	box-shadow: 0px 0px 10px 1px gray;
+	height:600px;
+}
+} 
 </style>
     <body>
     <center>
         <h1>Orden</h1>
-          <form method="post" action="Orden">
-            <table>
-                <tr>
-                    <th>
-                        ID ORDEN
-                        <input type="text" name="textOrden">
-                        <button>Consultar</button>
-                    </th> 
-                </tr>
-            </table>
-
-            <input type="hidden" value="3" name="opcion">
-        </form>
-
         <div style="color: red;">
 
             <%if (request.getAttribute("MensajeError") != null) { %>
@@ -54,9 +49,9 @@
 
             <%  }%>
 
-        </div><br><br>
+        </div>
         <form>
-            <div class="estilotabla"><br>
+            <div class="estilotabla Ctabla"><br>
             <table class="table display AllDataTables table-striped table-responsive">
                 <thead>
                 <tr>
@@ -66,6 +61,8 @@
                     <th>ESTADO ORDEN</th>
                     <th>ID DATOS FK</th>
                     <th>ID PRENDA FK</th>
+                    <th></th>
+                    <th>ACCIÓN</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -84,6 +81,18 @@
                     <td><%=OrdeVO.getEstadoOrden()%></td>
                     <td><%=OrdeVO.getIdDatosFK()%></td>
                     <td><%=OrdeVO.getIdPrendaFK()%></td>
+                    <td>
+                        <form action="">    
+                        </form>
+                    </td>
+                    <td>
+                    
+                    <form method="post" action="Orden">
+                    <input type="hidden" name="textOrden" value="<%=OrdeVO.getIdOrden()%>">
+                    <button class="btn btn-primary">Editar</button>
+                    <input type="hidden" value="3" name="opcion">
+                    </form>
+                    </td>
                 </tr>
                 <% } %>
                 </tbody>
@@ -95,6 +104,8 @@
                     <th>ESTADO ORDEN</th>
                     <th>ID DATOS FK</th>
                     <th>ID PRENDA FK</th>
+                    <th></th>
+                    <th>ACCIÓN</th>
                 </tr>    
                 </tfoot>
             </table>
@@ -106,35 +117,16 @@
     <script src="JS/jquery.dataTables.min.js" type="text/javascript"></script>
     <script src="JS/dataTables.bootstrap.min.js" type="text/javascript"></script>
     <script>
-		$(document).ready( function () {
+		  $(document).ready( function () {
 		    $('.AllDataTables').DataTable({
-		    	language: {
-		    		"sProcessing":     "Procesando...",
-				    "sLengthMenu":     "Mostrar _MENU_ registros",
-				    "sZeroRecords":    "No se encontraron resultados",
-				    "sEmptyTable":     "Ningún dato disponible en esta tabla",
-				    "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-				    "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
-				    "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
-				    "sInfoPostFix":    "",
-				    "sSearch":         "Buscar:",
-				    "sUrl":            "",
-				    "sInfoThousands":  ",",
-				    "sLoadingRecords": "Cargando...",
-				    "oPaginate": {
-				        "sFirst":    "Primero",
-				        "sLast":     "Último",
-				        "sNext":     "Siguiente",
-				        "sPrevious": "Anterior"
-				    },
-				    "oAria": {
-				        "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
-				        "sSortDescending": ": Activar para ordenar la columna de manera descendente"
-				    }
-		    	}
+				"deferRender":true,
+				"scroller":true,
+				"aScrollX":"100%",
+			    "sScrollY":"300px",
+			    "bScrollCollapse":true
 		    });
 		} );
-
+              
 	</script>
     </body>
 </html>

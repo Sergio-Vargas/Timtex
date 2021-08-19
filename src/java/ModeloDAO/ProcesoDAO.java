@@ -29,7 +29,7 @@ public class ProcesoDAO extends Conexion implements Crud{
     private String sql;
     
     private String IdProceso="",DescripcionProceso="",FechaProceso="",HoraInicio="",HoraFin="",
-                PrendasRealizadas="",EstadoProceso="",IdOrdenFK="",IdDatosFK="";
+                PrendasRealizadas="",EstadoProceso="",IdAsigOrdenFK="";
     
     public ProcesoDAO(){
      
@@ -51,8 +51,7 @@ public class ProcesoDAO extends Conexion implements Crud{
             HoraFin = ProVO.getHoraFin();
             PrendasRealizadas = ProVO.getPrendasRealizadas();
             EstadoProceso = ProVO.getEstadoProceso();
-            IdOrdenFK=ProVO.getIdOrdenFK(); 
-            IdDatosFK=ProVO.getIdDatosFK();
+            IdAsigOrdenFK=ProVO.getIdAsigOrdenFK(); 
           
         } catch (Exception e) {
             Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, e);
@@ -67,8 +66,8 @@ public class ProcesoDAO extends Conexion implements Crud{
             
             //Crear la sentencia
             sql = "INSERT INTO proceso (IdProceso,DescripcionProceso,FechaProceso,"
-            + "HoraInicio,HoraFin,PrendasRealizadas,EstadoProceso,IdOrdenFK,IdDatosFK)"
-            + " VALUES (?,?,?,?,?,?,?,?,?);";
+            + "HoraInicio,HoraFin,PrendasRealizadas,EstadoProceso,IdAsigOrdenFK)"
+            + " VALUES (?,?,?,?,?,?,?,?);";
              //Crear el puente para esa conexion establecida
             puente = conexion.prepareStatement(sql);
             puente.setString(1, IdProceso);
@@ -78,8 +77,7 @@ public class ProcesoDAO extends Conexion implements Crud{
             puente.setString(5, HoraFin);
             puente.setString(6, PrendasRealizadas);
             puente.setString(7, EstadoProceso);
-            puente.setString(8, IdOrdenFK);
-            puente.setString(9, IdDatosFK);
+            puente.setString(8, IdAsigOrdenFK);
             puente.executeUpdate();
             operacion = true;
             
@@ -106,7 +104,7 @@ public class ProcesoDAO extends Conexion implements Crud{
             //Crear la sentancia
             sql="update proceso set DescripcionProceso=?,"
             + "FechaProceso=?,HoraInicio=?,HoraFin=?," +
-"           PrendasRealizadas=?,EstadoProceso=?,IdOrdenFK=?,IdDatosFK=? where IdProceso=?";
+"           PrendasRealizadas=?,EstadoProceso=?,IdAsigOrdenFK=? where IdProceso=?";
             //Crear el puente para esa conexion establecida
             puente = conexion.prepareStatement(sql);
             puente.setString(1, DescripcionProceso);
@@ -115,9 +113,8 @@ public class ProcesoDAO extends Conexion implements Crud{
             puente.setString(4, HoraFin);
             puente.setString(5, PrendasRealizadas);
             puente.setString(6, EstadoProceso);
-            puente.setString(7, IdOrdenFK);
-            puente.setString(8, IdDatosFK);
-             puente.setString(9, IdProceso);
+            puente.setString(7, IdAsigOrdenFK);
+             puente.setString(8, IdProceso);
             puente.executeUpdate();
             operacion= true;
             
@@ -158,8 +155,7 @@ public class ProcesoDAO extends Conexion implements Crud{
                 ProVO= new ProcesoVO(mensajero.getString(1), mensajero.getString(2), 
                         mensajero.getString(3), mensajero.getString(4), 
                         mensajero.getString(5), mensajero.getString(6), 
-                        mensajero.getString(7), mensajero.getString(8),
-                        mensajero.getString(9));
+                        mensajero.getString(7), mensajero.getString(8));
                 
             }
             
@@ -182,7 +178,7 @@ public class ProcesoDAO extends Conexion implements Crud{
 
         try {
             conexion = this.obtenerConexion();
-            sql = "select * from proceso";
+            sql = "select * from proceso where EstadoProceso='Activo'";
             puente = conexion.prepareStatement(sql);
             mensajero = puente.executeQuery();
             
@@ -191,7 +187,7 @@ public class ProcesoDAO extends Conexion implements Crud{
                 ProcesoVO ProVO = new ProcesoVO(mensajero.getString(1), mensajero.getString(2), 
                         mensajero.getString(3), mensajero.getString(4), 
                         mensajero.getString(5), mensajero.getString(6), 
-                        mensajero.getString(7),mensajero.getString(8),mensajero.getString(9));
+                        mensajero.getString(7),mensajero.getString(8));
                 
                     listaProceso.add(ProVO);
             }

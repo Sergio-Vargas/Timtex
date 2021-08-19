@@ -4,6 +4,10 @@
     Author     : sergio saenz
 --%>
 
+<%@page import="ModeloVO.PrendaVO"%>
+<%@page import="ModeloDAO.PrendaDAO"%>
+<%@page import="ModeloVO.DatosPersonalesVO"%>
+<%@page import="ModeloDAO.DatosPersonalesDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -27,10 +31,26 @@
                         Estado Orden<br>
                         <input type="text" name="textEstado"><br><br>
                         Id Datos<br>
-                        <input type="text" name="textIdDato"><br><br>
+                        <select name="textIdDato">
+                        <option>Seleccione...</option>
+                        <%
+                        DatosPersonalesDAO datDAO = new DatosPersonalesDAO();    
+                        for (DatosPersonalesVO datVO : datDAO.listar()) {
+                        %>
+                        <option value="<%=datVO.getIdDatos()%>"><%=datVO.getNombreDatos()%></option>
+                        <% }%>
+                        </select><br>
                         Id Prenda<br>
-                        <input type="text" name="textPrenda"><br><br>
-                        <td></td>
+                        <select name="textPrenda">
+                        <option>Seleccione...</option>
+                        <%
+                        PrendaDAO PreDAO = new PrendaDAO();    
+                        for (PrendaVO PreVO : PreDAO.listar()) {
+                        %>
+                        <option value="<%=PreVO.getIdPrenda()%>"><%=PreVO.getNombrePrenda()%></option>
+                        <% }%>
+                        </select><br>
+                        <td></td><br>
                 </th>
             </table>
             <button>Registar</button>

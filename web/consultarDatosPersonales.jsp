@@ -40,20 +40,7 @@
     <body>
     <center>
         <h1>Datos Personales</h1>
-          <form method="post" action="DatosPersonales">
-            <table>
-                <tr>
-                    <th>
-                        ID DATOS
-                        <input type="text" name="textNumeroid">
-                        <button>Consultar</button>
-                    </th> 
-                </tr>
-            </table>
-
-            <input type="hidden" value="3" name="opcion">
-        </form>
-
+          
         <div style="color: red;">
 
             <%if (request.getAttribute("MensajeError") != null) { %>
@@ -64,7 +51,7 @@
 
             <%  }%>
 
-        </div><br><br>
+        </div>
         <form>
             <div class="estilotabla Ctabla"><br>
             <table class="table display AllDataTables table-striped table-responsive">
@@ -78,6 +65,8 @@
                     <th>CORREO</th>
                     <th>ESTADO</th>
                     <th>ID USUARIO</th>
+                    <th></th>
+                    <th>ACCION</th>                    
                 </tr>
                 </thead>
                 <tbody>
@@ -98,6 +87,17 @@
                     <td><%=datVO.getCorreoDatos()%></td>
                     <td><%=datVO.getEstadoDatos()%></td>
                     <td><%=datVO.getIdUsuarioFK()%></td>
+                    <td>
+                        <form action="">    
+                        </form>
+                    </td>
+                    <td>
+                    <form method="post" action="DatosPersonales">
+                        <input type="hidden" name="textNumeroid" value="<%=datVO.getIdDatos()%>">
+                        <button class="btn btn-primary">Editar</button>
+                        <input type="hidden" value="3" name="opcion">
+                    </form>
+                    </td>
                 </tr>
                 <% } %>
                 </tbody>
@@ -111,6 +111,8 @@
                     <th>CORREO</th>
                     <th>ESTADO</th>
                     <th>ID USUARIO</th>
+                    <th></th>
+                    <th>ACCION</th> 
                 </tr>    
                 </tfoot>
             </table>

@@ -4,6 +4,8 @@
     Author     : sara gabriela
 --%>
 
+<%@page import="ModeloVO.AsigOrdenVO"%>
+<%@page import="ModeloDAO.AsigOrdenDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -32,10 +34,17 @@
                         <input type="text" name="textPrendasr"><br><br>
                         Proceso<br>
                         <input type="text" name="textEstado"><br><br>
-                        Id orden<br>
-                        <input type="text" name="textIdorden"><br><br>
                         Id Datos<br>
-                        <input type="text" name="textIddatos"><br><br>
+                        <select name="textAsig">
+                        <option>Seleccione...</option>
+                        <%
+                        AsigOrdenDAO AsigDAO = new AsigOrdenDAO();    
+                        for (AsigOrdenVO AsigVO : AsigDAO.listar()) {
+                        %>
+                        <option value="<%=AsigVO.getIdAsigOrden()%>"><%=AsigVO.getIdDatosFK()%></option>
+                        <% }%>
+                        </select><br>
+                        
                         <td></td>
                 </th>
             </table>

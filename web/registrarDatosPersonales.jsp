@@ -3,6 +3,8 @@
     Created on : 03-jul-2021, 19:34:04
     Author     : sergio saenz
 --%>
+<%@page import="ModeloVO.UsuarioVO"%>
+<%@page import="ModeloDAO.UsuarioDAO"%>
 <%@page import="ModeloVO.DatosPersonalesVO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -19,7 +21,6 @@
             <table>
                 <tr>
                     <th>
-                         Datos<br>
                         <input type="text" name="textNumeroid" id="id"><br><br>
                         Nombre<br>
                         <input type="text" name="textNombre" id="nombre"><br><br>
@@ -34,8 +35,16 @@
                         Estado<br>
                         <input type="text" name="textEstado" id="estado"><br><br>
                         Id usuario<br>
-                        <input type="text" name="textUsuario" id="idusuario"><br><br>
-                        <td></td>
+                        <select name="textUsuario">
+                        <option>Seleccione...</option>
+                        <%
+                        UsuarioDAO usuDAO = new UsuarioDAO();    
+                        for (UsuarioVO usuVO : usuDAO.listar()) {
+                        %>
+                        <option value="<%=usuVO.getIdUsuario()%>"><%=usuVO.getNombreUsuario()%></option>
+                        <% }%>
+                        </select>
+                        <td></td> 
                 </th>
             </table>
             <button class="enviar" onclick="validar(id, nombre, 

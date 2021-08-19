@@ -3,6 +3,10 @@
     Created on : 07-ago-2021, 22:44:10
     Author     : sergio saenz
 --%>
+<%@page import="ModeloVO.OrdenVO"%>
+<%@page import="ModeloDAO.OrdenDAO"%>
+<%@page import="ModeloVO.DatosPersonalesVO"%>
+<%@page import="ModeloDAO.DatosPersonalesDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -19,10 +23,32 @@
                     <th>
                         Id Asig Orden<br>
                         <input type="text" name="textAsigOrden" ><br><br>
+                        Cantidad Prenda<br>
+                        <input type="text" name="textCantidad"><br><br>
+                        Fecha Inicio<br>
+                        <input type="text" name="textFechaInicio" ><br><br>
+                        Fecha Fin<br>
+                        <input type="text" name="textFechaFin"><br><br>
                         Id Datos FK<br>
-                        <input type="text" name="textIdDatos"><br><br>
-                        Id  Orden FK<br>
-                        <input type="text" name="textIdOrden" ><br><br>
+                        <select name="textIdDatos">
+                        <option>Seleccione...</option>
+                        <%
+                        DatosPersonalesDAO datDAO = new DatosPersonalesDAO();    
+                        for (DatosPersonalesVO datVO : datDAO.listar()) {
+                        %>
+                        <option value="<%=datVO.getIdDatos()%>"><%=datVO.getNombreDatos()%></option>
+                        <% }%>
+                        </select><br>
+                        Id Orden FK<br>
+                        <select name="textIdOrden">
+                        <option>Seleccione...</option>
+                        <%
+                        OrdenDAO OrdeDAO = new OrdenDAO();    
+                        for (OrdenVO OrdeVO : OrdeDAO.listar()) {
+                        %>
+                        <option value="<%=OrdeVO.getIdOrden()%>"><%=OrdeVO.getIdOrden()%></option>
+                        <% }%>
+                        </select><br>
                 </th>
             </table>
             <button>Registar</button>

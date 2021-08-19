@@ -11,13 +11,13 @@ package ModeloVO;
  */
 public class ProcesoVO {
         private String IdProceso,DescripcionProceso,FechaProceso,HoraInicio,HoraFin,
-                PrendasRealizadas,EstadoProceso,IdOrdenFK,IdDatosFK;
+                PrendasRealizadas,EstadoProceso,IdAsigOrdenFK;
         
         public ProcesoVO() {
         
         }
 
-    public ProcesoVO(String IdProceso, String DescripcionProceso, String FechaProceso, String HoraInicio, String HoraFin, String PrendasRealizadas, String EstadoProceso, String IdOrdenFK, String IdDatosFK) {
+    public ProcesoVO(String IdProceso, String DescripcionProceso, String FechaProceso, String HoraInicio, String HoraFin, String PrendasRealizadas, String EstadoProceso, String IdAsigOrdenFK) {
         this.IdProceso = IdProceso;
         this.DescripcionProceso = DescripcionProceso;
         this.FechaProceso = FechaProceso;
@@ -25,8 +25,7 @@ public class ProcesoVO {
         this.HoraFin = HoraFin;
         this.PrendasRealizadas = PrendasRealizadas;
         this.EstadoProceso = EstadoProceso;
-        this.IdOrdenFK = IdOrdenFK;
-        this.IdDatosFK = IdDatosFK;
+        this.IdAsigOrdenFK = IdAsigOrdenFK;
     }
 
     public String getIdProceso() {
@@ -85,21 +84,12 @@ public class ProcesoVO {
         this.EstadoProceso = EstadoProceso;
     }
 
-    public String getIdOrdenFK() {
-        return IdOrdenFK;
+    public String getIdAsigOrdenFK() {
+        return IdAsigOrdenFK;
     }
 
-    public void setIdOrdenFK(String IdOrdenFK) {
-        this.IdOrdenFK = IdOrdenFK;
+    public void setIdAsigOrdenFK(String IdAsigOrdenFK) {
+        this.IdAsigOrdenFK = IdAsigOrdenFK;
     }
-
-    public String getIdDatosFK() {
-        return IdDatosFK;
-    }
-
-    public void setIdDatosFK(String IdDatosFK) {
-        this.IdDatosFK = IdDatosFK;
-    }
-        
 
 }

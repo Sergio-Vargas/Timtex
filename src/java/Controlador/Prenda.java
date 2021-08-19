@@ -5,8 +5,8 @@
  */
 package Controlador;
 
-import ModeloDAO.ProcesoDAO;
-import ModeloVO.ProcesoVO;
+import ModeloDAO.PrendaDAO;
+import ModeloVO.PrendaVO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -17,10 +17,10 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author sara gabriela
+ * @author sergio saenz
  */
-@WebServlet(name = "Proceso", urlPatterns = {"/Proceso"})
-public class Proceso extends HttpServlet {
+@WebServlet(name = "Prenda", urlPatterns = {"/Prenda"})
+public class Prenda extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,26 +35,26 @@ public class Proceso extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
-               //1. Recibir datos de las Vistas
+    
+
+        
+         //1. Recibir datos de las Vistas
         int opcion = Integer.parseInt(request.getParameter("opcion"));
-        String IdProceso = request.getParameter("textIdProceso");
-        String DescripcionProceso = request.getParameter("textDescripcion");
-        String FechaProceso = request.getParameter("textFecha");
-        String HoraInicio = request.getParameter("textHorai");
-        String HoraFin = request.getParameter("textHoraf");
-        String PrendasRealizadas = request.getParameter("textPrendasr");        
-        String EstadoProceso = request.getParameter("textEstado");
-        String IdAsigOrdenFK = request.getParameter("textAsig");
+        String IdPrenda = request.getParameter("textIdPrenda");
+        String ImagenPrenda = request.getParameter("textImagenPrenda");
+        String NombrePrenda = request.getParameter("textNombrePrenda");
+        String Talla = request.getParameter("textTalla");
+        String DescripcionPrenda = request.getParameter("textDescripcionPrenda");
+        String EstadoPrenda = request.getParameter("textEstadoPrenda");        
+        String IdTipoPrendaFK = request.getParameter("textIdTipoPrendaFK");
         
         
-        
-        ProcesoVO ProVO = new ProcesoVO(IdProceso,DescripcionProceso,FechaProceso,
-        HoraInicio,HoraFin,PrendasRealizadas,EstadoProceso,IdAsigOrdenFK);
-        ProcesoDAO ProDAO = new ProcesoDAO(ProVO);
+        PrendaVO PreVO = new PrendaVO(IdPrenda,ImagenPrenda,NombrePrenda,Talla,DescripcionPrenda,EstadoPrenda,IdTipoPrendaFK);
+        PrendaDAO PreDAO = new PrendaDAO(PreVO);
           
         switch (opcion) {
             case 1:
-                if (ProDAO.aregarRegistro()) {
+                if (PreDAO.aregarRegistro()) {
                     request.setAttribute("MensajeExito", "La informacion se registró correctamente");
 
                 } else {
@@ -62,12 +62,12 @@ public class Proceso extends HttpServlet {
                     request.setAttribute("MensajeError", "La infromacion no se registró correctamente");
 
                 }
-                request.getRequestDispatcher("registrarProceso.jsp").forward(request, response);
+                request.getRequestDispatcher("registrarPrenda.jsp").forward(request, response);
                 break;
                 
             case 2: // Actualizar Registro
 
-                if (ProDAO.actualizarRegistro()) {
+                if (PreDAO.actualizarRegistro()) {
                     request.setAttribute("MensajeExito", "La informacion se actualizó correctamente");
 
                 } else {
@@ -75,25 +75,26 @@ public class Proceso extends HttpServlet {
                     request.setAttribute("MensajeError", "La infromacion no se actualizó correctamente");
 
                 }
-                request.getRequestDispatcher("actualizarProceso.jsp").forward(request, response);
+                request.getRequestDispatcher("actualizarPrenda.jsp").forward(request, response);
                 break;
                 
                 
             case 3: //Consultar
                 
-                ProVO = ProDAO.consultarDatos(IdProceso);
-                if (ProVO != null) {
+                PreVO = PreDAO.consultarDatos(IdPrenda);
+                if (PreVO != null) {
                     
-                    request.setAttribute("identificacion consultada",ProVO);
-                    request.getRequestDispatcher("actualizarProceso.jsp").forward(request, response);
+                    request.setAttribute("identificacion consultada",PreVO);
+                    request.getRequestDispatcher("actualizarPrenda.jsp").forward(request, response);
                 
                 }else{
                     request.setAttribute("MensajeError", "La identificacion no existe");
-                    request.getRequestDispatcher("consultarProceso.jsp").forward(request, response);
+                    request.getRequestDispatcher("consultarPrenda.jsp").forward(request, response);
                 }
                 break;
                 
         }
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

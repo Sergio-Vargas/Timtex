@@ -218,17 +218,19 @@ i {
 }
 .redes{
 	font-size: 20px;
-	margin:40px;	
-	margin-right:161px;
+	margin:40px;
 	float:left;
         text-align: center;
+}
+.img-redes{
+        margin-left:50px;
 }
 
 /*MISION*/
 
 .Mision{
     float:right;
-    border:2px solid black;
+    border:1px solid black;
     margin:0px 130px;
     width:700px;    
     height:400px;
@@ -253,7 +255,7 @@ i {
 /*VISION*/
 .Vision{
     float:right;
-    border:2px solid black;
+    border:1px solid black;
     margin:0px 130px;
     width:700px;    
     height:400px;

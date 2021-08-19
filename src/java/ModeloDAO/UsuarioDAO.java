@@ -9,6 +9,7 @@ import ModeloVO.UsuarioVO;
 import Util.Conexion;
 import Util.Crud;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -26,6 +27,10 @@ public class UsuarioDAO extends Conexion implements Crud {
     private String sql;
 
     private String IdUsuario="",NombreUsuario="",ClaveUsuario="",IdCargoFK="";
+    
+    public UsuarioDAO(){
+    }
+    
     
     //2. Crear método principal para recibir los datos del VO
     public UsuarioDAO(UsuarioVO usuVO){
@@ -136,6 +141,39 @@ public class UsuarioDAO extends Conexion implements Crud {
         }
     return operacion;
  
+    }
+    
+    
+    public ArrayList<UsuarioVO> listar() {
+
+        ArrayList<UsuarioVO> listaUsuario = new ArrayList<>();
+
+        try {
+            conexion = this.obtenerConexion();
+            sql = "select * from usuario";
+            puente = conexion.prepareStatement(sql);
+            mensajero = puente.executeQuery();
+            
+            while (mensajero.next()) {                
+                
+                UsuarioVO usuVO = new UsuarioVO(mensajero.getString(1), mensajero.getString(2),
+                        mensajero.getString(3), mensajero.getString(4));
+                
+                    listaUsuario.add(usuVO);
+            }
+
+        } catch (Exception e) {
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, e);
+        } finally {
+            try {
+                this.cerrarConexion();
+            } catch (SQLException e) {
+                Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, e);
+            }
+
+        }
+
+        return listaUsuario;
     }
     
 }

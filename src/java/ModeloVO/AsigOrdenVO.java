@@ -12,13 +12,16 @@ package ModeloVO;
 
 public class AsigOrdenVO {
     
-    private String IdAsigOrden,IdDatosFK,IdOrdenFK;
+    private String IdAsigOrden,CantidadPrenda,FechaInicio,FechaFin,IdDatosFK,IdOrdenFK;
     
     public AsigOrdenVO() {
     }
 
-    public AsigOrdenVO(String IdAsigOrden, String IdDatosFK, String IdOrdenFK) {
+    public AsigOrdenVO(String IdAsigOrden, String CantidadPrenda, String FechaInicio, String FechaFin, String IdDatosFK, String IdOrdenFK) {
         this.IdAsigOrden = IdAsigOrden;
+        this.CantidadPrenda = CantidadPrenda;
+        this.FechaInicio = FechaInicio;
+        this.FechaFin = FechaFin;
         this.IdDatosFK = IdDatosFK;
         this.IdOrdenFK = IdOrdenFK;
     }
@@ -31,6 +34,29 @@ public class AsigOrdenVO {
         this.IdAsigOrden = IdAsigOrden;
     }
 
+    public String getCantidadPrenda() {
+        return CantidadPrenda;
+    }
+
+    public void setCantidadPrenda(String CantidadPrenda) {
+        this.CantidadPrenda = CantidadPrenda;
+    }
+
+    public String getFechaInicio() {
+        return FechaInicio;
+    }
+
+    public void setFechaInicio(String FechaInicio) {
+        this.FechaInicio = FechaInicio;
+    }
+
+    public String getFechaFin() {
+        return FechaFin;
+    }
+
+    public void setFechaFin(String FechaFin) {
+        this.FechaFin = FechaFin;
+    }
 
     public String getIdDatosFK() {
         return IdDatosFK;
@@ -47,5 +73,6 @@ public class AsigOrdenVO {
     public void setIdOrdenFK(String IdOrdenFK) {
         this.IdOrdenFK = IdOrdenFK;
     }
+    
     
 }

@@ -4,6 +4,8 @@
     Author     : sergio saenz
 --%>
 
+<%@page import="ModeloVO.UsuarioVO"%>
+<%@page import="ModeloDAO.UsuarioDAO"%>
 <%@page import="ModeloVO.DatosPersonalesVO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -23,8 +25,7 @@
             <table>
                 <tr>
                     <th>
-                        Datos<br>
-                        <input type="text" name="textNumeroid" value="<%=datVO.getIdDatos()%>"><br><br>
+                        <input type="hidden" name="textNumeroid" value="<%=datVO.getIdDatos()%>"><br><br>
                         Nombre<br>
                         <input type="text" name="textNombre" value="<%=datVO.getNombreDatos()%>"><br><br>
                         Apellido<br>
@@ -38,7 +39,15 @@
                         Estado<br>
                         <input type="text" name="textEstado" value="<%=datVO.getEstadoDatos()%>"><br><br>
                         Id usuario<br>
-                        <input type="text" name="textUsuario" value="<%=datVO.getIdUsuarioFK()%>"><br><br>
+                        <select name="textUsuario">
+                        <option>Seleccione...</option>
+                        <%
+                        UsuarioDAO usuDAO = new UsuarioDAO();    
+                        for (UsuarioVO usuVO : usuDAO.listar()) {
+                        %>
+                        <option value="<%=usuVO.getIdUsuario()%>"><%=usuVO.getNombreUsuario()%></option>
+                        <% }%>
+                        </select>
                         <td></td>
                 </th>
             </table>

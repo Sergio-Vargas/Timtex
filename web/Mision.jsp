@@ -105,7 +105,7 @@
 	</div>
 	<div class="redes">
 		<p>Redes sociales</p>
-                <a href="https://www.facebook.com/condifal/"><img src="Imagenes/facebook.png" style="height:80px;"></a>
+                <a href="https://www.facebook.com/condifal/"><img class="img-redes" src="Imagenes/facebook.png" style="height:80px;"></a>
 		<p>Confecciones Difal S.A.S</p>
 	</div>
 </footer>

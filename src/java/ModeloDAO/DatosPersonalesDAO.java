@@ -1,4 +1,4 @@
-/*
+    /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -177,7 +177,7 @@ public class DatosPersonalesDAO extends Conexion implements Crud {
 
         try {
             conexion = this.obtenerConexion();
-            sql = "select * from datospersonales";
+            sql = "select*from DatosPersonales where EstadoDatos='Activo'";
             puente = conexion.prepareStatement(sql);
             mensajero = puente.executeQuery();
             
