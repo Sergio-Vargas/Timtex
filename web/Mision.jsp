@@ -42,7 +42,7 @@
                   <i class="fas fa-home"></i>Inicio
                 </a>
             </li>
-            <li class="nav-item active">
+            <li class="nav-item active"> 
                 <a 
                   class="nav-link" href="Mision.jsp">
                   <i class="fas fa-bullseye"></i>Misión
