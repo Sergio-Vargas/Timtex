@@ -62,7 +62,7 @@ public class Proceso extends HttpServlet {
                     request.setAttribute("MensajeError", "La infromacion no se registró correctamente");
 
                 }
-                request.getRequestDispatcher("registrarProceso.jsp").forward(request, response);
+                request.getRequestDispatcher("consultarProceso.jsp").forward(request, response);
                 break;
                 
             case 2: // Actualizar Registro

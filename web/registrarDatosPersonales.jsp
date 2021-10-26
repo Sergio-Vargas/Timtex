@@ -8,59 +8,66 @@
 <%@page import="ModeloVO.DatosPersonalesVO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Registrar Datos personales</title>
-    </head>
-    <script src="JS/Validaciones.js" type="text/javascript"></script>
-    <body>
-    <center>
-        <h1>Registrar Datos</h1>
-         <form method="post" action="DatosPersonales">
-            <table>
-                <tr>
-                    <th>
-                        <input type="text" name="textNumeroid" id="id"><br><br>
-                        Nombre<br>
-                        <input type="text" name="textNombre" id="nombre"><br><br>
-                        Apellido<br>
-                        <input type="text" name="textApellido" id="apellido"><br><br>
-                        Direccion<br>
-                        <input type="text" name="textDireccion" id="direccion"><br><br>
-                        Telefono<br>
-                        <input type="text" name="textTelefono" id="telefono"><br><br>
-                        Correo<br>
-                        <input type="text" name="textCorreo" id="email"><br><br>
-                        Estado<br>
-                        <input type="text" name="textEstado" id="estado"><br><br>
-                        Id usuario<br>
-                        <select name="textUsuario">
+<html lang="es-Es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrar Datos Personales</title>
+    
+</head>
+<body>
+    <div class="frm-container">
+        <h1>Registro datos</h1>
+        <form action="DatosPersonales" method="POST" id="frm-usuario">
+                <label for="nombre">Nombre</label>
+                <input type="text" name="textNombre" id="nombre" class="frm-input"/>
+                
+                <label for="apellido">Apellido</label>
+                <input type="text" name="textApellido" id="apellido" class="frm-input"/>
+           
+                <label for="direccion">Direccion</label>
+                <input type="text" name="textDireccion" id="direccion" class="frm-input"/>
+           
+                <label for="telefono">Telefono</label>
+                <input type="text" name="textTelefono" id="telefono" class="frm-input"/>
+             
+                <label for="correo">Correo</label>
+                <input type="text" name="textCorreo" id="correo" class="frm-input"/>
+                    
+                <label for="estado">Estado</label>
+                    <select name="textEstado" id=" estado" class="frm-input">
                         <option>Seleccione...</option>
-                        <%
-                        UsuarioDAO usuDAO = new UsuarioDAO();    
-                        for (UsuarioVO usuVO : usuDAO.listar()) {
-                        %>
-                        <option value="<%=usuVO.getIdUsuario()%>"><%=usuVO.getNombreUsuario()%></option>
-                        <% }%>
-                        </select>
-                        <td></td> 
-                </th>
-            </table>
-            <button class="enviar" onclick="validar(id, nombre, 
-                        apellido, direccion, telefono, email, estado, idusuario)" >Registrar</button>
+                        <option value="Activo">Activo</option>
+                </select>
+                <label for="idusuario">Id usuario</label>
+                <select name="textUsuario">
+                <option>Seleccione...</option>
+                <%
+                UsuarioDAO usuDAO = new UsuarioDAO();    
+                for (UsuarioVO usuVO : usuDAO.listar()) {
+                %>
+                <option value="<%=usuVO.getIdUsuario()%>"><%=usuVO.getNombreUsuario()%></option>
+                <% }%>
+                </select><br>
+               
+            
+            <button type="submit" class="btn-enviar">Registrar</button>
             <input type="hidden" value="1" name="opcion">
-        </form><br><br>
+        </form>
         <div style="color: red;">
             <%
-                if (request.getAttribute("MensajeError") != null) { %>
+                 if (request.getAttribute("MensajeError") != null) { %>
             ${MensajeError}     
 
             <%} else {%>
-            <div style="color: greenyellow">${MensajeExito}</div>
+            <div style="color: darkgreen">${MensajeExito}</div>
 
             <%  }%>
         </div>
-    </center>
-    </body>
+    </div>
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="JS/icons.js" type="text/javascript"></script>
+  <script src="JS/Validaciones.js" type="text/javascript"></script>
+</body>
 </html>

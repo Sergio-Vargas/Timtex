@@ -193,6 +193,7 @@ public class DatosPersonalesDAO extends Conexion implements Crud {
 
         } catch (Exception e) {
             Logger.getLogger(DatosPersonalesDAO.class.getName()).log(Level.SEVERE, null, e);
+            
         } finally {
             try {
                 this.cerrarConexion();
@@ -204,4 +205,40 @@ public class DatosPersonalesDAO extends Conexion implements Crud {
 
         return listaDatosPersonales;
     }
+    
+     // genera lista
+    public ArrayList<DatosPersonalesVO> inactivo() {
+
+        ArrayList<DatosPersonalesVO> listaDatosPersonalesIna = new ArrayList<>();
+
+        try {
+            conexion = this.obtenerConexion();
+            sql = "select*from DatosPersonales where EstadoDatos='Inactivo'";
+            puente = conexion.prepareStatement(sql);
+            mensajero = puente.executeQuery();
+            
+            while (mensajero.next()) {                
+                
+                DatosPersonalesVO datVO = new DatosPersonalesVO(mensajero.getString(1), mensajero.getString(2), 
+                        mensajero.getString(3), mensajero.getString(4), 
+                        mensajero.getString(5), mensajero.getString(6), 
+                        mensajero.getString(7),mensajero.getString(8));
+                
+                    listaDatosPersonalesIna.add(datVO);
+            }
+
+        } catch (Exception e) {
+            Logger.getLogger(DatosPersonalesDAO.class.getName()).log(Level.SEVERE, null, e);
+        } finally {
+            try {
+                this.cerrarConexion();
+            } catch (SQLException e) {
+                Logger.getLogger(DatosPersonalesDAO.class.getName()).log(Level.SEVERE, null, e);
+            }
+
+        }
+
+        return listaDatosPersonalesIna;
+    }
 }
+

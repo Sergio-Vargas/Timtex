@@ -11,19 +11,18 @@ package ModeloVO;
  */
 public class OrdenVO {
     
-    private String IdOrden,FechaOrden,cantidadPrenda,EstadoOrden,IdDatosFK,IdPrendaFK;
+    private String IdOrden,FechaOrden,EstadoOrden,IdDatosFK;
 
     
     public OrdenVO() {
     }
 
-    public OrdenVO(String IdOrden, String FechaOrden, String cantidadPrenda, String EstadoOrden, String IdDatosFK, String IdPrendaFK) {
+    public OrdenVO(String IdOrden, String FechaOrden, String EstadoOrden, String IdDatosFK) {
         this.IdOrden = IdOrden;
-        this.FechaOrden = FechaOrden;
-        this.cantidadPrenda = cantidadPrenda;
+        this.FechaOrden = FechaOrden; 
         this.EstadoOrden = EstadoOrden;
         this.IdDatosFK = IdDatosFK;
-        this.IdPrendaFK = IdPrendaFK;
+       
     }
 
     public String getIdOrden() {
@@ -42,14 +41,6 @@ public class OrdenVO {
         this.FechaOrden = FechaOrden;
     }
 
-    public String getCantidadPrenda() {
-        return cantidadPrenda;
-    }
-
-    public void setCantidadPrenda(String cantidadPrenda) {
-        this.cantidadPrenda = cantidadPrenda;
-    }
-
     public String getEstadoOrden() {
         return EstadoOrden;
     }
@@ -64,15 +55,5 @@ public class OrdenVO {
 
     public void setIdDatosFK(String IdDatosFK) {
         this.IdDatosFK = IdDatosFK;
-    }
-
-    public String getIdPrendaFK() {
-        return IdPrendaFK;
-    }
-
-    public void setIdPrendaFK(String IdPrendaFK) {
-        this.IdPrendaFK = IdPrendaFK;
-    }
-    
-    
+    }    
 }

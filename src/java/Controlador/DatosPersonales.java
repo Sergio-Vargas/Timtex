@@ -59,7 +59,7 @@ public class DatosPersonales extends HttpServlet {
                     request.setAttribute("MensajeError", "La infromacion no se registró correctamente");
 
                 }
-                request.getRequestDispatcher("registrarDatosPersonales.jsp").forward(request, response);
+                request.getRequestDispatcher("consultarDatosPersonales.jsp").forward(request, response);
                 break;
                 
             case 2: // Actualizar Registro
@@ -89,6 +89,7 @@ public class DatosPersonales extends HttpServlet {
                     request.getRequestDispatcher("consultarDatosPersonales.jsp").forward(request, response);
                 }
                 break;
+                   
                 
         }
 

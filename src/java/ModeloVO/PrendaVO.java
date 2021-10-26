@@ -10,17 +10,23 @@ package ModeloVO;
  * @author sergio saenz
  */
 public class PrendaVO {
-    private String IdPrenda,ImagenPrenda,NombrePrenda,Talla,DescripcionPrenda,EstadoPrenda,IdTipoPrendaFK;
+    String IdPrenda;
+    String ImagenPrenda;
+    String NombrePrenda;
+    String DescripcionPrenda;
+    String PrecioPrenda;
+    String EstadoPrenda;
+    String IdTipoPrendaFK;
 
     public PrendaVO() {
     }
 
-    public PrendaVO(String IdPrenda, String ImagenPrenda, String NombrePrenda, String Talla, String DescripcionPrenda, String EstadoPrenda, String IdTipoPrendaFK) {
+    public PrendaVO(String IdPrenda, String ImagenPrenda, String NombrePrenda, String DescripcionPrenda, String PrecioPrenda, String EstadoPrenda, String IdTipoPrendaFK) {
         this.IdPrenda = IdPrenda;
         this.ImagenPrenda = ImagenPrenda;
         this.NombrePrenda = NombrePrenda;
-        this.Talla = Talla;
         this.DescripcionPrenda = DescripcionPrenda;
+        this.PrecioPrenda = PrecioPrenda;
         this.EstadoPrenda = EstadoPrenda;
         this.IdTipoPrendaFK = IdTipoPrendaFK;
     }
@@ -49,20 +55,20 @@ public class PrendaVO {
         this.NombrePrenda = NombrePrenda;
     }
 
-    public String getTalla() {
-        return Talla;
-    }
-
-    public void setTalla(String Talla) {
-        this.Talla = Talla;
-    }
-
     public String getDescripcionPrenda() {
         return DescripcionPrenda;
     }
 
     public void setDescripcionPrenda(String DescripcionPrenda) {
         this.DescripcionPrenda = DescripcionPrenda;
+    }
+
+    public String getPrecioPrenda() {
+        return PrecioPrenda;
+    }
+
+    public void setPrecioPrenda(String PrecioPrenda) {
+        this.PrecioPrenda = PrecioPrenda;
     }
 
     public String getEstadoPrenda() {
@@ -80,5 +86,10 @@ public class PrendaVO {
     public void setIdTipoPrendaFK(String IdTipoPrendaFK) {
         this.IdTipoPrendaFK = IdTipoPrendaFK;
     }
-        
+    
+    
+    
+    
+    
+    
 }

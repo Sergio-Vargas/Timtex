@@ -27,8 +27,11 @@ public class PrendaDAO extends Conexion implements Crud{
     private boolean operacion= false;
     private String sql;
     
-    private String IdPrenda="",ImagenPrenda="",NombrePrenda="",Talla="",DescripcionPrenda="",EstadoPrenda="",IdTipoPrendaFK="";
     
+    String IdPrenda="";
+    String ImagenPrenda="",NombrePrenda="",DescripcionPrenda="", PrecioPrenda="", EstadoPrenda="";
+    String IdTipoPrendaFK;
+
     
     public PrendaDAO(){
      }
@@ -44,9 +47,9 @@ public class PrendaDAO extends Conexion implements Crud{
     
             IdPrenda = PreVO.getIdPrenda();
             ImagenPrenda = PreVO.getImagenPrenda();
-            NombrePrenda = PreVO.getNombrePrenda();
-            Talla=PreVO.getTalla(); 
+            NombrePrenda = PreVO.getNombrePrenda(); 
             DescripcionPrenda = PreVO.getDescripcionPrenda();
+            PrecioPrenda=PreVO.getPrecioPrenda();
             EstadoPrenda=PreVO.getEstadoPrenda();
             IdTipoPrendaFK=PreVO.getIdTipoPrendaFK();
                             
@@ -60,18 +63,17 @@ public class PrendaDAO extends Conexion implements Crud{
     public boolean aregarRegistro() {
         try {
             //Crear la sentencia
-            sql = "INSERT INTO prenda(IdPrenda,ImagenPrenda,NombrePrenda,Talla,"
-            + "DescripcionPrenda,EstadoPrenda,IdTipoPrendaFK)VALUES(?,?,?,?,?,?,?);";
+            sql = "INSERT INTO prenda(ImagenPrenda,NombrePrenda,"
+            + "DescripcionPrenda,PrecioPrenda,EstadoPrenda,IdTipoPrendaFK)VALUES(?,?,?,?,?);";
 
             //Crear el puente para esa conexion establecida
             puente = conexion.prepareStatement(sql);
-            puente.setString(1, IdPrenda);
-            puente.setString(2, ImagenPrenda);
-            puente.setString(3, NombrePrenda);
-            puente.setString(4, Talla);
-            puente.setString(5, DescripcionPrenda);
-            puente.setString(6, EstadoPrenda);
-            puente.setString(7, IdTipoPrendaFK);
+            puente.setString(1, ImagenPrenda);
+            puente.setString(2, NombrePrenda);
+            puente.setString(3, DescripcionPrenda);
+            puente.setString(4,PrecioPrenda);
+            puente.setString(5, EstadoPrenda);
+            puente.setString(6, IdTipoPrendaFK);
             puente.executeUpdate();
             operacion = true;
          
@@ -97,15 +99,15 @@ public class PrendaDAO extends Conexion implements Crud{
         try {
             
             //Crear la sentancia
-            sql="update prenda set ImagenPrenda=?,NombrePrenda=?,Talla=?,"
-            + "DescripcionPrenda=?,EstadoPrenda=?,IdTipoPrendaFK=? where IdPrenda=?;";
+            sql="update prenda set ImagenPrenda=?,NombrePrenda=?,"
+            + "DescripcionPrenda=?,PrecioPrenda=?,EstadoPrenda=?,IdTipoPrendaFK=? where IdPrenda=?;";
  
             //Crear el puente para esa conexion establecida
             puente= conexion.prepareStatement(sql);
             puente.setString(1, ImagenPrenda);
             puente.setString(2, NombrePrenda);
-            puente.setString(3, Talla);
-            puente.setString(4, DescripcionPrenda);
+            puente.setString(3, DescripcionPrenda);
+            puente.setString(4,PrecioPrenda);
             puente.setString(5, EstadoPrenda);
             puente.setString(6, IdTipoPrendaFK);
             puente.setString(7, IdPrenda);
@@ -147,24 +149,17 @@ public class PrendaDAO extends Conexion implements Crud{
                 
                 PreVO= new PrendaVO(mensajero.getString(1), mensajero.getString(2), 
                         mensajero.getString(3), mensajero.getString(4), 
-                        mensajero.getString(5), mensajero.getString(6),
-                        mensajero.getString(7));
+                        mensajero.getString(5), mensajero.getString(6),mensajero.getString(7));
                         
             }
             
         } catch (Exception e) {
-        } finally {
-            try {
-                this.cerrarConexion();
-            } catch (SQLException e) {
-                Logger.getLogger(PrendaDAO.class.getName()).log(Level.SEVERE, null, e);
-            }
-
-        }
+        } 
 
         return PreVO;
     }
     
+   
     // genera lista
     public ArrayList<PrendaVO> listar() {
 
@@ -199,5 +194,39 @@ public class PrendaDAO extends Conexion implements Crud{
         return listaPrenda;
     }
     
+    
+    // genera lista
+    public ArrayList<PrendaVO> inactivo() {
+
+        ArrayList<PrendaVO> listaPrendaIna = new ArrayList<>();
+
+        try {
+            conexion = this.obtenerConexion();
+            sql = "select*from Prenda where EstadoPrenda='Inactivo'";
+            puente = conexion.prepareStatement(sql);
+            mensajero = puente.executeQuery();
+            
+            while (mensajero.next()) {                
+                
+                PrendaVO PreVO = new PrendaVO(mensajero.getString(1), mensajero.getString(2), 
+                        mensajero.getString(3), mensajero.getString(4), 
+                        mensajero.getString(5), mensajero.getString(6),mensajero.getString(7));
+                
+                    listaPrendaIna.add(PreVO);
+            }
+
+        } catch (Exception e) {
+            Logger.getLogger(PrendaDAO.class.getName()).log(Level.SEVERE, null, e);
+        } finally {
+            try {
+                this.cerrarConexion();
+            } catch (SQLException e) {
+                Logger.getLogger(PrendaDAO.class.getName()).log(Level.SEVERE, null, e);
+            }
+
+        }
+
+        return listaPrendaIna;
+    }
     
 }

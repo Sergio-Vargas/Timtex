@@ -25,7 +25,7 @@ public class OrdenDAO extends Conexion implements Crud{
     private boolean operacion= false;
     private String sql;
     
-    private String IdOrden="",FechaOrden="",cantidadPrenda="",EstadoOrden="",IdDatosFK="",IdPrendaFK="";
+    private String IdOrden="",FechaOrden="",EstadoOrden="",IdDatosFK="";
 
     public OrdenDAO(){
      }
@@ -41,10 +41,8 @@ public class OrdenDAO extends Conexion implements Crud{
     
             IdOrden = OrdeVO.getIdOrden();
             FechaOrden = OrdeVO.getFechaOrden();
-            cantidadPrenda = OrdeVO.getCantidadPrenda();
             EstadoOrden=OrdeVO.getEstadoOrden(); 
             IdDatosFK = OrdeVO.getIdDatosFK();
-            IdPrendaFK = OrdeVO.getIdPrendaFK();
                             
         } catch (Exception e) {
             Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, e);
@@ -52,21 +50,19 @@ public class OrdenDAO extends Conexion implements Crud{
         
     }
     
+    
     @Override
     public boolean aregarRegistro() {
          try {
             //Crear la sentencia
-            sql = "INSERT INTO orden(IdOrden,FechaOrden,CantidadPrenda,EstadoOrden,"
-            + " IdDatosFK,IdPrendaFK)VALUES(?,?,?,?,?,?);";
+            sql = "INSERT INTO orden(FechaOrden,EstadoOrden,"
+            + " IdDatosFK)VALUES(?,?,?);";
    
             //Crear el puente para esa conexion establecida
             puente = conexion.prepareStatement(sql);
-            puente.setString(1, IdOrden);
-            puente.setString(2, FechaOrden);
-            puente.setString(3, cantidadPrenda);
-            puente.setString(4, EstadoOrden);
-            puente.setString(5, IdDatosFK);
-            puente.setString(6, IdPrendaFK);
+            puente.setString(1, FechaOrden);
+            puente.setString(2, EstadoOrden);
+            puente.setString(3, IdDatosFK);
             puente.executeUpdate();
             operacion = true;
          
@@ -92,17 +88,15 @@ public class OrdenDAO extends Conexion implements Crud{
         try {
             
             //Crear la sentancia
-            sql="update orden set FechaOrden=?,cantidadPrenda=?,EstadoOrden=?,"
-                + "IdDatosFK=?,IdPrendaFK=? where IdOrden=?;";
+            sql="update orden set FechaOrden=?,EstadoOrden=?,"
+                + "IdDatosFK=? where IdOrden=?;";
  
             //Crear el puente para esa conexion establecida
             puente= conexion.prepareStatement(sql);
             puente.setString(1, FechaOrden);
-            puente.setString(2, cantidadPrenda);
-            puente.setString(3, EstadoOrden);
-            puente.setString(4, IdDatosFK);
-            puente.setString(5, IdPrendaFK);
-            puente.setString(6, IdOrden);
+            puente.setString(2, EstadoOrden);
+            puente.setString(3, IdDatosFK);
+            puente.setString(4, IdOrden);
             puente.executeUpdate();
             operacion= true;
             
@@ -141,8 +135,7 @@ public class OrdenDAO extends Conexion implements Crud{
             while (mensajero.next()) {                
                 
                 OrdeVO= new OrdenVO(mensajero.getString(1), mensajero.getString(2), 
-                        mensajero.getString(3), mensajero.getString(4), 
-                        mensajero.getString(5), mensajero.getString(6));
+                        mensajero.getString(3), mensajero.getString(4));
                         
             }
             
@@ -173,8 +166,7 @@ public class OrdenDAO extends Conexion implements Crud{
             while (mensajero.next()) {                
                 
                 OrdenVO OrdeVO = new OrdenVO(mensajero.getString(1), mensajero.getString(2), 
-                        mensajero.getString(3), mensajero.getString(4), 
-                        mensajero.getString(5), mensajero.getString(6));
+                        mensajero.getString(3), mensajero.getString(4));
                 
                     listaOrden.add(OrdeVO);
             }
@@ -193,5 +185,38 @@ public class OrdenDAO extends Conexion implements Crud{
         return listaOrden;
     }
     
+    
+    // genera lista
+    public ArrayList<OrdenVO> inactivo() {
+
+        ArrayList<OrdenVO> listaOrdenIna = new ArrayList<>();
+
+        try {
+            conexion = this.obtenerConexion();
+            sql = "select * from orden where EstadoOrden='Inactivo'";
+            puente = conexion.prepareStatement(sql);
+            mensajero = puente.executeQuery();
+            
+            while (mensajero.next()) {                
+                
+                OrdenVO OrdeVO = new OrdenVO(mensajero.getString(1), mensajero.getString(2), 
+                        mensajero.getString(3), mensajero.getString(4));
+                
+                    listaOrdenIna.add(OrdeVO);
+            }
+
+        } catch (Exception e) {
+            Logger.getLogger(OrdenDAO.class.getName()).log(Level.SEVERE, null, e);
+        } finally {
+            try {
+                this.cerrarConexion();
+            } catch (SQLException e) {
+                Logger.getLogger(OrdenDAO.class.getName()).log(Level.SEVERE, null, e);
+            }
+
+        }
+
+        return listaOrdenIna;
+    }
     
 }

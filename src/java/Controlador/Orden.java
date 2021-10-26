@@ -40,12 +40,10 @@ public class Orden extends HttpServlet {
         int opcion = Integer.parseInt(request.getParameter("opcion"));
         String IdOrden = request.getParameter("textOrden");
         String FechaOrden = request.getParameter("textFecha");
-        String cantidadPrenda = request.getParameter("textCantidad");
         String EstadoOrden = request.getParameter("textEstado");
         String IdDatosFK = request.getParameter("textIdDato");
-        String IdPrendaFK = request.getParameter("textPrenda");        
       
-        OrdenVO OrdeVO = new OrdenVO(IdOrden,FechaOrden,cantidadPrenda,EstadoOrden,IdDatosFK,IdPrendaFK);
+        OrdenVO OrdeVO = new OrdenVO(IdOrden,FechaOrden,EstadoOrden,IdDatosFK);
         OrdenDAO OrdeDAO = new OrdenDAO(OrdeVO);
         
          switch (opcion) {
@@ -58,7 +56,7 @@ public class Orden extends HttpServlet {
                     request.setAttribute("MensajeError", "La infromacion no se registró correctamente");
 
                 }
-                request.getRequestDispatcher("registrarOrden.jsp").forward(request, response);
+                request.getRequestDispatcher("consultarOrden.jsp").forward(request, response);
                 break;
                 
             case 2: // Actualizar Registro

@@ -3,70 +3,80 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-function validar(id, nombre, apellido, direccion, telefono, email, estado, idusuario){
-    var id, nombre, apellido, direccion, telefono, email, estado, idusuario
-    id = document.getElementById("id").value;
-    nombre = document.getElementById("nombre").value;
-    apellido = document.getElementById("apellido").value;
-    direccion = document.getElementById("direccion").value;
-    telefono = document.getElementById("telefono").value;
-    email = document.getElementById("email").value;
-    estado = document.getElementById("estado").value;
-    idusuario = document.getElementById("idusuario").value;
-    expresion = /\w+@\w+.\.+[a-z]/;
+//Acceder a los elementos
 
-    if( id === ""|| nombre === "" || apellido === ""|| direccion === "" || telefono === "" || email === "" || estado === "" || idusuario === ""){
-        alert("Todos los campos son obligatorios");
-        return false;
-    }
-    else if(id.lenght>10){
-        alert("El id es muy largo");
-        return false;
-    }
-    else if(isNaN(id)){
-        alert("El id ingresado no es un número");
-        return false;
-    }
-    else if(nombre.lenght>20){
-        alert("El nombre es muy largo");
-        return false;
-    }
-   
-    else if(apellido.lenght>20){
-        alert("Los apellidos son muy largos");
-        return false;
-    }
-    else if(direccion.lenght>80){
-        alert("La direccion es muy larga");
-        return false;
-    }
-    else if(telefono.lenght>15){
-        alert("El telefono es muy largo");
-        return false;
-    }
-    else if (isNaN(telefono)){
-        alert("El teléfono ingresado no es un número");
-        return false;
-    }
-    else if(email.lenght>50){
-        alert("El correo es muy largo");
-        return false;
-    }
-    else if(!expresion.test(email)){
-        alert("El correo no es válido");
-        return false;
-    }
-    else if(estado.lenght>10){
-        alert("El estado es muy largo");
-        return false;
-    }
-    else if(idusuario.lenght>10){
-        alert("El id del usuario es muy largo");
-        return false;
-    }
-    else if(isNaN(idusuario)){
-        alert("El id del usuario ingresado no es un número");
-        return false;
-    }
-    
+const form=document.getElementById('frm-usuario');
+const campos=document.querySelectorAll('#frm-usuario input');
+//console.log(form);
+//console.log(campos);
+
+const reglas = {
+	textos: /^[a-zA-ZÀ-ÿ\s]{1,40}$/, // Letras y espacios, letras tildadas, diéresis, entre 1 y 40 caracteres.
+	correo: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
+	numeros: /^\d{7,10}$/ // solo números de 7 a 10 caracteres.
 }
+
+
+const validarInput=(regla,input,grupo)=>{
+	if(regla.test(input.value)){
+			document.getElementById(`g-${grupo}`).classList.remove('error');
+			document.getElementById(`g-${grupo}`).classList.add('success');
+			document.querySelector(`#g-${grupo} i`).classList.remove('fa-exclamation-circle');
+			document.querySelector(`#g-${grupo} i`).classList.add('fa-check-circle');
+			document.querySelector(`#g-${grupo} .msn-error`).classList.remove('msn-error-visible');
+			
+		}
+		else{
+			document.getElementById(`g-${grupo}`).classList.add('error');
+			document.getElementById(`g-${grupo}`).classList.remove('success');
+			document.querySelector(`#g-${grupo} i`).classList.add('fa-exclamation-circle');
+			document.querySelector(`#g-${grupo} .msn-error`).classList.add('msn-error-visible');
+			
+		}
+}
+
+
+
+const validarCampos=(e)=>{
+	//console.log("Se levantó una tecla en el input");
+	//console.log(e.target.name);
+	switch(e.target.name){
+
+
+		case "textNombre":
+			validarInput(reglas.textos,e.target,e.target.name);
+		break;
+
+		case "textApellido":
+			validarInput(reglas.textos,e.target,e.target.name);
+		break;
+
+                case "textDireccion":
+			validarInput(e.target,e.target.name);
+		break;
+
+                case "textTelefono":
+			validarInput(reglas.numeros,e.target,e.target.name);
+		break;
+
+		case "textCorreo":
+			validarInput(reglas.correo,e.target,e.target.name);
+		break;
+
+	}
+	
+}
+
+
+form.addEventListener('submit',e=>{
+	e.preventDefault();
+	
+});
+
+campos.forEach((campo)=>{
+//	console.log(campo);
+
+campo.addEventListener('keyup',validarCampos);
+campo.addEventListener('blur',validarCampos);
+
+})

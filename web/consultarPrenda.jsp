@@ -38,7 +38,30 @@
 </style>
     <body>
     <center>
-        <h1>Prenda</h1>
+        <h1>Lista de Prendas</h1>
+         <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+          Nueva Prenda
+        </button>
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Registrar Prenda</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                    <%@include file="registrarPrenda.jsp"%>
+                    
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                  </div>
+                </div>
+            </div>
+        </div>
+        <a href="inactivoPrenda.jsp"><button class="btn btn-primary">Inactivos</button></a>
         <div style="color: red;">
 
             <%if (request.getAttribute("MensajeError") != null) { %>
@@ -48,7 +71,6 @@
             <div style="color: greenyellow">${MensajeExito}</div>
 
             <%  }%>
-
         </div>
         <form>
             <div class="estilotabla Ctabla"><br>
@@ -58,25 +80,14 @@
                     <th>ID PRENDA</th>
                     <th>IMAGEN PRENDA</th>
                     <th>NOMBRE PRENDA</th>
-                    <th>TALLA</th>
                     <th>DESCRIPCION PRENDA</th>
+                    <th>PRECIO PRENDA</th>
                     <th>ESTADO PRENDA</th>
                     <th>ID TIPOPRENDA FK</th>
                     <th></th>
                     <th>ACCIÓN</th>
                 </tr>
                 </thead>
-                <tr>
-                    <th>ID PRENDA</th>
-                    <th>IMAGEN PRENDA</th>
-                    <th>NOMBRE PRENDA</th>
-                    <th>TALLA</th>
-                    <th>DESCRIPCION PRENDA</th>
-                    <th>ESTADO PRENDA</th>
-                    <th>ID TIPOPRENDA FK</th>
-                    <th></th>
-                    <th>ACCIÓN</th>
-                </tr> 
                 <tbody>
                 <%
                     PrendaVO PreVO = new PrendaVO();
@@ -90,8 +101,8 @@
                     <td><%=PreVO.getIdPrenda()%></td>
                     <td><img src="<%=PreVO.getImagenPrenda()%>"width="100px"></td>
                     <td><%=PreVO.getNombrePrenda()%></td>
-                    <td><%=PreVO.getTalla()%></td>
                     <td><%=PreVO.getDescripcionPrenda()%></td>
+                    <td><%=PreVO.getPrecioPrenda()%></td>
                     <td><%=PreVO.getEstadoPrenda() %></td>
                     <td><%=PreVO.getIdTipoPrendaFK()%></td>
                     <td>
@@ -112,8 +123,8 @@
                     <th>ID PRENDA</th>
                     <th>IMAGEN PRENDA</th>
                     <th>NOMBRE PRENDA</th>
-                    <th>TALLA</th>
                     <th>DESCRIPCION PRENDA</th>
+                    <th>PRECIO PRENDA</th>
                     <th>ESTADO PRENDA</th>
                     <th>ID TIPOPRENDA FK</th>
                     <th></th>

@@ -43,13 +43,13 @@ public class Prenda extends HttpServlet {
         String IdPrenda = request.getParameter("textIdPrenda");
         String ImagenPrenda = request.getParameter("textImagenPrenda");
         String NombrePrenda = request.getParameter("textNombrePrenda");
-        String Talla = request.getParameter("textTalla");
         String DescripcionPrenda = request.getParameter("textDescripcionPrenda");
+        String PrecioPrenda=request.getParameter("textPrecio");
         String EstadoPrenda = request.getParameter("textEstadoPrenda");        
         String IdTipoPrendaFK = request.getParameter("textIdTipoPrendaFK");
         
         
-        PrendaVO PreVO = new PrendaVO(IdPrenda,ImagenPrenda,NombrePrenda,Talla,DescripcionPrenda,EstadoPrenda,IdTipoPrendaFK);
+        PrendaVO PreVO = new PrendaVO(IdPrenda,ImagenPrenda,NombrePrenda,DescripcionPrenda,PrecioPrenda,EstadoPrenda,IdTipoPrendaFK);
         PrendaDAO PreDAO = new PrendaDAO(PreVO);
           
         switch (opcion) {
@@ -62,7 +62,7 @@ public class Prenda extends HttpServlet {
                     request.setAttribute("MensajeError", "La infromacion no se registró correctamente");
 
                 }
-                request.getRequestDispatcher("registrarPrenda.jsp").forward(request, response);
+                request.getRequestDispatcher("consultarPrenda.jsp").forward(request, response);
                 break;
                 
             case 2: // Actualizar Registro
@@ -93,6 +93,19 @@ public class Prenda extends HttpServlet {
                 }
                 break;
                 
+             case 4: //Consultar
+                
+                 PreVO = PreDAO.consultarDatos(IdPrenda);
+                if (PreVO != null) {
+                    
+                    request.setAttribute("identificacion consultada",PreVO);
+                    request.getRequestDispatcher("DetallePrenda.jsp").forward(request, response);
+                
+                }else{
+                    request.setAttribute("MensajeError", "La identificacion no existe");
+                    request.getRequestDispatcher("Usuario").forward(request, response);
+                }
+            break;   
         }
         
     }

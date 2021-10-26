@@ -65,19 +65,18 @@ public class ProcesoDAO extends Conexion implements Crud{
         try {
             
             //Crear la sentencia
-            sql = "INSERT INTO proceso (IdProceso,DescripcionProceso,FechaProceso,"
+            sql = "INSERT INTO proceso (DescripcionProceso,FechaProceso,"
             + "HoraInicio,HoraFin,PrendasRealizadas,EstadoProceso,IdAsigOrdenFK)"
-            + " VALUES (?,?,?,?,?,?,?,?);";
+            + " VALUES (?,?,?,?,?,?,?);";
              //Crear el puente para esa conexion establecida
             puente = conexion.prepareStatement(sql);
-            puente.setString(1, IdProceso);
-            puente.setString(2, DescripcionProceso);
-            puente.setString(3, FechaProceso);
-            puente.setString(4, HoraInicio);
-            puente.setString(5, HoraFin);
-            puente.setString(6, PrendasRealizadas);
-            puente.setString(7, EstadoProceso);
-            puente.setString(8, IdAsigOrdenFK);
+            puente.setString(1, DescripcionProceso);
+            puente.setString(2, FechaProceso);
+            puente.setString(3, HoraInicio);
+            puente.setString(4, HoraFin);
+            puente.setString(5, PrendasRealizadas);
+            puente.setString(6, EstadoProceso);
+            puente.setString(7, IdAsigOrdenFK);
             puente.executeUpdate();
             operacion = true;
             
@@ -204,5 +203,40 @@ public class ProcesoDAO extends Conexion implements Crud{
         }
 
         return listaProceso;
+    }
+    
+    // genera lista
+    public ArrayList<ProcesoVO> inactivo() {
+
+        ArrayList<ProcesoVO> listaProcesoIna = new ArrayList<>();
+
+        try {
+            conexion = this.obtenerConexion();
+            sql = "select * from proceso where EstadoProceso='Inactivo'";
+            puente = conexion.prepareStatement(sql);
+            mensajero = puente.executeQuery();
+            
+            while (mensajero.next()) {                
+                
+                ProcesoVO ProVO = new ProcesoVO(mensajero.getString(1), mensajero.getString(2), 
+                        mensajero.getString(3), mensajero.getString(4), 
+                        mensajero.getString(5), mensajero.getString(6), 
+                        mensajero.getString(7),mensajero.getString(8));
+                
+                    listaProcesoIna.add(ProVO);
+            }
+
+        } catch (Exception e) {
+            Logger.getLogger(ProcesoDAO.class.getName()).log(Level.SEVERE, null, e);
+        } finally {
+            try {
+                this.cerrarConexion();
+            } catch (SQLException e) {
+                Logger.getLogger(ProcesoDAO.class.getName()).log(Level.SEVERE, null, e);
+            }
+
+        }
+
+        return listaProcesoIna;
     }
 }

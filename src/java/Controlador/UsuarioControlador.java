@@ -42,11 +42,12 @@ public class UsuarioControlador extends HttpServlet {
         int opcion = Integer.parseInt(request.getParameter("opcion"));
         String IdUsuario = request.getParameter("textId");
         String NombreUsuario = request.getParameter("textUsuario");
+        String CorreoDatos=request.getParameter("textCorreo");
         String ClaveUsuario = request.getParameter("textClave");
         String IdCargoFK =request.getParameter("textCargo");
         
         //2. Hacer pregunta ¿Quién tiene los datos de forma segura en el sistema? = VO
-        UsuarioVO usuVO = new UsuarioVO(IdUsuario,NombreUsuario,ClaveUsuario,IdCargoFK);
+        UsuarioVO usuVO = new UsuarioVO(IdUsuario,NombreUsuario,CorreoDatos,ClaveUsuario,IdCargoFK);
         
         //3.¿Quién hace las operaciones? = DAO
         UsuarioDAO usuDAO = new UsuarioDAO(usuVO);
@@ -54,16 +55,24 @@ public class UsuarioControlador extends HttpServlet {
         //4.Administrar operaciones del módulos
         switch (opcion) {
 
-            case 1: // Aregar Registro
+            case 1: 
+                // consulta 
+                usuVO = usuDAO.consultar(NombreUsuario);
+                if (usuVO == null) {
 
-                if (usuDAO.aregarRegistro()) {
+                    if (usuDAO.aregarRegistro()) {
 
-                    request.setAttribute("MensajeExito", "El usuario se registró correctamente");
+                        request.setAttribute("MensajeExito", "El usuario se registró correctamente");
+                        //request.getRequestDispatcher("registrarUsuario.jsp").forward(request, response);
 
+                    } else {
+                        request.setAttribute("MensajeError", "El usuario no se registró correctamente");
+                        //request.getRequestDispatcher("registrarUsuario.jsp").forward(request, response);
+                    }
                 } else {
 
-                    request.setAttribute("MensajeError", "El usuario NO se registró correctamente");
-
+                    request.setAttribute("MensajeError", "El usuario ya existe en el sistema");
+                    
                 }
                 request.getRequestDispatcher("registrarUsuario.jsp").forward(request, response);
                 break;
@@ -83,12 +92,15 @@ public class UsuarioControlador extends HttpServlet {
                 break;
                 
             case 3: //Inicio de Sesión
+                usuVO = usuDAO.consultar(NombreUsuario);
+                if (usuVO != null) {
+                    
                 
                 if (usuDAO.iniciarSesion(NombreUsuario,ClaveUsuario)) {
                     
                     HttpSession miSesion =request.getSession(true);
                     RolDAO rolDAO= new RolDAO();
-                    usuVO =new UsuarioVO(IdUsuario,NombreUsuario,ClaveUsuario,IdCargoFK);
+                    
                     miSesion.setAttribute("datosUsuario", usuVO);
                     
                     ArrayList<UsuarioVO> listaRoles= rolDAO.rol(NombreUsuario);
@@ -100,20 +112,32 @@ public class UsuarioControlador extends HttpServlet {
                     miSesion.setAttribute("rol",listaRoles);   
                     
                     if(usuVO.getRol().equals("Administrador")){
+                        
                     request.getRequestDispatcher("Administrador.jsp").forward(request, response);
                     }
                     else if(usuVO.getRol().equals("Empleado")){
+                        
                     request.getRequestDispatcher("Empleado.jsp").forward(request, response);
                     }
                     else{
+                        
                     request.getRequestDispatcher("Cliente.jsp").forward(request, response);
                     }
-                              
-                }else{
-                    request.setAttribute("MensajeError","El usuario y/o la contraseña son incorrectos");
-                    request.getRequestDispatcher("Login.jsp").forward(request, response);
+                           
                 }
+                else{
+                    request.setAttribute("MensajeError","El usuario y/o la contraseña son incorrectos");
+                     request.getRequestDispatcher("Login.jsp").forward(request, response);
+                }
+                
+                
+                }
+                else{
+                  request.getRequestDispatcher("Login.jsp").forward(request, response);   
+                }
+                request.getRequestDispatcher("Login.jsp").forward(request, response);
                 break;
+                
 
         }
         

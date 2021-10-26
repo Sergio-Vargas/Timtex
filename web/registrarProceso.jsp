@@ -20,8 +20,7 @@
             <table>
                 <tr>
                     <th>
-                        Proceso<br>
-                        <input type="text" name="textIdProceso"><br><br>
+                        <input type="hidden" name="textIdProceso"><br><br>
                         Descripción proceso<br>
                         <input type="text" name="textDescripcion"><br><br>
                         Fecha proceso<br>
@@ -32,16 +31,19 @@
                         <input type="time" name="textHoraf"><br><br>
                         Prendas realizadas<br>
                         <input type="text" name="textPrendasr"><br><br>
-                        Proceso<br>
-                        <input type="text" name="textEstado"><br><br>
-                        Id Datos<br>
+                        Estado Proceso<br>
+                        <select name="textEstado">
+                        <option>Seleccione...</option>
+                        <option value="Activo">Activo</option>
+                        </select><br>
+                        Id Asignación<br>
                         <select name="textAsig">
                         <option>Seleccione...</option>
                         <%
                         AsigOrdenDAO AsigDAO = new AsigOrdenDAO();    
                         for (AsigOrdenVO AsigVO : AsigDAO.listar()) {
                         %>
-                        <option value="<%=AsigVO.getIdAsigOrden()%>"><%=AsigVO.getIdDatosFK()%></option>
+                        <option value="<%=AsigVO.getIdAsigOrden()%>"><%=AsigVO.getIdAsigOrden()%></option>
                         <% }%>
                         </select><br>
                         

@@ -37,7 +37,11 @@
                         Correo<br>
                         <input type="text" name="textCorreo" value="<%=datVO.getCorreoDatos()%>"><br><br>
                         Estado<br>
-                        <input type="text" name="textEstado" value="<%=datVO.getEstadoDatos()%>"><br><br>
+                        <select name="textEstado">
+                        <option>Seleccione...</option>
+                        <option value="Activo">Activo</option>
+                        <option value="Inactivo">Inactivo</option>
+                        </select><br>
                         Id usuario<br>
                         <select name="textUsuario">
                         <option>Seleccione...</option>

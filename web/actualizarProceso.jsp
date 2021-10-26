@@ -25,8 +25,7 @@
             <table>
                 <tr>
                     <th>
-                        Proceso<br>
-                        <input type="text" name="textIdProceso" value="<%=ProVO.getIdProceso()%>"><br><br>
+                        <input type="hidden" name="textIdProceso" value="<%=ProVO.getIdProceso()%>"><br><br>
                         Descripción proceso<br>
                         <input type="text" name="textDescripcion" value="<%=ProVO.getDescripcionProceso()%>"><br><br>
                         Fecha proceso<br>
@@ -37,21 +36,23 @@
                         <input type="time" name="textHoraf" value="<%=ProVO.getHoraFin()%>"><br><br>
                         Prendas realizadas<br>
                         <input type="text" name="textPrendasr" value="<%=ProVO.getPrendasRealizadas()%>"><br><br>
-                        Proceso<br>
-                        <input type="text" name="textEstado" value="<%=ProVO.getEstadoProceso()%>"><br><br>
-                         Id Datos<br>
+                        Estado Proceso<br>
+                        <select name="textEstado">
+                        <option>Seleccione...</option>
+                        <option value="Activo">Activo</option>
+                        <option value="Inactivo">Inactivo</option>
+                        </select><br>
+                        Id Datos<br>
                         <select name="textAsig">
                         <option>Seleccione...</option>
                         <%
                         AsigOrdenDAO AsigDAO = new AsigOrdenDAO();    
                         for (AsigOrdenVO AsigVO : AsigDAO.listar()) {
                         %>
-                        <option value="<%=AsigVO.getIdAsigOrden()%>"><%=AsigVO.getIdDatosFK()%></option>
+                        <option value="<%=AsigVO.getIdAsigOrden()%>"><%=AsigVO.getIdAsigOrden()%></option>
                         <% }%>
                         </select><br>
-                        <td></td>
-                        
-                       
+                        <td></td>  
                 </th>
                 <tr>
             </table>
@@ -61,7 +62,6 @@
         <% }%>
         <a href="consultarProceso.jsp">Volver</a><br><br>
         <div style="color: red;">
-
             <%
                 if (request.getAttribute("MensajeError") != null) { %>
             ${MensajeError}     

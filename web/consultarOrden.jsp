@@ -38,7 +38,31 @@
 </style>
     <body>
     <center>
-        <h1>Orden</h1>
+        <h1>Lista de Ordenes</h1>
+          
+         <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+          Nueva orden
+        </button>
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Registrar Orden</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                    <%@include file="registrarOrden.jsp"%>
+                    
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                  </div>
+                </div>
+            </div>
+        </div>
+        <a href="inactivoOrden.jsp"><button class="btn btn-primary">Inactivos</button></a>
         <div style="color: red;">
 
             <%if (request.getAttribute("MensajeError") != null) { %>
@@ -57,24 +81,12 @@
                 <tr>
                     <th>ID ORDEN</th>
                     <th>FECHA ORDEN</th>
-                    <th>CANTIDAD PRENDA</th>
                     <th>ESTADO ORDEN</th>
                     <th>ID DATOS FK</th>
-                    <th>ID PRENDA FK</th>
                     <th></th>
                     <th>ACCIÓN</th>
                 </tr>
                 </thead>
-                <tr>
-                    <th>ID ORDEN</th>
-                    <th>FECHA ORDEN</th>
-                    <th>CANTIDAD PRENDA</th>
-                    <th>ESTADO ORDEN</th>
-                    <th>ID DATOS FK</th>
-                    <th>ID PRENDA FK</th>
-                    <th></th>
-                    <th>ACCIÓN</th>
-                </tr> 
                 <tbody>
                 <%
                     OrdenVO OrdeVO = new OrdenVO();
@@ -87,10 +99,8 @@
                 <tr>
                     <td><%=OrdeVO.getIdOrden()%></td>
                     <td><%=OrdeVO.getFechaOrden()%></td>
-                    <td><%=OrdeVO.getCantidadPrenda()%></td>
                     <td><%=OrdeVO.getEstadoOrden()%></td>
                     <td><%=OrdeVO.getIdDatosFK()%></td>
-                    <td><%=OrdeVO.getIdPrendaFK()%></td>
                     <td>
                         <form action="">    
                         </form>
@@ -110,10 +120,8 @@
                 <tr>
                     <th>ID ORDEN</th>
                     <th>FECHA ORDEN</th>
-                    <th>CANTIDAD PRENDA</th>
                     <th>ESTADO ORDEN</th>
                     <th>ID DATOS FK</th>
-                    <th>ID PRENDA FK</th>
                     <th></th>
                     <th>ACCIÓN</th>
                 </tr>    

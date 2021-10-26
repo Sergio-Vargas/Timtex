@@ -38,7 +38,30 @@
 </style>
     <body>
     <center>
-        <h1>Datos Proceso</h1>
+        <h1>Lista de Procesos</h1>
+         <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+          Nuevo Proceso
+        </button>
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Registrar Proceso</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                    <%@include file="registrarProceso.jsp"%>
+                    
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                  </div>
+                </div>
+            </div>
+        </div>
+        <a href="inactivoProceso.jsp"><button class="btn btn-primary">Inactivos</button></a>
         <div style="color: red;">
 
             <%if (request.getAttribute("MensajeError") != null) { %>
@@ -67,18 +90,7 @@
                     <th>ACCIÓN</th>
                 </tr>
                 </thead>
-                <tr>
-                  <th>ID PROCESO</th>
-                    <th>DESCRIPCIÓN PROCESO</th>
-                    <th>FECHA PROCESO</th>
-                    <th>HORA INICIO</th>
-                    <th>HORA FIN</th>
-                    <th>PRENDAS REALIZADAS</th>
-                    <th>ESTADO PROCESO</th>
-                    <th>ID ASIG ORDEN FK</th>
-                    <th></th>
-                    <th>ACCIÓN</th>
-                </tr>
+                
                 <tbody>
                 <%
                     ProcesoVO ProVO = new ProcesoVO();
@@ -126,6 +138,13 @@
             </table>
             </div>
         </form>
+        <form method="post" action="GenerarPDF.jsp" target="_blank">
+            
+            <input type="submit" value="Generar Reporte" button class="btn btn-primary">
+            <input type="hidden" value="Reportes/ReporteProcesos.jasper" name="nombreReporte">
+            
+        </form>
+                
     </center>
     <script src="JS/jquery-3.2.1.min.js" type="text/javascript"></script>
     <script src="JS/bootstrap.min.js" type="text/javascript"></script>

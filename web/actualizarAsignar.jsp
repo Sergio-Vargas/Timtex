@@ -1,9 +1,11 @@
 <%-- 
     Document   : actualizarAsignar
     Created on : 07-ago-2021, 19:32:44
-    Author     : sergio saenz
+    Author     : Luis martinez
 --%>
 
+<%@page import="ModeloVO.DetalleOrdenVO"%>
+<%@page import="ModeloDAO.DetalleOrdenDAO"%>
 <%@page import="ModeloDAO.DatosPersonalesDAO"%>
 <%@page import="ModeloVO.DatosPersonalesVO"%>
 <%@page import="ModeloVO.OrdenVO"%>
@@ -27,8 +29,7 @@
             <table>
                 <tr>
                     <th>
-                        Id Asig Orden<br>
-                        <input type="text" name="textAsigOrden" value="<%=AsigVO.getIdAsigOrden()%>"><br><br>
+                        <input type="hidden" name="textAsigOrden" value="<%=AsigVO.getIdAsigOrden()%>"><br><br>
                         Cantidad Prenda<br>
                         <input type="text" name="textCantidad" value="<%=AsigVO.getCantidadPrenda()%>"><br><br>
                         Fecha Inicio<br>
@@ -45,14 +46,14 @@
                         <option value="<%=datVO.getIdDatos()%>"><%=datVO.getNombreDatos()%></option>
                         <% }%>
                         </select><br>
-                        Id Orden FK<br>
-                        <select name="textIdOrden">
+                        Id Detalle FK<br>
+                        <select name="textIdDetalleOrdenFK">
                         <option>Seleccione...</option>
                         <%
-                        OrdenDAO OrdeDAO = new OrdenDAO();    
-                        for (OrdenVO OrdeVO : OrdeDAO.listar()) {
+                        DetalleOrdenDAO DetaDAO = new DetalleOrdenDAO();    
+                        for (DetalleOrdenVO DetaVO : DetaDAO.listar()) {
                         %>
-                        <option value="<%=OrdeVO.getIdOrden()%>"><%=OrdeVO.getIdOrden()%></option>
+                        <option value="<%=DetaVO.getIdDetalleOrden()%>"><%=DetaVO.getIdDetalleOrden()%></option>
                         <% }%>
                         </select><br>
                 </th>

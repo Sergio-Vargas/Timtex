@@ -27,14 +27,16 @@
             <table>
                 <tr>
                     <th>
-                        Id Orden<br>
-                        <input type="text" name="textOrden" value="<%=OrdeVO.getIdOrden()%>"><br><br>
+                        <input type="hidden" name="textOrden" value="<%=OrdeVO.getIdOrden()%>"><br><br>
                         Fecha Orden<br>
                         <input type="date" name="textFecha" value="<%=OrdeVO.getFechaOrden()%>"><br><br>
-                        Cantidad Prenda<br>                 
-                        <input type="text" name="textCantidad" value="<%=OrdeVO.getCantidadPrenda()%>"><br><br>
                         Estado Orden<br>
-                        <input type="text" name="textEstado" value="<%=OrdeVO.getEstadoOrden()%>"><br><br>
+                        <select name="textEstado">
+                        <option>Seleccione...</option>
+                        <option value="Activo">Activo</option>
+                        <option value="Inactivo">Inactivo</option>
+                        <option value="Realizada">Realizada</option>
+                        </select><br>
                         Id Datos<br>
                         <select name="textIdDato">
                         <option>Seleccione...</option>
@@ -43,16 +45,6 @@
                         for (DatosPersonalesVO datVO : datDAO.listar()) {
                         %>
                         <option value="<%=datVO.getIdDatos()%>"><%=datVO.getNombreDatos()%></option>
-                        <% }%>
-                        </select><br>
-                        Id Prenda<br>
-                        <select name="textPrenda">
-                        <option>Seleccione...</option>
-                        <%
-                        PrendaDAO PreDAO = new PrendaDAO();    
-                        for (PrendaVO PreVO : PreDAO.listar()) {
-                        %>
-                        <option value="<%=PreVO.getIdPrenda()%>"><%=PreVO.getNombrePrenda()%></option>
                         <% }%>
                         </select><br>
                         <td></td><br>

@@ -26,7 +26,7 @@ public class UsuarioDAO extends Conexion implements Crud {
     private boolean operacion= false;
     private String sql;
 
-    private String IdUsuario="",NombreUsuario="",ClaveUsuario="",IdCargoFK="";
+    private String IdUsuario="",NombreUsuario="",CorreoDatos="",ClaveUsuario="",IdCargoFK="";
     
     public UsuarioDAO(){
     }
@@ -42,6 +42,7 @@ public class UsuarioDAO extends Conexion implements Crud {
     //4. Traer al DAO los datos del VO para hacer la operación 
             IdUsuario = usuVO.getIdUsuario();
             NombreUsuario = usuVO.getNombreUsuario();
+            CorreoDatos=usuVO.getCorreoDatos();
             ClaveUsuario = usuVO.getClaveUsuario();
             IdCargoFK=usuVO.getIdCargoFK(); 
         } catch (Exception e) {
@@ -57,18 +58,20 @@ public class UsuarioDAO extends Conexion implements Crud {
         try {
             
             //Crear la sentancia
-            sql ="insert into Usuario (NombreUsuario,ClaveUsuario,IdCargoFK) values (?,?,?)";
+            sql ="insert into Usuario (NombreUsuario,CorreoDatos,ClaveUsuario,IdCargoFK) values (?,?,?,?)";
             //Crear el puente para esa conexion establecida
             puente = conexion.prepareStatement(sql);
             puente.setString(1,NombreUsuario);
-            puente.setString(2,ClaveUsuario);
-            puente.setString(3,IdCargoFK);
+            puente.setString(2,CorreoDatos);
+            puente.setString(3,ClaveUsuario);
+            puente.setString(4,IdCargoFK);
             puente.executeUpdate();
             operacion= true;
             
         } catch (SQLException e) {
             Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, e);
-        }finally {
+        }
+        finally {
             try {
                 this.cerrarConexion();
             }catch (SQLException e){  
@@ -85,13 +88,14 @@ public class UsuarioDAO extends Conexion implements Crud {
          try {
             
             //Crear la sentancia
-            sql="update Usuario NombreUsuario=?,ClaveUsuario=?,IdCargoFK=? where IdUsuario=?";
+            sql="update Usuario NombreUsuario=?,CorreoDatos=?,ClaveUsuario=?,IdCargoFK=? where IdUsuario=?";
             //Crear el puente para esa conexion establecida
             puente= conexion.prepareStatement(sql);
             puente.setString(1, NombreUsuario);
-            puente.setString(2, ClaveUsuario);
-            puente.setString(2, IdCargoFK);
-            puente.setString(4, IdUsuario);
+            puente.setString(2, CorreoDatos);
+            puente.setString(3, ClaveUsuario);
+            puente.setString(4, IdCargoFK);
+            puente.setString(5, IdUsuario);
             puente.executeUpdate();
             operacion= true;
             
@@ -116,11 +120,13 @@ public class UsuarioDAO extends Conexion implements Crud {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
+    
+    
     public boolean iniciarSesion (String usuario, String clave){
     
     try {
         conexion=this.obtenerConexion();
-        sql="select * from Usuario where NombreUsuario=? and ClaveUsuario=?";
+        sql="select * from Usuario where NombreUsuario=? && ClaveUsuario=?";
         puente = conexion.prepareStatement(sql);
         puente.setString(1, usuario);
         puente.setString(2, clave);
@@ -157,7 +163,7 @@ public class UsuarioDAO extends Conexion implements Crud {
             while (mensajero.next()) {                
                 
                 UsuarioVO usuVO = new UsuarioVO(mensajero.getString(1), mensajero.getString(2),
-                        mensajero.getString(3), mensajero.getString(4));
+                        mensajero.getString(3), mensajero.getString(4),mensajero.getString(5));
                 
                     listaUsuario.add(usuVO);
             }
@@ -176,4 +182,27 @@ public class UsuarioDAO extends Conexion implements Crud {
         return listaUsuario;
     }
     
+    //CONSULTAR datos
+    public UsuarioVO consultar(String NombreUsuario) {
+        
+        UsuarioVO usuVO = null;
+        try {
+            conexion = this.obtenerConexion();
+            sql = "select * from usuario where NombreUsuario=?";
+            puente = conexion.prepareStatement(sql);
+            puente.setString(1,NombreUsuario);
+            mensajero = puente.executeQuery();  
+            while (mensajero.next()) {                
+                
+                usuVO= new UsuarioVO(mensajero.getString(1), mensajero.getString(2), 
+                        mensajero.getString(3), mensajero.getString(4),mensajero.getString(5));
+                        
+            }
+            
+        } catch (Exception e) { 
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, e);
+        } 
+        
+        return usuVO;
+    }
 }

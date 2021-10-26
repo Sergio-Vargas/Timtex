@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author sergio saenz
+ * @author Luis martinez
  */
 @WebServlet(name = "AsigOrden", urlPatterns = {"/AsigOrden"})
 public class AsigOrden extends HttpServlet {
@@ -42,9 +42,9 @@ public class AsigOrden extends HttpServlet {
         String FechaInicio = request.getParameter("textFechaInicio");
         String FechaFin = request.getParameter("textFechaFin");
         String IdDatosFK = request.getParameter("textIdDatos");
-        String IdOrdenFK = request.getParameter("textIdOrden");
+        String IdDetalleOrdenFK= request.getParameter("textIdDetalleOrdenFK");
         
-        AsigOrdenVO AsigVO = new AsigOrdenVO(AsigOrden,CantidadPrenda,FechaInicio,FechaFin,IdDatosFK,IdOrdenFK);
+        AsigOrdenVO AsigVO = new AsigOrdenVO(AsigOrden,CantidadPrenda,FechaInicio,FechaFin,IdDatosFK,IdDetalleOrdenFK);
         AsigOrdenDAO AsigDAO = new AsigOrdenDAO(AsigVO);
           
         switch (opcion) {
@@ -57,7 +57,7 @@ public class AsigOrden extends HttpServlet {
                     request.setAttribute("MensajeError", "La infromacion no se registró correctamente");
 
                 }
-                request.getRequestDispatcher("registrarAsignar.jsp").forward(request, response);
+                request.getRequestDispatcher("consultarAsignar.jsp").forward(request, response);
                 break;
                 
             case 2: // Actualizar Registro

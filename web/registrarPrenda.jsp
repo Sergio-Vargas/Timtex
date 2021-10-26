@@ -15,23 +15,25 @@
     </head>
     <body>
     <center>
-        <h1>Registrar Datos</h1>
+        <h1>Registrar Prenda</h1>
          <form method="post" action="Prenda" >
             <table>
                 <tr>
                     <th>
-                        Id prenda<br>
-                        <input type="text" name="textIdPrenda"><br><br>
+                        <input type="hidden" name="textIdPrenda"><br><br>
                         Imagen<br>
                         <input type="file" name="textImagenPrenda" ><br><br>
                         Nombre<br>
                         <input type="text" name="textNombrePrenda" ><br><br>
-                        Talla<br>
-                        <input type="text" name="textTalla" ><br><br>
                         Descripción<br>
                         <input type="text" name="textDescripcionPrenda"><br><br>
-                        Estado<br>
-                        <input type="text" name="textEstadoPrenda"><br><br>
+                        Precio
+                        <input type="text" name="textPrecio"><br><br>
+                        Estado<br>                        
+                        <select name="textEstadoPrenda">
+                        <option>Seleccione...</option>
+                        <option value="Activo">Activo</option>
+                        </select><br>
                         Tipo Prenda FK<br>
                         <select name="textIdTipoPrendaFK">
                         <option>Seleccione...</option>
