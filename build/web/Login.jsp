@@ -56,7 +56,7 @@
 								<div class="mt-4 text-center">
 									¿No tienes un cuenta? <a href="register.jsp">Crear una</a>
 								</div>
-                                                        <p style=" color: white;font-size:15px;">
+                                                        <p style=" color:red;font-size:15px;">
                                                         <%
                                                         if (request.getAttribute("MensajeError") != null) { 
                                                         %>
