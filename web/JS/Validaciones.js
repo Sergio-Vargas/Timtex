@@ -5,78 +5,78 @@
  */
 //Acceder a los elementos
 
-const form=document.getElementById('frm-usuario');
-const campos=document.querySelectorAll('#frm-usuario input');
-//console.log(form);
-//console.log(campos);
+// Wait for the DOM to be ready
 
-const reglas = {
-	textos: /^[a-zA-ZÀ-ÿ\s]{1,40}$/, // Letras y espacios, letras tildadas, diéresis, entre 1 y 40 caracteres.
-	correo: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
-	numeros: /^\d{7,10}$/ // solo números de 7 a 10 caracteres.
-}
+$(function() {
 
+  // Initialize form validation on the registration form.
 
-const validarInput=(regla,input,grupo)=>{
-	if(regla.test(input.value)){
-			document.getElementById(`g-${grupo}`).classList.remove('error');
-			document.getElementById(`g-${grupo}`).classList.add('success');
-			document.querySelector(`#g-${grupo} i`).classList.remove('fa-exclamation-circle');
-			document.querySelector(`#g-${grupo} i`).classList.add('fa-check-circle');
-			document.querySelector(`#g-${grupo} .msn-error`).classList.remove('msn-error-visible');
-			
-		}
-		else{
-			document.getElementById(`g-${grupo}`).classList.add('error');
-			document.getElementById(`g-${grupo}`).classList.remove('success');
-			document.querySelector(`#g-${grupo} i`).classList.add('fa-exclamation-circle');
-			document.querySelector(`#g-${grupo} .msn-error`).classList.add('msn-error-visible');
-			
-		}
-}
+  // It has the name attribute "registration"
 
+  $("form[name='registration']").validate({
 
+    // Specify validation rules
 
-const validarCampos=(e)=>{
-	//console.log("Se levantó una tecla en el input");
-	//console.log(e.target.name);
-	switch(e.target.name){
+    rules: {
 
+      // The key name on the left side is the name attribute
 
-		case "textNombre":
-			validarInput(reglas.textos,e.target,e.target.name);
-		break;
+      // of an input field. Validation rules are defined
 
-		case "textApellido":
-			validarInput(reglas.textos,e.target,e.target.name);
-		break;
+      // on the right side
 
-                case "textDireccion":
-			validarInput(e.target,e.target.name);
-		break;
+      firstname: "required",
 
-                case "textTelefono":
-			validarInput(reglas.numeros,e.target,e.target.name);
-		break;
+      lastname: "required",
 
-		case "textCorreo":
-			validarInput(reglas.correo,e.target,e.target.name);
-		break;
+      email: {
 
-	}
-	
-}
+        required: true,
 
+        // Specify that email should be validated
 
-form.addEventListener('submit',e=>{
-	e.preventDefault();
-	
+        // by the built-in "email" rule
+
+        email: true
+
+      },
+
+      password: {
+
+        required: true,
+
+        minlength: 5
+
+      }
+
+    },
+
+    // Specify validation error messages
+
+    messages: {
+
+      firstname: "Por favor, introduzca su nombre",
+
+      lastname: "Por favor, introduzca su apellido",
+
+      password: {
+
+        required: "Por favor proporcione una contraseña",
+
+        minlength: "Su contraseña debe tener al menos 5 caracteres."
+
+      },
+
+      email: "Por favor, introduce una dirección de correo electrónico válida"
+
+    },
+
+    submitHandler: function(form) {
+
+      form.submit();
+
+    }
+
+  });
+
 });
-
-campos.forEach((campo)=>{
-//	console.log(campo);
-
-campo.addEventListener('keyup',validarCampos);
-campo.addEventListener('blur',validarCampos);
-
-})

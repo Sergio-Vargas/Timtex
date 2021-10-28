@@ -3,7 +3,10 @@ package org.apache.jsp;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
+import ModeloVO.UsuarioVO;
+import ModeloDAO.UsuarioDAO;
 import ModeloVO.DatosPersonalesVO;
+import ModeloVO.UsuarioVO;
 
 public final class registrarDatosPersonales_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
@@ -11,6 +14,11 @@ public final class registrarDatosPersonales_jsp extends org.apache.jasper.runtim
   private static final JspFactory _jspxFactory = JspFactory.getDefaultFactory();
 
   private static java.util.List<String> _jspx_dependants;
+
+  static {
+    _jspx_dependants = new java.util.ArrayList<String>(1);
+    _jspx_dependants.add("/Sesiones.jsp");
+  }
 
   private org.glassfish.jsp.api.ResourceInjector _jspx_resourceInjector;
 
@@ -42,69 +50,179 @@ public final class registrarDatosPersonales_jsp extends org.apache.jasper.runtim
       _jspx_out = out;
       _jspx_resourceInjector = (org.glassfish.jsp.api.ResourceInjector) application.getAttribute("com.sun.appserv.jsp.resource.injector");
 
-      out.write("\n");
-      out.write("\n");
-      out.write("\n");
-      out.write("<!DOCTYPE html>\n");
-      out.write("<html>\n");
-      out.write("    <head>\n");
-      out.write("        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n");
-      out.write("        <title>Registrar Datos personales</title>\n");
-      out.write("    </head>\n");
-      out.write("    <script src=\"JS/Validaciones.js\" type=\"text/javascript\"></script>\n");
-      out.write("    <body>\n");
-      out.write("    <center>\n");
-      out.write("        <h1>Registrar Datos</h1>\n");
-      out.write("         <form method=\"post\" action=\"DatosPersonales\">\n");
-      out.write("            <table>\n");
-      out.write("                <tr>\n");
-      out.write("                    <th>\n");
-      out.write("                         Datos<br>\n");
-      out.write("                        <input type=\"text\" name=\"textNumeroid\" id=\"id\"><br><br>\n");
-      out.write("                        Nombre<br>\n");
-      out.write("                        <input type=\"text\" name=\"textNombre\" id=\"nombre\"><br><br>\n");
-      out.write("                        Apellido<br>\n");
-      out.write("                        <input type=\"text\" name=\"textApellido\" id=\"apellido\"><br><br>\n");
-      out.write("                        Direccion<br>\n");
-      out.write("                        <input type=\"text\" name=\"textDireccion\" id=\"direccion\"><br><br>\n");
-      out.write("                        Telefono<br>\n");
-      out.write("                        <input type=\"text\" name=\"textTelefono\" id=\"telefono\"><br><br>\n");
-      out.write("                        Correo<br>\n");
-      out.write("                        <input type=\"text\" name=\"textCorreo\" id=\"email\"><br><br>\n");
-      out.write("                        Estado<br>\n");
-      out.write("                        <input type=\"text\" name=\"textEstado\" id=\"estado\"><br><br>\n");
-      out.write("                        Id usuario<br>\n");
-      out.write("                        <input type=\"text\" name=\"textUsuario\" id=\"idusuario\"><br><br>\n");
-      out.write("                        <td></td>\n");
-      out.write("                </th>\n");
-      out.write("            </table>\n");
-      out.write("            <button class=\"enviar\" onclick=\"validar(id, nombre, \n");
-      out.write("                        apellido, direccion, telefono, email, estado, idusuario)\" >Registrar</button>\n");
-      out.write("            <input type=\"hidden\" value=\"1\" name=\"opcion\">\n");
-      out.write("        </form><br><br>\n");
-      out.write("        <div style=\"color: red;\">\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("<!DOCTYPE html>\r\n");
+      out.write("  \r\n");
+
+   HttpSession buscarSesion =(HttpSession)request.getSession();
+    String usuario="";
+    String id="";      
+    String correo="";
+    if(buscarSesion.getAttribute("datosUsuario")!=null){
+        
+    UsuarioVO usuVO=(UsuarioVO)buscarSesion.getAttribute("datosUsuario");
+    
+   usuario=usuVO.getNombreUsuario();
+   id=usuVO.getIdUsuario();
+   correo=usuVO.getCorreoDatos();
+    }
+    else{
+    request.getRequestDispatcher("Login.jsp").forward(request, response);
+    }
+
+      out.write('\r');
+      out.write('\n');
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("<!DOCTYPE html>\r\n");
+      out.write("<html lang=\"es-Es\">\r\n");
+      out.write("<head>\r\n");
+      out.write("    <meta charset=\"UTF-8\">\r\n");
+      out.write("    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\r\n");
+      out.write("    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\r\n");
+      out.write("    <title>Registrar Datos Personales</title>\r\n");
+      out.write("    \r\n");
+      out.write("    \t<!-- Fonts -->\r\n");
+      out.write("\t<link href=\"https://fonts.googleapis.com/css?family=Nunito:300,400,600,700,800\" rel=\"stylesheet\">\r\n");
+      out.write("\r\n");
+      out.write("\t<!-- Icons -->\r\n");
+      out.write("        <link href=\"assets/css/icons.css\" rel=\"stylesheet\" type=\"text/css\"/>\r\n");
+      out.write("        \r\n");
+      out.write("\t<!--Bootstrap.min css-->\r\n");
+      out.write("\t<link rel=\"stylesheet\" href=\"assets/plugins/bootstrap/css/bootstrap.min.css\">\r\n");
+      out.write("        <link rel=\"stylesheet\" href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css\" integrity=\"sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T\" crossorigin=\"anonymous\">\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("\t<!-- Ansta CSS -->\r\n");
+      out.write("\t<link href=\"assets/css/dashboard.css\" rel=\"stylesheet\" type=\"text/css\">\r\n");
+      out.write("\r\n");
+      out.write("\t<!-- Custom scroll bar css-->\r\n");
+      out.write("\t<link href=\"assets/plugins/customscroll/jquery.mCustomScrollbar.css\" rel=\"stylesheet\" />\r\n");
+      out.write("\r\n");
+      out.write("\t<!-- Sidemenu Css -->\r\n");
+      out.write("\t<link href=\"assets/plugins/toggle-sidebar/css/sidemenu.css\" rel=\"stylesheet\">\r\n");
+      out.write("</head>\r\n");
+      out.write("<body>          \r\n");
+      out.write("                <form action=\"DatosPersonales\" method=\"POST\" class=\"my-login-validation\" novalidate=\"\">\r\n");
+      out.write("                <div class=\"row\">\r\n");
+      out.write("                    <div class=\"col-md-12\">\r\n");
+      out.write("                        <div class=\"card shadow\">\r\n");
+      out.write("                            <div class=\"card-header\">\r\n");
+      out.write("                                <h2 class=\"mb-0\">Registro de Datos</h2>\r\n");
+      out.write("                            </div>\r\n");
+      out.write("                            <div class=\"card-body\">\r\n");
+      out.write("                                <div class=\"row\">\r\n");
+      out.write("                                    <div class=\"col-md-6\">\r\n");
+      out.write("                                        <div class=\"form-group\">\r\n");
+      out.write("                                            <label for=\"nombre\">Nombre</label>\r\n");
+      out.write("                                            <input class=\"form-control\" type=\"text\" name=\"textNombre\" placeholder=\"Ingrese su nombre\" required>\r\n");
+      out.write("                                            <div class=\"invalid-feedback\">\r\n");
+      out.write("                                                El campo no puede estar vacío\r\n");
+      out.write("                                            </div>\r\n");
+      out.write("                                        </div>\r\n");
+      out.write("                                        <div class=\"form-group\">\r\n");
+      out.write("                                            <label for=\"nombre\">Apellido</label>\r\n");
+      out.write("                                            <input type=\"text\" name=\"textApellido\"  class=\"form-control\" placeholder=\"Ingrese su apellido\" required>\r\n");
+      out.write("                                            <div class=\"invalid-feedback\">\r\n");
+      out.write("                                                El campo no puede estar vacío\r\n");
+      out.write("                                            </div>\r\n");
+      out.write("                                        </div>\r\n");
+      out.write("                                        <div class=\"form-group \">\r\n");
+      out.write("                                            <label for=\"direccion\">Dirección</label>\r\n");
+      out.write("                                            <input type=\"text\" class=\"form-control\" type=\"text\" name=\"textDireccion\" required>\r\n");
+      out.write("                                            <div class=\"invalid-feedback\">\r\n");
+      out.write("                                                El campo no puede estar vacío\r\n");
+      out.write("                                            </div>\r\n");
+      out.write("                                        </div>\r\n");
+      out.write("                                    </div>\r\n");
+      out.write("                                        <div class=\"col-md-6\">\r\n");
+      out.write("                                        <div class=\"form-group\">\r\n");
+      out.write("                                            <label for=\"direccion\">Celular</label>\r\n");
+      out.write("                                            <input type=\"number\" name=\"textTelefono\" class=\"form-control\"   placeholder=\"3115453175\" required>\r\n");
+      out.write("                                            <div class=\"invalid-feedback\">\r\n");
+      out.write("                                                El campo no puede estar vacío\r\n");
+      out.write("                                            </div>\r\n");
+      out.write("                                        </div>\r\n");
+      out.write("                                        <div class=\"form-group\">\r\n");
+      out.write("                                            <label for=\"correo\">Correo</label>\r\n");
+      out.write("                                            <input type=\"email\" name=\"textCorreo\" value=\"");
+      out.print(correo);
+      out.write("\" class=\"form-control\" required readonly>\r\n");
+      out.write("                                            <div class=\"invalid-feedback\">\r\n");
+      out.write("                                                El campo no puede estar vacío\r\n");
+      out.write("                                            </div>\r\n");
+      out.write("                                        </div>\r\n");
+      out.write("                                        <div class=\"form-group\">\r\n");
+      out.write("                                            <input type=\"hidden\" name=\"textEstado\" class=\"form-control\" value=\"Activo\">\r\n");
+      out.write("                                        </div>\r\n");
+      out.write("                                    </div>\r\n");
+      out.write("                                    <div class=\"form-group\">\r\n");
+      out.write("                                        <input type=\"hidden\" value=\"");
+      out.print(id);
+      out.write("\" class=\"form-control\" name=\"textUsuario\">\r\n");
+      out.write("                                    </div>\r\n");
+      out.write("                                     <div class=\"form-group\">\r\n");
+      out.write("                                        <div class=\"custom-checkbox custom-control\">\r\n");
+      out.write("                                            <input type=\"checkbox\" name=\"agree\" id=\"agree\" class=\"custom-control-input\" required=\"\">\r\n");
+      out.write("                                            <label for=\"agree\" class=\"custom-control-label\">Estoy de acuerdo con los <a href=\"#\">términos y condiciones</a></label>\r\n");
+      out.write("                                            <div class=\"invalid-feedback\">\r\n");
+      out.write("                                                Debes estar de acuerdo con nuestros términos y condiciones.\r\n");
+      out.write("                                            </div>\r\n");
+      out.write("                                        </div>\r\n");
+      out.write("                                    </div>\r\n");
+      out.write("                                </div>\r\n");
+      out.write("                                     <div class=\" col-md-6\">\r\n");
+      out.write("                                        <center>\r\n");
+      out.write("                                        <button type=\"submit\" class=\"btn btn-primary mb-0 btn-block waves-effect waves-light\">Registrar</button>\r\n");
+      out.write("                                        </center>\r\n");
+      out.write("                                    </div>  \r\n");
+      out.write("                                   \r\n");
+      out.write("                                </div>\r\n");
+      out.write("                            </div>\r\n");
+      out.write("                        </div>    \r\n");
+      out.write("                </div>            \r\n");
+      out.write("                        <input type=\"hidden\" value=\"1\" name=\"opcion\">\r\n");
+      out.write("                        </form>     \r\n");
+      out.write("                                    \r\n");
+      out.write("                                    \r\n");
+      out.write("                                    \r\n");
+      out.write("        <div style=\"color: red;\">\r\n");
       out.write("            ");
 
-                if (request.getAttribute("MensajeError") != null) { 
-      out.write("\n");
+                 if (request.getAttribute("MensajeError") != null) { 
+      out.write("\r\n");
       out.write("            ");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${MensajeError}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write("     \n");
-      out.write("\n");
+      out.write("     \r\n");
+      out.write("\r\n");
       out.write("            ");
 } else {
-      out.write("\n");
-      out.write("            <div style=\"color: greenyellow\">");
+      out.write("\r\n");
+      out.write("            <div style=\"color: darkgreen\">");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${MensajeExito}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write("</div>\n");
-      out.write("\n");
+      out.write("</div>\r\n");
+      out.write("\r\n");
       out.write("            ");
   }
-      out.write("\n");
-      out.write("        </div>\n");
-      out.write("    </center>\n");
-      out.write("    </body>\n");
-      out.write("</html>\n");
+      out.write("\r\n");
+      out.write("        </div>\r\n");
+      out.write("  <!-- jQuery first, then Popper.js, then Bootstrap JS -->\r\n");
+      out.write("  <script src=\"assets/plugins/jquery/dist/jquery.min.js\"></script>\r\n");
+      out.write("\t\r\n");
+      out.write("\r\n");
+      out.write("        <!-- validacion de formularios -->\r\n");
+      out.write("       <script src=\"JS/my-login.js\"></script>\r\n");
+      out.write("  \r\n");
+      out.write("</body>\r\n");
+      out.write("</html>");
     } catch (Throwable t) {
       if (!(t instanceof SkipPageException)){
         out = _jspx_out;

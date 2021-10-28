@@ -1,0 +1,27 @@
+SMAP
+registrarPrenda_jsp.java
+JSP
+*S JSP
+*F
++ 0 registrarPrenda.jsp
+registrarPrenda.jsp
++ 1 Sesiones.jsp
+Sesiones.jsp
+*L
+5,33:52
+5#1,23:85
+27:108,2
+37#0,63:110
+100,3:174
+102:177
+103:178,6
+104:184,3
+105,37:187
+142:225,2
+143:227,3
+144:230
+145,2:231,3
+147:237
+148:238,3
+149,12:241
+*E

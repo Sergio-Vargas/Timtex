@@ -205,4 +205,28 @@ public class UsuarioDAO extends Conexion implements Crud {
         
         return usuVO;
     }
+    
+    //CONSULTAR datos
+    public UsuarioVO consultaremail(String CorreoDatos ) {
+        
+        UsuarioVO usuVO = null;
+        try {
+            conexion = this.obtenerConexion();
+            sql = "select * from usuario where NombreUsuario=?";
+            puente = conexion.prepareStatement(sql);
+            puente.setString(1,NombreUsuario);
+            mensajero = puente.executeQuery();  
+            while (mensajero.next()) {                
+                
+                usuVO= new UsuarioVO(mensajero.getString(1), mensajero.getString(2), 
+                        mensajero.getString(3), mensajero.getString(4),mensajero.getString(5));
+                        
+            }
+            
+        } catch (Exception e) { 
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, e);
+        } 
+        
+        return usuVO;
+    }
 }

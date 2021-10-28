@@ -63,8 +63,7 @@ public class PrendaDAO extends Conexion implements Crud{
     public boolean aregarRegistro() {
         try {
             //Crear la sentencia
-            sql = "INSERT INTO prenda(ImagenPrenda,NombrePrenda,"
-            + "DescripcionPrenda,PrecioPrenda,EstadoPrenda,IdTipoPrendaFK)VALUES(?,?,?,?,?);";
+            sql = "INSERT INTO prenda(ImagenPrenda,NombrePrenda,DescripcionPrenda,PrecioPrenda,EstadoPrenda,IdTipoPrendaFK)VALUES(?,?,?,?,?,?);";
 
             //Crear el puente para esa conexion establecida
             puente = conexion.prepareStatement(sql);
