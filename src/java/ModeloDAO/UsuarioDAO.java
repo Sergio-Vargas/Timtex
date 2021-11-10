@@ -206,15 +206,15 @@ public class UsuarioDAO extends Conexion implements Crud {
         return usuVO;
     }
     
-    //CONSULTAR datos
+    //CONSULTAR email
     public UsuarioVO consultaremail(String CorreoDatos ) {
         
         UsuarioVO usuVO = null;
         try {
             conexion = this.obtenerConexion();
-            sql = "select * from usuario where NombreUsuario=?";
+            sql = "select * from usuario where CorreoDatos=?";
             puente = conexion.prepareStatement(sql);
-            puente.setString(1,NombreUsuario);
+            puente.setString(1,CorreoDatos);
             mensajero = puente.executeQuery();  
             while (mensajero.next()) {                
                 

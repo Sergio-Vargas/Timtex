@@ -4,7 +4,7 @@
     Author     : sergio saenz
 --%>
 
-<%@page import="Controlador.ControladorPrenda"%>
+
 <%@page import="ModeloVO.DetalleOrdenVO"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="ModeloVO.PrendaVO"%>
@@ -12,124 +12,110 @@
 <%@page import="ModeloVO.DatosPersonalesVO"%>
 <%@page import="ModeloDAO.DatosPersonalesDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%
-     HttpSession miSesion = request.getSession(true);
-     ArrayList<DetalleOrdenVO> detalle = miSesion.getAttribute("carrito") == null ? null : (ArrayList) miSesion.getAttribute("carrito");
-%>
+
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Registrar Orden</title>
-        <link href="Estilos/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-        <script src="JS/icons.js" type="text/javascript"></script>
+
+        <!-- Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Nunito:300,400,600,700,800" rel="stylesheet">
+
+        <!-- Icons -->
+        <link href="assets/css/icons.css" rel="stylesheet" type="text/css"/>
+        <!-- Favicon -->
+        <link href="assets/img/brand/favicon.png" rel="icon" type="image/png">
+
+        <!--Bootstrap.min css-->
+        <link rel="stylesheet" href="assets/plugins/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+
+        <!-- Ansta CSS -->
+        <link href="assets/css/dashboard.css" rel="stylesheet" type="text/css">
+
+        <!-- Custom scroll bar css-->
+        <link href="assets/plugins/customscroll/jquery.mCustomScrollbar.css" rel="stylesheet" />
+
+        <!-- Sidemenu Css -->
+        <link href="assets/plugins/toggle-sidebar/css/sidemenu.css" rel="stylesheet">
     </head>
     <body>
     <center>
-        <h1>Registrar Orden</h1>
-         <form method="post" action="Orden">
-            <table>
-                <tr>
-                    <th>
-                        <input type="hidden" name="textOrden"><br><br>
-                        Fecha Orden<br>
-                        <input type="text" name="textFecha"><br><br>
-                        Estado Orden<br>
-                        <select name="textEstado">
-                        <option value="Activo">Activo</option>
-                        </select><br>
-                        Id Datos<br>
-                        <select name="textIdDato">
-                        <option>Seleccione...</option>
-                        <%
-                        DatosPersonalesDAO datDAO = new DatosPersonalesDAO();    
-                        for (DatosPersonalesVO datVO : datDAO.listar()) {
-                        %>
-                        <option value="<%=datVO.getIdDatos()%>"><%=datVO.getNombreDatos()%></option>
-                        <% }%>
-                        </select><br>
-                        <td></td><br>
-                </th>
-            </table>
-            <button>Registar</button>
-            <input type="hidden" value="1" name="opcion">
-        </form><br><br>
-       
-        <div class="table-responsive cart_info" id="cart-container">
-                            <table class="table table-condensed" id="shop-table">
-					<thead>
-						<tr class="cart_menu">
-							<td class="image">Prenda</td>
-                                                        <td class="description">Nombre</td>
-							<td class="quantity">IdPrenda</td>
-                                                        <td>IdOrden</td>
-							<td class="total">Cantidad</td>                                                    
-							<td class="total">Talla</td>
-                                                        <td></td>
-                                                        <td></td>
-						</tr>
-					</thead>
-					<tbody>
-                                                
-                                             <%
-                                                    ControladorPrenda pre = new ControladorPrenda();                                                    
-                                                    if(detalle != null){
-                                                    for(DetalleOrdenVO d : detalle){
-                                                        PrendaVO PreVO = pre.consultarDatos(d.getIdPrendaFK());   
-                                                           
-                                                %>   
-						<tr>
-							<td class="cart_product">
-                                                            <a href=""><img src="<%=PreVO.getImagenPrenda()%>" alt="" width="120"></a>
-							</td>
-							<td class="cart_description">
-								<h4><%=PreVO.getNombrePrenda()%></h4>
-							</td>
-                                                        <form method="post" action="DetalleOrden">
-                                                           
-                                                        <input type="hidden"  name="textIdDetalleOrden" >
-                                                        
-                                                        <td class="cart_description">
-							<input type="text" name="textIdPrendaFK" value="<%=PreVO.getIdPrenda()%>">
-							</td>
-							<td class="cart_price">
-                                                        <input type="text" name="textIdOrdenFK"></p>
-							</td>
-							<td class="cart_quantity">							
-                                                        <input  type="text" name="textCantidad" value="<%=d.getCantidadPrenda()%>">
-							</td>
-                                                        <td class="cart_price">
-                                                        <input type="text" name="textTalla" value="<%=d.getTalla()%>">
-                                                        </td>
-                                                        <td class="cart_delete">
-                                                            <span id="idarticulo" style="display:none;"><%=PreVO.getIdPrenda()%></span>
-                                                            <a class="cart_quantity_delete" href="" id="deleteitem"><i class="fa fa-times"></i></a>
-                                                        </td>
-                                                        <td>
-                                                             <button>Registar</button>
-                                                             <input type="hidden" value="1" name="opcion">
-                                                             </form>
-                                                        </td>
-						</tr>
-                                                 <%}}%>        
-					</tbody>
-				</table>
-                                <% if (detalle == null){%>
-                                <h4>No hay Articulos en el carro</h4>
-                                <%}%>
-        
-       <a href="Cliente.jsp">Seguir Comprando</a> 
-        <div style="color: red;">
-            <%
+        <form method="post" action="Orden" id="basic-form" class="my-login-validation"  novalidate="">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card shadow">
+                        <div class="card-header">
+                            <h2 class="mb-0">Registrar Orden</h2>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <input type="hidden" name="textOrden">
+                                    <div class="form-group">  
+                                        Fecha Orden
+                                        <input type="date" name="textFecha" class="form-control" required>
+                                    </div>
+                                </div> 
+                               
+                                        <input type="hidden" name="textEstado" class="form-control" required value="Activo">
+                                   
+                                
+                                <div class="col-md-12">
+                                    <div class="form-group">  
+                                        Id Datos
+                                        <select name="textIdDato" class="form-control" required>
+                                            <option></option>
+                                            <%
+                                                DatosPersonalesDAO datDAO = new DatosPersonalesDAO();
+                                                for (DatosPersonalesVO datVO : datDAO.listar()) {
+                                            %>
+                                            <option value="<%=datVO.getIdDatos()%>"><%=datVO.getNombreDatos()%></option>
+                                            <% }%>
+                                        </select>
+                                        </div></div>
+                                <div class=" col-md-6">
+                                    <center>
+                                        <button type="submit" class="btn btn-primary mb-0 btn-block waves-effect waves-light">Registrar</button>
+                                    </center>
+                                </div>  
+
+
+                            </div>
+                        </div>    
+                    </div>          
+                </div>    
+            </div>       
+            <input type="hidden"  value="1" name="opcion">
+        </form>
+
+            <div style="color: red;">
+                <%
                 if (request.getAttribute("MensajeError") != null) { %>
-            ${MensajeError}     
+                ${MensajeError}     
 
-            <%} else {%>
-            <div style="color: greenyellow">${MensajeExito}</div>
+                <%} else {%>
+                <div style="color: greenyellow">${MensajeExito}</div>
 
-            <%  }%>
-        </div>
+                <%  }%>
+            </div>
     </center>
-    </body>
-    <script src="JS/carrito.js" type="text/javascript"></script>
+</body>
+<script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="assets/js/jquery.js" type="text/javascript"></script>
+<script src="assets/js/jquery.prettyPhoto.js" type="text/javascript"></script>
+<script src="assets/js/jquery.scrollUp.min.js" type="text/javascript"></script>
+<script src="assets/js/main.js" type="text/javascript"></script>
+<script src="JS/carrito.js" type="text/javascript"></script>
+
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="assets/plugins/jquery/dist/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
+
+
+        
+        <!-- validacion de formularios -->
+        <script src="JS/my-login.js"></script>
 </html>

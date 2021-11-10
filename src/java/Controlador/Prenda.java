@@ -40,7 +40,7 @@ public class Prenda extends HttpServlet {
         
          //1. Recibir datos de las Vistas
         int opcion = Integer.parseInt(request.getParameter("opcion"));
-        String IdPrenda = request.getParameter("textIdPrenda");
+        String IdPrenda =request.getParameter("textIdPrenda");
         String ImagenPrenda = request.getParameter("textImagenPrenda");
         String NombrePrenda = request.getParameter("textNombrePrenda");
         String DescripcionPrenda = request.getParameter("textDescripcionPrenda");

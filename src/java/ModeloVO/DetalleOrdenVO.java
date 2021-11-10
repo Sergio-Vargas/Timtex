@@ -68,7 +68,5 @@ public class DetalleOrdenVO {
         this.IdPrendaFK = IdPrendaFK;
     }
 
-   
-    
     
 }

@@ -12,8 +12,8 @@
 	<meta name="author" content="Kodinger">
 	<meta name="viewport" content="width=device-width,initial-scale=1">
 	<title>Iniciar Sesión</title>
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-	<link rel="stylesheet" type="text/css" href="Estilos/my-login.css">
+        <link href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <link rel="stylesheet" type="text/css" href="Estilos/my-login.css">
         <link rel="shortcut icon" href="Imagenes/logo1.png" type="image/x-icon">
 </head>
 <body class="my-login-page">
@@ -24,7 +24,7 @@
 					<div class="card fat">
 						<div class="card-body">
 							<div class="brand">
-								<img src="Imagenes/logo.jpg" alt="logo">
+								<img src="Imagenes/logo.png" alt="logo">
 							</div>
 							<h1 class="card-title">Iniciar Sesión</h1>
                                                         <form method="POST" action="Usuario" class="my-login-validation" novalidate="">
@@ -32,7 +32,7 @@
 									<label for="email">Usuario</label>
                                                                         <input id="usuario" type="text" class="form-control" name="textUsuario" required autofocus>
 									<div class="invalid-feedback">
-										Usuario invalido
+										Ingrese un usuario
 									</div>
 								</div>
 
@@ -45,7 +45,7 @@
 									</a>
 									<br>
 								    <div class="invalid-feedback">
-								    contraseña invalida
+								   Ingrese la congraseña
 							    	</div>
 								</div>
 								<div class="form-group m-0">
@@ -54,8 +54,10 @@
 									</button>
 								</div>
 								<div class="mt-4 text-center">
-									¿No tienes un cuenta? <a href="register.jsp">Crear una</a>
+									¿No tienes un cuenta? <a href="registrarUsuario.jsp">Crear una</a>
 								</div>
+                                                            
+                                                            <div class="mt-4 text-center">
                                                         <p style=" color:red;font-size:15px;">
                                                         <%
                                                         if (request.getAttribute("MensajeError") != null) { 
@@ -65,6 +67,7 @@
                                                         <div style="color: greenyellow">${MensajeExito}</div>
                                                         <%  }%>     
                                                         </p>
+                                                            </div>
                                                         <input type="hidden" value="3" name="opcion">
 							</form>
 						</div>

@@ -13,29 +13,33 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Proceso</title>
-        <link href="Estilos/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-        <link href="Estilos/dataTables.bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        
+        
+         <!-- Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Nunito:300,400,600,700,800" rel="stylesheet">
+
+        <!-- Icons -->
+        <link href="assets/css/icons.css" rel="stylesheet">
+
+        <!--Bootstrap.min css-->
+        <link rel="stylesheet" href="assets/plugins/bootstrap/css/bootstrap.min.css">
+
+        <!-- Ansta CSS -->
+        <link href="assets/css/dashboard.css" rel="stylesheet" type="text/css">
+
+        <!-- Tabs CSS -->
+        <link href="assets/plugins/tabs/style.css" rel="stylesheet" type="text/css">
+
+        <!-- jvectormap CSS -->
+        <link href="assets/plugins/jvectormap/jquery-jvectormap-2.0.2.css" rel="stylesheet" />
+
+        <!-- Custom scroll bar css-->
+        <link href="assets/plugins/customscroll/jquery.mCustomScrollbar.css" rel="stylesheet" />
+
+        <!-- Sidemenu Css -->
+        <link href="assets/plugins/toggle-sidebar/css/sidemenu.css" rel="stylesheet">
     </head>
-    <style>
-	
-.estilotabla{
-	width: 1000px;
-	border-radius: 8px;
-	padding:10px;
-	background-color: white;
-	box-shadow: 0px 0px 10px 1px gray;
-	height:auto;
-}
-@media screen and (max-width: 800px) { 
-	.Ctabla{
-	width:470px;
-	border-radius: 8px;
-	background-color: white;
-	box-shadow: 0px 0px 10px 1px gray;
-	height:620px;
-}
-} 
-</style>
+   
     <body>
     <center>
         <h1>Lista de Procesos</h1>
@@ -48,7 +52,7 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                 <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Registrar Proceso</h5>
+                <h3 class="modal-title" id="exampleModalLabel">Registrar Proceso</h3>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
@@ -73,12 +77,20 @@
             <%  }%>
 
         </div>
-        <form>
-            <div class="estilotabla Ctabla"><br>
-            <table class="table display AllDataTables table-striped ">
-                <thead>
-                <tr>
-                    <th>ID PROCESO</th>
+                
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card shadow">
+                <div class="card-header">
+                    <h2 class="mb-0">Proceso</h2>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table id="example" class="table table-striped table-bordered w-100 text-nowrap">
+                            <thead>
+                                <tr>
+
+                                    <th>ID PROCESO</th>
                     <th>DESCRIPCIÓN PROCESO</th>
                     <th>FECHA PROCESO</th>
                     <th>HORA INICIO</th>
@@ -88,11 +100,12 @@
                     <th>ID ASIG ORDEN FK</th>
                     <th></th>
                     <th>ACCIÓN</th>
-                </tr>
-                </thead>
-                
-                <tbody>
-                <%
+
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <%
                     ProcesoVO ProVO = new ProcesoVO();
                     ProcesoDAO ProDAO = new ProcesoDAO();
                     ArrayList<ProcesoVO> listaProceso = ProDAO.listar();
@@ -100,8 +113,8 @@
 
                     ProVO = listaProceso.get(i);
                 %>
-                <tr>
-                    <td><%=ProVO.getIdProceso()%></td>
+                                <tr>
+                                    <td><%=ProVO.getIdProceso()%></td>
                     <td><%=ProVO.getDescripcionProceso()%></td>
                     <td><%=ProVO.getFechaProceso()%></td>
                     <td><%=ProVO. getHoraInicio()%></td>
@@ -109,58 +122,64 @@
                     <td><%=ProVO.getPrendasRealizadas()%></td>
                     <td><%=ProVO.getEstadoProceso()%></td>
                     <td><%=ProVO.getIdAsigOrdenFK()%></td>
-                    <td>
-                        <form>
-                        </form>
-                    </td>
-                    <td>
-                    <form method="post" action="Proceso">
+                                    <td>
+                                        <form action="">    
+                                        </form>
+                                    </td>
+                                    <td>
+                                        <form method="post" action="Proceso">
                     <input type="hidden" name="textIdProceso" value="<%=ProVO.getIdProceso()%>">
                     <button class="btn btn-primary">Editar</button>
                     <input type="hidden" value="3" name="opcion">
                     </form>
-                    </td>
-                </tr>
-                <% } %>
-                </tbody>
-                <tr>
-                  <th>ID PROCESO</th>
-                    <th>DESCRIPCIÓN PROCESO</th>
-                    <th>FECHA PROCESO</th>
-                    <th>HORA INICIO</th>
-                    <th>HORA FIN</th>
-                    <th>PRENDAS REALIZADAS</th>
-                    <th>ESTADO PROCESO</th>
-                    <th>ID ASIG ORDEN FK</th>
-                    <th></th>
-                    <th>ACCIÓN</th>
-                </tr>    
-            </table>
-            </div>
-        </form>
-        <form method="post" action="GenerarPDF.jsp" target="_blank">
+                                    </td>
+                                </tr>
+
+                                <% }%>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>                       
+   <form method="post" action="GenerarPDF.jsp" target="_blank">
             
             <input type="submit" value="Generar Reporte" button class="btn btn-primary">
             <input type="hidden" value="Reportes/ReporteProcesos.jasper" name="nombreReporte">
             
         </form>
-                
-    </center>
-    <script src="JS/jquery-3.2.1.min.js" type="text/javascript"></script>
-    <script src="JS/bootstrap.min.js" type="text/javascript"></script>
-    <script src="JS/jquery.dataTables.min.js" type="text/javascript"></script>
-    <script src="JS/dataTables.bootstrap.min.js" type="text/javascript"></script>
-    <script>
-		  $(document).ready( function () {
-		    $('.AllDataTables').DataTable({
-				"deferRender":true,
-				"scroller":true,
-				"aScrollX":"100%",
-			    "sScrollY":"300px",
-			    "bScrollCollapse":true
-		    });
-		} );
-              
-	</script>
+     <!-- Ansta Scripts -->
+            <!-- Core -->
+            <script src="assets/js/popper.js"></script>
+            <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+
+            <!-- Optional JS -->
+            <script src="assets/plugins/chart.js/dist/Chart.min.js"></script>
+            <script src="assets/plugins/chart.js/dist/Chart.extension.js"></script>
+
+            <!-- Data tables -->
+            <script src="assets/plugins/datatable/jquery.dataTables.min.js"></script>
+            <script src="assets/plugins/datatable/dataTables.bootstrap4.min.js"></script>
+
+            <!-- Fullside-menu Js-->
+            <script src="assets/plugins/toggle-sidebar/js/sidemenu.js"></script>
+
+            <!-- Custom scroll bar Js-->
+            <script src="assets/plugins/customscroll/jquery.mCustomScrollbar.concat.min.js"></script>
+
+            <!-- Ansta JS -->
+            <script src="assets/js/custom.js"></script>
+            <script>
+                $(function (e) {
+                    $('#example').DataTable();
+
+
+                    $('#example2').DataTable({
+                        "scrollY": "200px",
+                        "scrollCollapse": true,
+                        "paging": false
+                    });
+                });
+
+            </script>
 </body>
 </html>

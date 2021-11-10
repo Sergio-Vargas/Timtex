@@ -39,7 +39,7 @@ public class Proceso extends HttpServlet {
         int opcion = Integer.parseInt(request.getParameter("opcion"));
         String IdProceso = request.getParameter("textIdProceso");
         String DescripcionProceso = request.getParameter("textDescripcion");
-        String FechaProceso = request.getParameter("textFecha");
+        String FechaProceso = request.getParameter("textFechaProceso");
         String HoraInicio = request.getParameter("textHorai");
         String HoraFin = request.getParameter("textHoraf");
         String PrendasRealizadas = request.getParameter("textPrendasr");        

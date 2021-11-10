@@ -39,26 +39,7 @@
 	<!-- Sidemenu Css -->
 	<link href="assets/plugins/toggle-sidebar/css/sidemenu.css" rel="stylesheet">
     </head>
-    <style>
-	
-.estilotabla{
-	width: 1000px;
-	border-radius: 8px;
-	padding:10px;
-	background-color: white;
-	box-shadow: 0px 0px 10px 1px gray;
-	height:auto;
-}
-  @media screen and (max-width: 800px) { 
-	.Ctabla{
-	width:480px;
-	border-radius: 8px;
-	background-color: white;
-	box-shadow: 0px 0px 10px 1px gray;
-	height:600px;
-}
-}   
-</style>
+    
     <body>
     <center>
         <h1>Lista de Prendas</h1>
@@ -71,7 +52,7 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                 <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Registrar Prenda</h5>
+                <h3 class="modal-title" id="exampleModalLabel">Registrar Prenda</h3>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
@@ -84,7 +65,7 @@
                 </div>
             </div>
         </div>
-        <a href="inactivoPrenda.jsp"><button class="btn btn-primary">Inactivos</button></a>
+        
         <div style="color: red;">
 
             <%if (request.getAttribute("MensajeError") != null) { %>
@@ -95,12 +76,21 @@
 
             <%  }%>
         </div>
-        <form>
-            <div class="estilotabla Ctabla"><br>
-            <table class="table display AllDataTables table-striped table-responsive">
-                <thead>
-                <tr>
-                    <th>ID PRENDA</th>
+        <a href="inactivoPrenda.jsp"><button class="btn btn-primary">Inactivos</button></a>
+         
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card shadow">
+                <div class="card-header">
+                    <h2 class="mb-0">Prendas</h2>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table id="example" class="table table-striped table-bordered w-100 text-nowrap">
+                            <thead>
+                                <tr>
+
+                                    <th>ID PRENDA</th>
                     <th>IMAGEN PRENDA</th>
                     <th>NOMBRE PRENDA</th>
                     <th>DESCRIPCION PRENDA</th>
@@ -109,10 +99,12 @@
                     <th>ID TIPOPRENDA FK</th>
                     <th></th>
                     <th>ACCIÓN</th>
-                </tr>
-                </thead>
-                <tbody>
-                <%
+
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <%
                     PrendaVO PreVO = new PrendaVO();
                     PrendaDAO PreDAO = new PrendaDAO();
                     ArrayList<PrendaVO> listaPrenda = PreDAO.listar();
@@ -120,8 +112,8 @@
 
                     PreVO = listaPrenda.get(i);
                 %>
-                <tr>
-                    <td><%=PreVO.getIdPrenda()%></td>
+                                <tr>
+                                   <td><%=PreVO.getIdPrenda()%></td>
                     <td><img src="<%=PreVO.getImagenPrenda()%>"width="100px"></td>
                     <td><%=PreVO.getNombrePrenda()%></td>
                     <td><%=PreVO.getDescripcionPrenda()%></td>
@@ -129,37 +121,31 @@
                     <td><%=PreVO.getEstadoPrenda() %></td>
                     <td><%=PreVO.getIdTipoPrendaFK()%></td>
                     <td>
-                        <form>
-                        </form>
-                    </td>
-                    <td>
-                    <form method="post" action="Prenda">
+                                        <form action="">    
+                                        </form>
+                                    </td>
+                                    <td>
+                                        <form method="post" action="Prenda">
                     <input type="hidden" name="textIdPrenda" value="<%=PreVO.getIdPrenda()%>">
                     <button class="btn btn-primary">Editar</button>
                     <input type="hidden" value="3" name="opcion">
                     </form>
-                    </td>
-                </tr>
-                <% } %>
-                </tbody>
-                <tr>
-                    <th>ID PRENDA</th>
-                    <th>IMAGEN PRENDA</th>
-                    <th>NOMBRE PRENDA</th>
-                    <th>DESCRIPCION PRENDA</th>
-                    <th>PRECIO PRENDA</th>
-                    <th>ESTADO PRENDA</th>
-                    <th>ID TIPOPRENDA FK</th>
-                    <th></th>
-                    <th>ACCIÓN</th>
-                </tr>    
-            </table>
-            </div>
-        </form>
-    </center>
+                                    </td>
+                                </tr>
+
+                                <% }%>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>                       
+       
+                
+                
+                
     	<!-- Ansta Scripts -->
 	<!-- Core -->
-	<script src="assets/plugins/jquery/dist/jquery.min.js"></script>
+	
 	<script src="assets/js/popper.js"></script>
 	<script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
 

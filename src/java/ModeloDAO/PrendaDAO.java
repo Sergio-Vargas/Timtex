@@ -228,4 +228,28 @@ public class PrendaDAO extends Conexion implements Crud{
         return listaPrendaIna;
     }
     
+    //CONSULTAR datos
+    public PrendaVO consultar(String IdPrenda) {
+        
+        PrendaVO PreVO = null;
+        try {
+            conexion = this.obtenerConexion();
+            sql = "select * from prenda where IdPrenda=?";
+            puente = conexion.prepareStatement(sql);
+            puente.setString(1,IdPrenda);
+            mensajero = puente.executeQuery();  
+            while (mensajero.next()) {                
+                
+                PreVO= new PrendaVO(mensajero.getString(1), mensajero.getString(2), 
+                        mensajero.getString(3), mensajero.getString(4), 
+                        mensajero.getString(5), mensajero.getString(6),mensajero.getString(7));
+                        
+            }
+            
+        } catch (Exception e) {
+        } 
+
+        return PreVO;
+    }
+    
 }

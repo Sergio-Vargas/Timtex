@@ -8,6 +8,7 @@ package Controlador;
 import ModeloDAO.RolDAO;
 import ModeloDAO.UsuarioDAO;
 import ModeloVO.UsuarioVO;
+import Util.PasswordGenerator;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -44,6 +45,13 @@ public class UsuarioControlador extends HttpServlet {
         String NombreUsuario = request.getParameter("textUsuario");
         String CorreoDatos=request.getParameter("textCorreo");
         String ClaveUsuario = request.getParameter("textClave");
+          if (ClaveUsuario == null) {
+            ClaveUsuario = PasswordGenerator.getPassword(
+                    PasswordGenerator.MINUSCULAS
+                    + PasswordGenerator.MAYUSCULAS
+                    + PasswordGenerator.NUMEROS, 20);
+        }
+        
         String IdCargoFK =request.getParameter("textCargo");
         
         //2. Hacer pregunta ¿Quién tiene los datos de forma segura en el sistema? = VO
@@ -56,10 +64,15 @@ public class UsuarioControlador extends HttpServlet {
         switch (opcion) {
 
             case 1: 
-                // consulta 
+                // registrar usuario
                 usuVO = usuDAO.consultar(NombreUsuario);
+                UsuarioVO usuVO1 = new UsuarioVO(IdUsuario,NombreUsuario,CorreoDatos,ClaveUsuario,IdCargoFK);
+                usuVO1 = usuDAO.consultaremail(CorreoDatos);
+                
                 if (usuVO == null) {
-
+                    
+                    if(usuVO1==null){  
+                        
                     if (usuDAO.aregarRegistro()) {
 
                         request.setAttribute("MensajeExito", "El usuario se registró correctamente");
@@ -68,6 +81,10 @@ public class UsuarioControlador extends HttpServlet {
                     } else {
                         request.setAttribute("MensajeError", "El usuario no se registró correctamente");
                         //request.getRequestDispatcher("registrarUsuario.jsp").forward(request, response);
+                    }
+                    
+                      }else{
+                        request.setAttribute("MensajeError", "El correo ya existe en el sistema");
                     }
                 } else {
 
@@ -121,7 +138,7 @@ public class UsuarioControlador extends HttpServlet {
                     }
                     else{
                         
-                    request.getRequestDispatcher("Cliente.jsp").forward(request, response);
+                    request.getRequestDispatcher("shop.jsp").forward(request, response);
                     }
                            
                 }
@@ -137,6 +154,37 @@ public class UsuarioControlador extends HttpServlet {
                 }
                 request.getRequestDispatcher("Login.jsp").forward(request, response);
                 break;
+                
+            case 4: 
+                // registrar empleado admin o empleado normal
+                usuVO = usuDAO.consultar(NombreUsuario);
+                UsuarioVO usuVO2 = new UsuarioVO(IdUsuario,NombreUsuario,CorreoDatos,ClaveUsuario,IdCargoFK);
+                usuVO2 = usuDAO.consultaremail(CorreoDatos);
+                
+                if (usuVO == null) {
+                    
+                    if(usuVO2==null){  
+                        
+                    if (usuDAO.aregarRegistro()) {
+
+                        request.setAttribute("MensajeExito", "El usuario se registró correctamente");
+                        //request.getRequestDispatcher("registrarUsuario.jsp").forward(request, response);
+
+                    } else {
+                        request.setAttribute("MensajeError", "El usuario no se registró correctamente");
+                        //request.getRequestDispatcher("registrarUsuario.jsp").forward(request, response);
+                    }
+                    
+                      }else{
+                        request.setAttribute("MensajeError", "El correo ya existe en el sistema");
+                    }
+                } else {
+
+                    request.setAttribute("MensajeError", "El usuario ya existe en el sistema");
+                    
+                }
+                request.getRequestDispatcher("registrarEmpleado.jsp").forward(request, response);
+                break;    
                 
 
         }

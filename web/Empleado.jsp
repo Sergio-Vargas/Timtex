@@ -10,7 +10,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Empleado</title>
+        <title>Timtex</title>
 	<meta charset="utf-8">
 	<meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
 	<meta content="Start your development with a Dashboard for Bootstrap 4." name="description">
@@ -45,6 +45,14 @@
 	<link href="assets/plugins/toggle-sidebar/css/sidemenu.css" rel="stylesheet">
 
 </head>
+<%    UsuarioVO usuVO = new UsuarioVO();
+        usuVO = (UsuarioVO) buscarSesion.getAttribute("datosUsuario");
+
+        rol = usuVO.getIdCargoFK();
+        if (rol.equals("3")) {
+
+    %>
+    
 <body class="app sidebar-mini rtl" >
 	<div id="global-loader" ></div>
 	<div class="page">
@@ -949,6 +957,10 @@
 			<!-- app-content-->
 		</div>
 	</div>
+         <%        } else {
+%>    
+no tiene permitido este modulo
+<%}%>                                           
 	<!-- Back to top -->
 	<a href="#top" id="back-to-top"><i class="fa fa-angle-up"></i></a>
 

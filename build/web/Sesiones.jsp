@@ -7,21 +7,25 @@
 <%@page import="ModeloVO.UsuarioVO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-  
+
 <%
-   HttpSession buscarSesion =(HttpSession)request.getSession();
-    String usuario="";
-    String id="";      
-    String correo="";
-    if(buscarSesion.getAttribute("datosUsuario")!=null){
-        
-    UsuarioVO usuVO=(UsuarioVO)buscarSesion.getAttribute("datosUsuario");
-    
-   usuario=usuVO.getNombreUsuario();
-   id=usuVO.getIdUsuario();
-   correo=usuVO.getCorreoDatos();
-    }
-    else{
-    request.getRequestDispatcher("Login.jsp").forward(request, response);
+    HttpSession buscarSesion = (HttpSession) request.getSession();
+
+    String usuario = "";
+    String id = "";
+    String correo = "";
+    String rol = "";
+
+    if (buscarSesion.getAttribute("datosUsuario") != null) {
+
+        UsuarioVO usuVO = (UsuarioVO) buscarSesion.getAttribute("datosUsuario");
+
+        usuario = usuVO.getNombreUsuario();
+        id = usuVO.getIdUsuario();
+        correo = usuVO.getCorreoDatos();
+        rol = usuVO.getIdCargoFK();
+    } else {
+        request.getRequestDispatcher("Login.jsp").forward(request, response);
     }
 %>
+

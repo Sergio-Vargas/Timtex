@@ -38,7 +38,7 @@ public class AsigOrden extends HttpServlet {
         //1. Recibir datos de las Vistas
         int opcion = Integer.parseInt(request.getParameter("opcion"));
         String AsigOrden = request.getParameter("textAsigOrden");
-        String CantidadPrenda = request.getParameter("textCantidad");
+        String CantidadPrenda = request.getParameter("textCantidadAsignar");
         String FechaInicio = request.getParameter("textFechaInicio");
         String FechaFin = request.getParameter("textFechaFin");
         String IdDatosFK = request.getParameter("textIdDatos");

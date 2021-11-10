@@ -5,6 +5,7 @@
  */
 package Controlador;
 
+import ModeloVO.Articulo;
 import java.io.IOException;
 import ModeloVO.DetalleOrdenVO;
 import java.io.PrintWriter;
@@ -36,38 +37,35 @@ public class agregarproducto extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
+          
+        int cantidad = Integer.parseInt(request.getParameter("cantidad"));
+        int talla = Integer.parseInt(request.getParameter("talla"));
+        int idproducto = Integer.parseInt(request.getParameter("idproducto"));
         
-        String IdDetalle =request.getParameter("textIdDetalle");
-        String cantidad =request.getParameter("textCantidad");
-        String talla=request.getParameter("textTalla");
-        String IdOrden = request.getParameter("textOrden");
-        String prenda = request.getParameter("textprenda");
-        
-        HttpSession miSesion = request.getSession(true);
-        ArrayList<DetalleOrdenVO> detalle = miSesion.getAttribute("carrito") == null ? new ArrayList<>() : (ArrayList) miSesion.getAttribute("carrito");
+        HttpSession sesion = request.getSession(true);
+        ArrayList<Articulo> articulos = sesion.getAttribute("carrito") == null ? new ArrayList<>() : (ArrayList) sesion.getAttribute("carrito");
         
         boolean flag = false;        
-        if(detalle.size() > 0){
-            for(DetalleOrdenVO d : detalle){
-                if(prenda == d.getIdPrendaFK()){
-                    d.setIdDetalleOrden(d.getIdDetalleOrden()+IdDetalle);
-                    d.setCantidadPrenda(d.getCantidadPrenda() + cantidad);
-                    d.setTalla(talla);
-                    d.setIdPrendaFK(prenda);
+        if(articulos.size() > 0){
+            for(Articulo a : articulos){
+                if(idproducto == a.getIdProducto()){
+                   if(a.getTalla()==talla){
+                    a.setCantidad(a.getCantidad() + cantidad);
+                    a.setTalla(a.getTalla());
                     flag = true;
-                    break;
                 }
+                }
+                
             }
         }
         
         if(!flag){
-            detalle.add(new DetalleOrdenVO(IdDetalle,cantidad,talla,IdOrden,prenda));
+            articulos.add(new Articulo(idproducto,cantidad,talla));
         }
         
-        miSesion.setAttribute("carrito",detalle);  
+        sesion.setAttribute("carrito", articulos);  
         
-        response.sendRedirect("registrarOrden.jsp");
-        
+        response.sendRedirect("cart.jsp");
         
         
         

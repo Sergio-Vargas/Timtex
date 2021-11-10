@@ -5,8 +5,9 @@
  */
 package Controlador;
 
-import ModeloVO.DetalleOrdenVO;
-import ModeloVO.PrendaVO;
+import ModeloVO.Articulo;
+import ModeloVO.Producto;
+import Controlador.ControladorProducto;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -19,10 +20,13 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author sergio saenz
+ * @author Jonathan
  */
-@WebServlet(name = "DeletePrenda", urlPatterns = {"/DeletePrenda"})
-public class DeletePrenda extends HttpServlet {
+ @WebServlet(name = "borraritem", urlPatterns = {"/borraritem"})
+public class DeleteItem extends HttpServlet {
+
+    //borraritem
+   
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,33 +41,32 @@ public class DeletePrenda extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
+        int idproducto = Integer.parseInt(request.getParameter("idproducto"));
         
-        String iddetalle = request.getParameter("textIdPrenda");
+        HttpSession sesion = request.getSession(true);
+        ArrayList<Articulo> articulos = sesion.getAttribute("carrito") == null ? null : (ArrayList) sesion.getAttribute("carrito");
         
-        HttpSession miSesion = request.getSession(true);
-        ArrayList<DetalleOrdenVO> detalle = miSesion.getAttribute("carrito") == null ? null : (ArrayList) miSesion.getAttribute("carrito");
-        
-        if(detalle != null){
-            for(DetalleOrdenVO d : detalle){                
-                if(d.getIdPrendaFK() == iddetalle){
-                    detalle.remove(d);
+        if(articulos != null){
+            for(Articulo a : articulos){                
+                if(a.getIdProducto() == idproducto){
+                    articulos.remove(a);
                     break;
                 }
             }
         }
-             
         
-        ControladorPrenda pre = new ControladorPrenda();                                                    
-      
-        for(DetalleOrdenVO d : detalle){
-        PrendaVO PreVO = pre.consultarDatos(d.getIdPrendaFK());  
-        PreVO.getIdPrenda(); 
+        double total = 0;
+        ControladorProducto cp = new ControladorProducto();
+        for(Articulo a : articulos){                
+            Producto producto = cp.getProducto(a.getIdProducto());
+            total += a.getCantidad() * producto.getPrecio();            
         }
         
-        miSesion.setAttribute("carrito",detalle);  
+        response.getWriter().print(Math.round(total * 100.0) /100.0);      
         
-        response.sendRedirect("registrarOrden.jsp");
-        
+     
+             
+       
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

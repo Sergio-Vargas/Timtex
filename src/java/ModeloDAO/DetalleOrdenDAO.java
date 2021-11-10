@@ -29,6 +29,7 @@ public class DetalleOrdenDAO extends Conexion implements Crud{
     
     private String Talla="",IdDetalleOrden="",CantidadPrenda="",IdOrdenFK="",IdPrendaFK="";
     
+    
     public DetalleOrdenDAO(){
      }
     

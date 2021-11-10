@@ -11,26 +11,75 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <title>Registrar Administrador</title>
+      <!-- Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Nunito:300,400,600,700,800" rel="stylesheet">
+
+        <!-- Icons -->
+        <link href="assets/css/icons.css" rel="stylesheet" type="text/css"/>
+        <!-- Favicon -->
+        <link href="assets/img/brand/favicon.png" rel="icon" type="image/png">
+
+        <!--Bootstrap.min css-->
+        <link rel="stylesheet" href="assets/plugins/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+
+        <!-- Ansta CSS -->
+        <link href="assets/css/dashboard.css" rel="stylesheet" type="text/css">
+
+        <!-- Custom scroll bar css-->
+        <link href="assets/plugins/customscroll/jquery.mCustomScrollbar.css" rel="stylesheet" />
+
+        <!-- Sidemenu Css -->
+        <link href="assets/plugins/toggle-sidebar/css/sidemenu.css" rel="stylesheet">
 </head>
+ <style>
+        .abs-center {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .form {
+            width: 450px;
+        }
+    </style>
     <body>
-    <center>
-        
-    <h1>Registrar Administrador</h1>
-                <form method="post" action="Usuario">
-                    Usuario<br>
-                    <input type="text" name="textUsuario"><br>
-                    Correo<br>
-                    <input type="email" name="textCorreo"><br>
-                    Contraseña<br>
-                    <input type="password" name="textClave"><br> 
-                    <input type="hidden" name="textCargo" value="1"><br> 
+    
+  
+                <form id="basic-form" class="my-login-validation"  method="post" action="Usuario">
+                      <div class="row abs-center">
+                <div class="col-md-6">
+                    <div class="card shadow">
+                        <div class="card-header">
+                            <h2 class="mb-0">Registrar Administrador</h2>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                             <div class="form-group">       
+                    Usuario
+                    <input type="text" name="textUsuario" class="form-control"   name="textUsuario" pattern="[a-zA-Z ]{2,20}" required>
+                    
+                             </div>
+                                    <div class="form-group">
+                    Correo
+                    <input type="email" name="textCorreo" class="form-control"   pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
+                                    </div>
+                                    <div class="form-group">
+                    Contraseña
+                    <input type="password" name="textClave" required="" class="form-control"  >
+                                    </div>
+                    <input type="hidden" name="textCargo" value="1"> 
                     <br>
-                    <button>Registrar</button>
+                      <div class=" col-md-6">
+                                    <center>
+                                        <button type="submit" class="btn btn-primary mb-0 btn-block waves-effect waves-light">Registrar</button>
+                                    </center>
+                                </div>
+                       </div>
                     <input type="hidden" value="1" name="opcion">
                 </form>
         <div style="color: red;">
@@ -43,8 +92,12 @@
 
             <%  }%> 
         </div>
-    </center>
+    
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+                <script src="assets/plugins/jquery/dist/jquery.min.js"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
+
+                <script src="JS/my-login.js"></script>
     </body>
-    <script>
-</script>
+  
 </html>
