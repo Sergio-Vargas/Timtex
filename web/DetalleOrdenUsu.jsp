@@ -26,8 +26,8 @@
         <div class="container-fluid pt-8">
         <div class="page-header mt-0 shadow p-3">
                                     <ol class="breadcrumb mb-sm-0">
-                                        <li class="breadcrumb-item"><a href="Cliente.jsp">Inicio</a></li>
-                                        <li class="breadcrumb-item active" aria-current="page">Ordenes</li>
+                                        <li class="breadcrumb-item"><a href="OrdenesUsuario.jsp">Ordenes</a></li>
+                                        <li class="breadcrumb-item active" aria-current="page">Detalle orden</li>
                                     </ol>
 
         </div>
@@ -56,11 +56,11 @@
                             <thead>
                                 <tr>
 
-                                    <th>ID ORDEN</th>
-                    <th>FECHA DE LA ORDEN</th>
-                    <th>ESTADO DE LA ORDEN</th>
-                    <th></th>
-                    <th>ACCIÓN</th>
+                                    <th>ID DETALLE</th>
+                    <th>NOMBRE PRENDA</th>
+                    <th>CANTIDAD</th>
+                    <th>TALLA</th>
+                    <th>ORDEN</th>
 
                                 </tr>
                             </thead>
@@ -68,24 +68,18 @@
                             <tbody>
                                 <%
             OrdenVO ordeVO =new OrdenVO();
-            ArrayList<OrdenVO> listaOrden=(ArrayList<OrdenVO>)request.getAttribute("rol");
-            for(int i=0; i<listaOrden.size();i++){
-            ordeVO=listaOrden.get(i);
+            ArrayList<OrdenVO> listaDetalle=(ArrayList<OrdenVO>)request.getAttribute("rol");
+            for(int i=0; i<listaDetalle.size();i++){
+            ordeVO=listaDetalle.get(i);
             
             %>
                                 <tr>
-                    <td><%=ordeVO.getIdOrden()%></td>
-                    <td><%=ordeVO.getFechaOrden()%> </td>
-                    <td><%=ordeVO.getEstadoOrden()%></td>
-                    <td></td>
-                    <td>
-                    <form method="post" action="Orden">
-                        <input type="hidden" name="textIdDato" value="<%=ordeVO.getIdDatosFK()%>">
-                    <input type="hidden" name="textOrden" value="<%=ordeVO.getIdOrden()%>">
-                    <button class="btn btn-primary">Ver detalles</button>
-                    <input type="hidden" value="6" name="opcion">
-                    </form>
-                    </td>
+                    <td><%=ordeVO.getIdDetalleOrden()%></td>
+                    <td><%=ordeVO.getNombrePrenda()%> </td>
+                    <td><%=ordeVO.getCantidadPrenda()%></td>
+                    <td><%=ordeVO.getTalla()%> </td>
+                    <td><%=ordeVO.getIdOrdenFK()%></td>
+                    
                 </tr> 
 
                                 <% }%>
@@ -98,7 +92,6 @@
   
 <%}%>
                             <%@include file="footer.jsp"%>	  
-       
         
     </body>
 </html>

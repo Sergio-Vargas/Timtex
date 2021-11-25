@@ -12,7 +12,7 @@ package ModeloVO;
 public class OrdenVO {
     
     private String IdOrden,FechaOrden,EstadoOrden,IdDatosFK;
-
+    private String IdDetalleOrden,NombrePrenda,CantidadPrenda,Talla,IdOrdenFK;
     
     public OrdenVO() {
     }
@@ -24,6 +24,18 @@ public class OrdenVO {
         this.IdDatosFK = IdDatosFK;
        
     }
+    
+    //constrcutor de detalle orden
+    public OrdenVO(String IdDetalleOrden, String NombrePrenda, String CantidadPrenda, String Talla, String IdOrdenFK) {
+        this.IdDetalleOrden = IdDetalleOrden;
+        this.NombrePrenda = NombrePrenda;
+        this.CantidadPrenda = CantidadPrenda;
+        this.Talla = Talla;
+        this.IdOrdenFK = IdOrdenFK;
+    }
+    
+    
+    
     public OrdenVO(String IdOrden, String FechaOrden, String EstadoOrden) {
         this.IdOrden = IdOrden;
         this.FechaOrden = FechaOrden; 
@@ -61,4 +73,48 @@ public class OrdenVO {
     public void setIdDatosFK(String IdDatosFK) {
         this.IdDatosFK = IdDatosFK;
     }    
+    
+    //get y set de detalle orden
+
+    public String getIdDetalleOrden() {
+        return IdDetalleOrden;
+    }
+
+    public void setIdDetalleOrden(String IdDetalleOrden) {
+        this.IdDetalleOrden = IdDetalleOrden;
+    }
+
+    public String getNombrePrenda() {
+        return NombrePrenda;
+    }
+
+    public void setNombrePrenda(String NombrePrenda) {
+        this.NombrePrenda = NombrePrenda;
+    }
+
+    public String getCantidadPrenda() {
+        return CantidadPrenda;
+    }
+
+    public void setCantidadPrenda(String CantidadPrenda) {
+        this.CantidadPrenda = CantidadPrenda;
+    }
+
+    public String getTalla() {
+        return Talla;
+    }
+
+    public void setTalla(String Talla) {
+        this.Talla = Talla;
+    }
+
+    public String getIdOrdenFK() {
+        return IdOrdenFK;
+    }
+
+    public void setIdOrdenFK(String IdOrdenFK) {
+        this.IdOrdenFK = IdOrdenFK;
+    }
+    
+    
 }

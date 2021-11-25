@@ -193,8 +193,8 @@
                                 <ul class="slide-menu">
                                     <li>
                                         <form method="post" action="Orden">
-                                        <input type="hidden" value="<%=id%>" name="IdDatosFK">    
-                                        <button class="slide-item" class="slide-item">Consultar</button>
+                                        <input type="hidden" value="<%=id%>" name="textIdDato">     
+                                        <button class="slide-item" class="slide-item">Consultar Ordenes</button>
                                         <input type="hidden" value="5" name="opcion">
                                         </form>
                                     </li>

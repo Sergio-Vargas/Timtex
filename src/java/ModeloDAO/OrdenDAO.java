@@ -254,7 +254,7 @@ public class OrdenDAO extends Conexion implements Crud{
         ArrayList<OrdenVO> listaOrden= new ArrayList<>(); 
         try{
         conexion=this.obtenerConexion();
-        sql="select IdOrden,FechaOrden,EstadoOrden from Orden ord, DatosPersonales dat,Usuario usu where usu.IdUsuario=7"
+        sql="select IdOrden,FechaOrden,EstadoOrden,IdDatosFK from Orden ord, DatosPersonales dat,Usuario usu where usu.IdUsuario=?"
         + " and usu.IdUsuario=dat.IdUsuarioFK &&  dat.IdDatos=ord.IdDatosFK ;";
         puente = conexion.prepareStatement(sql);   
         puente.setString(1,IdDatosFK);
@@ -264,7 +264,7 @@ public class OrdenDAO extends Conexion implements Crud{
         while(mensajero.next()){
         
         OrdenVO ordeVO= new OrdenVO(mensajero.getString(1), mensajero.getString(2),
-              mensajero.getString(3));
+              mensajero.getString(3),mensajero.getString(4));
         listaOrden.add(ordeVO);
     
         }
@@ -274,5 +274,33 @@ public class OrdenDAO extends Conexion implements Crud{
         return listaOrden; 
     }
    
+      public ArrayList<OrdenVO> listaDetalle(String IdDatosFK,String IdOrden){
+    
+        ArrayList<OrdenVO> listaDetalle= new ArrayList<>(); 
+        try{
+        conexion=this.obtenerConexion();
+        sql="select IdDetalleOrden,pre.NombrePrenda,CantidadPrenda,Talla,IdOrdenFK from Orden ord,Detalle_Orden det,"
+        + "DatosPersonales dat,Usuario usu,Prenda pre \n" +
+        "where usu.IdUsuario=? && usu.IdUsuario=dat.IdUsuarioFK &&\n" +
+        "dat.IdDatos=ord.IdDatosFK && ord.IdOrden=? && ord.IdOrden=det.IdOrdenFK && pre.Idprenda=det.IdPrendaFK;";
+        puente = conexion.prepareStatement(sql);   
+        puente.setString(1,IdDatosFK);
+        puente.setString(2,IdOrden);
+        mensajero=puente.executeQuery();
+        
+        System.out.println(sql);
+        while(mensajero.next()){
+        
+        OrdenVO ordeVO= new OrdenVO(mensajero.getString(1), mensajero.getString(2),
+              mensajero.getString(3),mensajero.getString(4),
+              mensajero.getString(5));
+        listaDetalle.add(ordeVO);
+    
+        }
+        }catch(Exception e){
+         Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, e);   
+        }
+        return listaDetalle; 
+    }   
 }
 

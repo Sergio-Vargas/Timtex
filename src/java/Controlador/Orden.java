@@ -87,7 +87,7 @@ public class Orden extends HttpServlet {
                         request.setAttribute("MensajeExito", "La informacion se registró correctamente");
                         articulos.clear();
                     }else{
-                        request.setAttribute("MensajeError", "La infromacion no se registró correctamente");
+                        request.setAttribute("MensajeError", "Debe registrar sus datos en el sistema");
                     }
                 }catch(Exception e){System.out.println(e);}
                     
@@ -154,9 +154,27 @@ public class Orden extends HttpServlet {
                         
                     }else{
                         request.setAttribute("MensajeError", "No hay ordenes registrados");
-                        request.getRequestDispatcher("login.jsp").forward(request, response);
+                        request.getRequestDispatcher("OrdenesUsuario.jsp").forward(request, response);
                     }
-            break;    
+            break;  
+            
+              case 6:
+                  ArrayList<OrdenVO> listaDetalle = OrdeDAO.listaDetalle(IdDatosFK,IdOrden);
+                    
+                    for (int i = 0; i < listaDetalle.size(); i++) {
+                        OrdeVO = listaDetalle.get(i);
+                    }
+                    request.setAttribute("rol", listaDetalle);
+                    
+                    if (listaDetalle.size()>0) {
+                        
+                        request.getRequestDispatcher("DetalleOrdenUsu.jsp").forward(request, response);
+                        
+                    }else{
+                        request.setAttribute("MensajeError", "No hay detalles registrados");
+                        request.getRequestDispatcher("DetalleOrdenUsu.jsp").forward(request, response);
+                    }
+            break;  
         }
         
         

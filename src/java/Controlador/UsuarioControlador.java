@@ -166,14 +166,14 @@ public class UsuarioControlador extends HttpServlet {
                   request.getRequestDispatcher("registrarDatosPersonales.jsp").forward(request, response);   
                          
                 }
-                }
-                   }
-                else{
+                } else{
                  
                     request.setAttribute("MensajeError","El usuario y/o la contraseña son incorrectos");
                      request.getRequestDispatcher("Login.jsp").forward(request, response);
                     
-                }   
+                } 
+                   }
+                 
                                 
                 break;
                 
