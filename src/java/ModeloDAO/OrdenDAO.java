@@ -5,6 +5,7 @@
  */
 package ModeloDAO;
 
+import ModeloVO.Articulo;
 import ModeloVO.OrdenVO;
 import Util.Conexion;
 import Util.Crud;
@@ -49,6 +50,34 @@ public class OrdenDAO extends Conexion implements Crud{
         }
         
     }
+    
+    
+    private int idProducto,cantidad,talla;
+    private String orden="",IdPrendaFK="";
+    
+      //2. Crear método principal para recibir los datos del VO
+    public OrdenDAO(Articulo art,OrdenVO OrdeVO){
+        super();
+        
+        try {
+            
+    //3. Conectar a la BD
+            conexion= this.obtenerConexion();
+    //4. Traer al DAO los datos del VO para hacer la operación 
+    
+            idProducto = art.getIdProducto();
+            cantidad = art.getCantidad();
+            talla=art.getTalla(); 
+            orden=OrdeVO.getIdOrden();
+            IdPrendaFK = art.getIdPrendaFK() ;
+                            
+        } catch (Exception e) {
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, e);
+        }
+        
+    }
+    
+    
     
     
     @Override
@@ -219,4 +248,31 @@ public class OrdenDAO extends Conexion implements Crud{
         return listaOrdenIna;
     }
     
+            
+        public ArrayList<OrdenVO> lista(String IdDatosFK){
+    
+        ArrayList<OrdenVO> listaOrden= new ArrayList<>(); 
+        try{
+        conexion=this.obtenerConexion();
+        sql="select IdOrden,FechaOrden,EstadoOrden from Orden ord, DatosPersonales dat,Usuario usu where usu.IdUsuario=7"
+        + " and usu.IdUsuario=dat.IdUsuarioFK &&  dat.IdDatos=ord.IdDatosFK ;";
+        puente = conexion.prepareStatement(sql);   
+        puente.setString(1,IdDatosFK);
+        mensajero=puente.executeQuery();
+        
+        System.out.println(sql);
+        while(mensajero.next()){
+        
+        OrdenVO ordeVO= new OrdenVO(mensajero.getString(1), mensajero.getString(2),
+              mensajero.getString(3));
+        listaOrden.add(ordeVO);
+    
+        }
+        }catch(Exception e){
+         Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, e);   
+        }
+        return listaOrden; 
+    }
+   
 }
+

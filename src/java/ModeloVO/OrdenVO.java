@@ -24,6 +24,11 @@ public class OrdenVO {
         this.IdDatosFK = IdDatosFK;
        
     }
+    public OrdenVO(String IdOrden, String FechaOrden, String EstadoOrden) {
+        this.IdOrden = IdOrden;
+        this.FechaOrden = FechaOrden; 
+        this.EstadoOrden = EstadoOrden;
+    }
 
     public String getIdOrden() {
         return IdOrden;

@@ -82,7 +82,7 @@
                                             <option></option>
                                             <%
                                                 DatosPersonalesDAO datDAO = new DatosPersonalesDAO();
-                                                for (DatosPersonalesVO datVO : datDAO.listar()) {
+                                                for (DatosPersonalesVO datVO : datDAO.empleado()) {
                                             %>
                                             <option value="<%=datVO.getIdDatos()%>"><%=datVO.getNombreDatos()%></option>
                                             <% }%>
@@ -100,6 +100,19 @@
                                             <option value="<%=DetaVO.getIdDetalleOrden()%>"><%=DetaVO.getIdDetalleOrden()%></option>
                                             <% }%>
                                         </select>
+                                    <input type="hidden" value="Activa" name="textEstado">
+                                
+                                      <div class="form-group">    
+                                        Estado
+                                        <select name="textEstado" class="form-control" required>
+                                            <option></option>
+                                            
+                                            <option value="Activa">Activa</option>
+                                            <option value="Realizada">Realizada</option>
+                                        </select>
+                                        
+                                        
+                                        
                                        
                                     </div></div>
                                 <div class=" col-md-6">

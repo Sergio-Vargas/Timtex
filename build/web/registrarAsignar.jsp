@@ -9,6 +9,8 @@
 <%@page import="ModeloVO.DatosPersonalesVO"%>
 <%@page import="ModeloDAO.DatosPersonalesDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@include file="Sesiones.jsp"%>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -38,13 +40,19 @@
         <link href="assets/plugins/toggle-sidebar/css/sidemenu.css" rel="stylesheet">
     </head>
     <body>
-
+<div class="container-fluid pt-8">
+        <div class="page-header mt-0 shadow p-3">
+                                    <ol class="breadcrumb mb-sm-0">
+                                        <li class="breadcrumb-item"><a href="Usuario.jsp">Inicio</a></li>
+                                        <li class="breadcrumb-item active" aria-current="page">Registrar Asignacion</li>
+                                    </ol>
+        </div>
         <form method="post" action="AsigOrden" class="my-login-validation" id="basic-form" novalidate="">
             <div class="row">
                 <div class="col-md-12">
                     <div class="card shadow">
                         <div class="card-header">
-                            <h2 class="mb-0">Asignar Orden</h2>
+                            <h2 class="mb-0">Asignar Una Orden</h2>
                         </div>
                         <div class="card-body">
                             <div class="row">
@@ -71,7 +79,7 @@
                                             <option></option>
                                             <%
                                                 DatosPersonalesDAO datDAO = new DatosPersonalesDAO();
-                                                for (DatosPersonalesVO datVO : datDAO.listar()) {
+                                                for (DatosPersonalesVO datVO : datDAO.empleado()) {
                                             %>
                                             <option value="<%=datVO.getIdDatos()%>"><%=datVO.getNombreDatos()%></option>
                                             <% }%>
@@ -91,6 +99,8 @@
                                         </select>
 
                                     </div>
+                                          <input type="hidden" value="Activa" name="textEstado">
+
                                 </div>
                                 <div class=" col-md-6">
                                     <center>
@@ -115,13 +125,8 @@
             <%  }%>
         </div>
 
-        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-        <script src="assets/plugins/jquery/dist/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
+        
+        <%@include file="footer.jsp"%>
 
-
-
-        <!-- validacion de formularios -->
-        <script src="JS/my-login.js"></script>
     </body>
 </html>

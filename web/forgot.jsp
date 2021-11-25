@@ -23,19 +23,16 @@
 					<div class="card fat">
 						<div class="card-body">
 							<div class="brand">
-								<img src="Imagenes/logo.jpg" alt="bootstrap 4 login page">
+								<img src="Imagenes/logo.png" alt="bootstrap 4 login page">
 							</div>
 							<h3 class="card-title">Recuperar contraseña</h3>
-							<form method="POST" class="my-login-validation" novalidate="">
+							<form method="POST" class="my-login-validation" action="Usuario" id="basic-form" novalidate="">
 								<div class="form-group">
 									<label for="email">Ingrese correo</label>
-									<input id="email" type="email" class="form-control" name="email" value="" required autofocus>
-									<div class="invalid-feedback">
-										Correo es invalido
-									</div>
+									<input type="email" class="form-control" id="correo" name="textCorreo" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required autofocus>
 									<div class="form-text text-muted">
-										Al hacer clic en "Restablecer contraseña", le enviaremos un correo para restablecer la contraseña.
-									</div>
+										Al hacer clic en "Restablecer contraseña", le enviaremos un correo con una contraseña autogenerada.
+									</div> 
 								</div>
 
 								<div class="form-group m-0">
@@ -43,6 +40,18 @@
 										Restablecer contraseña
 									</button>
 								</div>
+                                                            <div class="mt-4 text-center">
+                                                                <p style=" color:red;font-size:15px;">
+                                                                    <%
+                                                                        if (request.getAttribute("MensajeError") != null) {
+                                                                    %>
+                                                                    ${MensajeError}     
+                                                                    <%} else {%>
+                                                                <div style="color: greenyellow">${MensajeExito}</div>
+                                                                <%  }%>     
+                                                                </p>
+                                                            </div>
+                                                        <input type="hidden" value="5" name="opcion">    
 							</form>
 						</div>
 					</div>
@@ -51,7 +60,13 @@
 		</div>
 	</section>
 
-	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-	<script src="JS/my-login.js"></script>
+ <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="assets/plugins/jquery/dist/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
+
+
+
+        <!-- validacion de formularios -->
+        <script src="JS/my-login.js"></script>
 </body>
 </html>

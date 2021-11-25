@@ -8,40 +8,31 @@
 <%@page import="ModeloDAO.DatosPersonalesDAO"%>
 <%@page import="ModeloVO.DatosPersonalesVO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@include file="Sesiones.jsp"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Datos</title>
-
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:300,400,600,700,800" rel="stylesheet">
-
-        <!-- Icons -->
-        <link href="assets/css/icons.css" rel="stylesheet">
-
-        <!--Bootstrap.min css-->
-        <link rel="stylesheet" href="assets/plugins/bootstrap/css/bootstrap.min.css">
-
-        <!-- Ansta CSS -->
-        <link href="assets/css/dashboard.css" rel="stylesheet" type="text/css">
-
-        <!-- Tabs CSS -->
-        <link href="assets/plugins/tabs/style.css" rel="stylesheet" type="text/css">
-
-        <!-- jvectormap CSS -->
-        <link href="assets/plugins/jvectormap/jquery-jvectormap-2.0.2.css" rel="stylesheet" />
-
-        <!-- Custom scroll bar css-->
-        <link href="assets/plugins/customscroll/jquery.mCustomScrollbar.css" rel="stylesheet" />
-
-        <!-- Sidemenu Css -->
-        <link href="assets/plugins/toggle-sidebar/css/sidemenu.css" rel="stylesheet">
-    </head>
+        </head>
     <body>
     <center>
-        <h1>Lista de Datos Personales inactivos</h1>
+        
+         <%
+                                rol = usuVO.getIdCargoFK();
+                                if (rol.equals("1")) {
 
+                            %>
+         <center>
+        <div class="container-fluid pt-8">
+        <div class="page-header mt-0 shadow p-3">
+                                    <ol class="breadcrumb mb-sm-0">
+                                        <li class="breadcrumb-item"><a href="consultarDatosPersonales.jsp">Datos De Usuarios</a></li>
+                                        <li class="breadcrumb-item active" aria-current="page">Datos De Usuarios Inactivas</li>
+                                    </ol>
+
+        </div>
+        
         <div style="color: red;">
 
             <%if (request.getAttribute("MensajeError") != null) { %>
@@ -59,7 +50,7 @@
             <div class="col-md-12">
                 <div class="card shadow">
                     <div class="card-header">
-                        <h2 class="mb-0">Datos inactivos</h2>
+                        <h2 class="mb-0">Lista De Datos Personales Inactivos</h2>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -117,6 +108,9 @@
                         </div>
                     </div>
                 </div> 
+                                  <%@include file="footer.jsp"%>	  
+
+<% }%>
 
                 <!-- Ansta Scripts -->
                 <!-- Core -->

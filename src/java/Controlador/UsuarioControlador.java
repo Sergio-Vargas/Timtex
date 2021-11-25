@@ -8,10 +8,12 @@ package Controlador;
 import ModeloDAO.RolDAO;
 import ModeloDAO.UsuarioDAO;
 import ModeloVO.UsuarioVO;
+import Email.PropiedadesCorreo;
 import Util.PasswordGenerator;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -25,7 +27,18 @@ import javax.servlet.http.HttpSession;
  */
 @WebServlet(name = "UsuarioControlador", urlPatterns = {"/Usuario"})
 public class UsuarioControlador extends HttpServlet {
+    
+    private String host, puerto, usuario, clave;
 
+    public void init() {
+        ServletContext contex = getServletContext();
+        host = contex.getInitParameter("host");
+        puerto = contex.getInitParameter("puerto");
+        usuario = contex.getInitParameter("usuario");
+        clave = contex.getInitParameter("clave");
+
+    }
+    
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -38,6 +51,7 @@ public class UsuarioControlador extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+
         
         //1. Recibir datos de las Vistas
         int opcion = Integer.parseInt(request.getParameter("opcion"));
@@ -53,9 +67,9 @@ public class UsuarioControlador extends HttpServlet {
         }
         
         String IdCargoFK =request.getParameter("textCargo");
-        
+        String EstadoUsu=request.getParameter("textEstado");
         //2. Hacer pregunta ¿Quién tiene los datos de forma segura en el sistema? = VO
-        UsuarioVO usuVO = new UsuarioVO(IdUsuario,NombreUsuario,CorreoDatos,ClaveUsuario,IdCargoFK);
+        UsuarioVO usuVO = new UsuarioVO(IdUsuario,NombreUsuario,CorreoDatos,ClaveUsuario,IdCargoFK,EstadoUsu);
         
         //3.¿Quién hace las operaciones? = DAO
         UsuarioDAO usuDAO = new UsuarioDAO(usuVO);
@@ -66,7 +80,7 @@ public class UsuarioControlador extends HttpServlet {
             case 1: 
                 // registrar usuario
                 usuVO = usuDAO.consultar(NombreUsuario);
-                UsuarioVO usuVO1 = new UsuarioVO(IdUsuario,NombreUsuario,CorreoDatos,ClaveUsuario,IdCargoFK);
+                UsuarioVO usuVO1 = new UsuarioVO(IdUsuario,NombreUsuario,CorreoDatos,ClaveUsuario,IdCargoFK,EstadoUsu);
                 usuVO1 = usuDAO.consultaremail(CorreoDatos);
                 
                 if (usuVO == null) {
@@ -74,8 +88,11 @@ public class UsuarioControlador extends HttpServlet {
                     if(usuVO1==null){  
                         
                     if (usuDAO.aregarRegistro()) {
-
-                        request.setAttribute("MensajeExito", "El usuario se registró correctamente");
+                            String destinatario = CorreoDatos;
+                            String asunto = "Bienvenido a timtex";     
+                            String contenido = "Gracias por registrarte con nosotros "+NombreUsuario;
+                            PropiedadesCorreo.enviarConGMail(destinatario, asunto, contenido, usuario, clave);
+                            request.setAttribute("MensajeExito", "El usuario se registró correctamente");
                         //request.getRequestDispatcher("registrarUsuario.jsp").forward(request, response);
 
                     } else {
@@ -109,10 +126,11 @@ public class UsuarioControlador extends HttpServlet {
                 break;
                 
             case 3: //Inicio de Sesión
-                usuVO = usuDAO.consultar(NombreUsuario);
-                if (usuVO != null) {
-                    
+                usuVO = usuDAO.consultar(NombreUsuario); 
+                usuVO1 =usuDAO.consultarDatos(NombreUsuario);
+                if (usuVO!=null) {
                 
+                        
                 if (usuDAO.iniciarSesion(NombreUsuario,ClaveUsuario)) {
                     
                     HttpSession miSesion =request.getSession(true);
@@ -120,53 +138,60 @@ public class UsuarioControlador extends HttpServlet {
                     
                     miSesion.setAttribute("datosUsuario", usuVO);
                     
+                    
+                    if(usuVO1!=null){
                     ArrayList<UsuarioVO> listaRoles= rolDAO.rol(NombreUsuario);
                     
                     for(int i=0;i<listaRoles.size();i++){
                     usuVO=listaRoles.get(i);
                     IdCargoFK = usuVO.getIdCargoFK();
                     }
-                    miSesion.setAttribute("rol",listaRoles);   
+                    miSesion.setAttribute("rol",listaRoles); 
+                    
                     
                     if(usuVO.getRol().equals("Administrador")){
                         
-                    request.getRequestDispatcher("Administrador.jsp").forward(request, response);
+                    request.getRequestDispatcher("Usuario.jsp").forward(request, response);
                     }
                     else if(usuVO.getRol().equals("Empleado")){
                         
-                    request.getRequestDispatcher("Empleado.jsp").forward(request, response);
+                    request.getRequestDispatcher("Usuario.jsp").forward(request, response);
                     }
                     else{
                         
-                    request.getRequestDispatcher("shop.jsp").forward(request, response);
+                    request.getRequestDispatcher("Cliente.jsp").forward(request, response);
                     }
-                           
+                     }else{
+                     request.setAttribute("MensajeError","Debe registrarse primero");
+                  request.getRequestDispatcher("registrarDatosPersonales.jsp").forward(request, response);   
+                         
                 }
+                }
+                   }
                 else{
+                 
                     request.setAttribute("MensajeError","El usuario y/o la contraseña son incorrectos");
                      request.getRequestDispatcher("Login.jsp").forward(request, response);
-                }
-                
-                
-                }
-                else{
-                  request.getRequestDispatcher("Login.jsp").forward(request, response);   
-                }
-                request.getRequestDispatcher("Login.jsp").forward(request, response);
+                    
+                }   
+                                
                 break;
                 
             case 4: 
                 // registrar empleado admin o empleado normal
                 usuVO = usuDAO.consultar(NombreUsuario);
-                UsuarioVO usuVO2 = new UsuarioVO(IdUsuario,NombreUsuario,CorreoDatos,ClaveUsuario,IdCargoFK);
-                usuVO2 = usuDAO.consultaremail(CorreoDatos);
-                
+                UsuarioVO usuVO3 = new UsuarioVO(IdUsuario,NombreUsuario,CorreoDatos,ClaveUsuario,IdCargoFK,EstadoUsu);
+                usuVO3 = usuDAO.consultaremail(CorreoDatos);
+               
                 if (usuVO == null) {
                     
-                    if(usuVO2==null){  
+                    if(usuVO3==null){  
                         
                     if (usuDAO.aregarRegistro()) {
-
+                        String destinatario = CorreoDatos;
+                        String asunto = "Usted fue registrado en el Sistema Timtex";     
+                        String contenido = "Bienvenido a Timtex"+" Su usuario es: "+NombreUsuario+" Su clave es: "+ClaveUsuario;
+                        PropiedadesCorreo.enviarConGMail(destinatario, asunto, contenido, usuario, clave);
                         request.setAttribute("MensajeExito", "El usuario se registró correctamente");
                         //request.getRequestDispatcher("registrarUsuario.jsp").forward(request, response);
 
@@ -186,6 +211,36 @@ public class UsuarioControlador extends HttpServlet {
                 request.getRequestDispatcher("registrarEmpleado.jsp").forward(request, response);
                 break;    
                 
+            case 5:
+                usuVO1 = usuDAO.consultaremail(CorreoDatos);
+                 System.out.println("---------------------"+usuVO1);
+                if(usuVO1!=null){  
+                if(usuDAO.correoclave()){
+                    String destinatario = CorreoDatos;
+                    String asunto = "Timtex - Recuperación de contraseña";
+                    String contenido = "Estimado usuario hemos recuperado tu contraseña,intenta ingresar nuevamentecon tu respectivo usuario y contraseña   -Contraseña: " + ClaveUsuario;
+                    PropiedadesCorreo.enviarConGMail(destinatario, asunto, contenido, usuario, clave);
+                    request.setAttribute("MensajeExito", "Por favor revise su correo");
+                }else{
+                    request.setAttribute("MensajeError", "No se pudo enviar el correo correctamente");
+                }
+                }else{
+                        request.setAttribute("MensajeError", "El correo no existe en el sistema");
+                    }
+                 request.getRequestDispatcher("forgot.jsp").forward(request, response);
+            break;  
+            
+            case 6:
+                if(usuDAO.Estado()){   
+                    request.setAttribute("identificacion consultada",usuDAO);
+                    request.setAttribute("MensajeExito", "El estado se actualizó correctamente");
+                }else{
+                    request.setAttribute("MensajeError", "El estado no se actualizo correctamente");
+                }    
+                request.getRequestDispatcher("consultarIngreso.jsp").forward(request, response);
+                break;    
+                
+             
 
         }
         

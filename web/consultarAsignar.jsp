@@ -95,6 +95,7 @@
                                         <th>FECHA FIN</th>
                                         <th>ID DATOSFK</th>
                                         <th>ID DETALLE FK</th>
+                                        <th>ESTADO</th>
                                         <th></th>
                                         <th>ACCIÓN</th>
                                     </tr>
@@ -115,6 +116,7 @@
                                         <td><%=AsigVO.getFechaFin()%></td>
                                         <td><%=AsigVO.getIdDatosFK()%></td>
                                         <td><%=AsigVO.getIdDetalleOrdenFK()%></td>
+                                        <td><%=AsigVO.getEstadoAsig()%></td>
                                         <td>
                                             <form action="">    
                                             </form>

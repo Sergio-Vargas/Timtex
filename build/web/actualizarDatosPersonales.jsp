@@ -15,32 +15,21 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Actualizar Datos personales</title>
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:300,400,600,700,800" rel="stylesheet">
-
-        <!-- Icons -->
-        <link href="assets/css/icons.css" rel="stylesheet" type="text/css"/>
-        <!-- Favicon -->
-        <link href="assets/img/brand/favicon.png" rel="icon" type="image/png">
-
-        <!--Bootstrap.min css-->
-        <link rel="stylesheet" href="assets/plugins/bootstrap/css/bootstrap.min.css">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
-
-        <!-- Ansta CSS -->
-        <link href="assets/css/dashboard.css" rel="stylesheet" type="text/css">
-
-        <!-- Custom scroll bar css-->
-        <link href="assets/plugins/customscroll/jquery.mCustomScrollbar.css" rel="stylesheet" />
-
-        <!-- Sidemenu Css -->
-        <link href="assets/plugins/toggle-sidebar/css/sidemenu.css" rel="stylesheet">
-
-
     </head>
     <body>
+           <%
+                                rol = usuVO.getIdCargoFK();
+                                if (rol.equals("1")) {
 
+                            %>
+        <div class="container-fluid pt-8">
+        <div class="page-header mt-0 shadow p-3">
+                                    <ol class="breadcrumb mb-sm-0">
+                                        <li class="breadcrumb-item"><a href="consultarDatosPersonales.jsp">Datos De Usuarios</a></li>
+                                        <li class="breadcrumb-item active" aria-current="page">Actualizar Datos</li>
+                                    </ol>
+
+        </div>
 
         <%            DatosPersonalesVO datVO = (DatosPersonalesVO) request.getAttribute("identificacion consultada");
             if (datVO != null) {
@@ -71,13 +60,14 @@
                                         Direccion
                                         <input type="text" name="textDireccion" value="<%=datVO.getDireccionDatos()%>" class="form-control" required>
                                         
-                                    </div>
+                                    </div></div>
+                                        <div class="col-md-6"> 
                                     <div class="form-group"> 
                                         Telefono
                                         <input type="number" name="textTelefono" value="<%=datVO.getTelefonoDatos()%>" class="form-control" required>
 
-                                    </div></div>
-                                <div class="col-md-6"> 
+                                    </div>
+                                
                                     <div class="form-group"> 
                                         Correo
                                         <input type="text" name="textCorreo" value="<%=datVO.getCorreoDatos()%>" readonly class="form-control" required>
@@ -93,9 +83,9 @@
 
                                     </div>
                                     <div class="form-group"> 
-                                        Usuario
-                                        <input type="text"  value="<%=usuario%>" readonly  class="form-control" required>
-                                        <input type="hidden" name="textUsuario"  value="<%=id%>" readonly  class="form-control" required>
+                                       
+                                        <input type="hidden" name="textUsuario"  value="<%=datVO.getIdUsuarioFK()%>" readonly  class="form-control" required>
+                                        
                                     </div></div>
                                 <div class=" col-md-6">
                                     <center>
@@ -108,7 +98,6 @@
                 <input type="hidden" value="2" name="opcion">
                 </form><br><br>
                 <% }%>
-                <a href="consultarDatosPersonales.jsp" class="btn btn-primary mb-0 btn-block waves-effect waves-light">Volver
                 </a>
                 <div style="color: red;">
 
@@ -119,8 +108,12 @@
                     <%} else {%>
                     <div style="color: greenyellow">${MensajeExito} </div>
                     <%  }%>
-                </div>
+                </div> </div>
+                    </div>
+                </div> 
+  <%@include file="footer.jsp"%>	  
 
+<% }%>
 
                 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
                 <script src="assets/plugins/jquery/dist/jquery.min.js"></script>

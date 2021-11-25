@@ -46,6 +46,10 @@
                                         Confirmar contraseña
                                         <input type="password" class="form-control" name="textClave2" equalTo="textClave" required data-eye>
                                     </div>
+                                        
+                                        <input type="hidden" class="form-control" name="textEstado" value="Activo">
+                                    
+                                    
                                      <div class="form-group">
                                     <div class="custom-checkbox custom-control">
                                         <input type="checkbox" name="agree" id="agree" class="custom-control-input" required="">
@@ -62,16 +66,16 @@
                                         </button>
                                     </div>
                                     <div class="mt-4 text-center">
-                                                        <p style=" color:red;font-size:15px;">
-                                                        <%
-                                                        if (request.getAttribute("MensajeError") != null) { 
-                                                        %>
-                                                        ${MensajeError}     
-                                                        <%} else {%>
-                                                        <div style="color: greenyellow">${MensajeExito}</div>
-                                                        <%  }%>     
-                                                        </p>
-                                                            </div>
+                                        <p style=" color:red;font-size:15px;">
+                                            <%
+                                                if (request.getAttribute("MensajeError") != null) {
+                                            %>
+                                            ${MensajeError}     
+                                            <%} else {%>
+                                        <div style="color: greenyellow">${MensajeExito}</div>
+                                        <%  }%>     
+                                        </p>
+                                    </div>
                                     <input type="hidden" value="1" name="opcion">
                                 </form>
                             </div>

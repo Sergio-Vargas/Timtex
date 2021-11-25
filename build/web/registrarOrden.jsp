@@ -88,7 +88,7 @@
                     </div>          
                 </div>    
             </div>       
-            <input type="hidden"  value="1" name="opcion">
+            <input type="hidden"  value="4" name="opcion">
         </form>
 
             <div style="color: red;">

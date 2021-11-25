@@ -12,18 +12,19 @@ package ModeloVO;
 
 public class AsigOrdenVO {
     
-    private String IdAsigOrden,CantidadPrenda,FechaInicio,FechaFin,IdDatosFK,IdDetalleOrdenFK;
+    private String IdAsigOrden,CantidadPrenda,FechaInicio,FechaFin,IdDatosFK,IdDetalleOrdenFK,EstadoAsig;
     
     public AsigOrdenVO() {
     }
 
-    public AsigOrdenVO(String IdAsigOrden, String CantidadPrenda, String FechaInicio, String FechaFin, String IdDatosFK, String IdDetalleOrdenFK) {
+    public AsigOrdenVO(String IdAsigOrden, String CantidadPrenda, String FechaInicio, String FechaFin, String IdDatosFK, String IdDetalleOrdenFK, String EstadoAsig) {
         this.IdAsigOrden = IdAsigOrden;
         this.CantidadPrenda = CantidadPrenda;
         this.FechaInicio = FechaInicio;
         this.FechaFin = FechaFin;
         this.IdDatosFK = IdDatosFK;
         this.IdDetalleOrdenFK = IdDetalleOrdenFK;
+        this.EstadoAsig = EstadoAsig;
     }
 
     public String getIdAsigOrden() {
@@ -73,6 +74,15 @@ public class AsigOrdenVO {
     public void setIdDetalleOrdenFK(String IdDetalleOrdenFK) {
         this.IdDetalleOrdenFK = IdDetalleOrdenFK;
     }
+
+    public String getEstadoAsig() {
+        return EstadoAsig;
+    }
+
+    public void setEstadoAsig(String EstadoAsig) {
+        this.EstadoAsig = EstadoAsig;
+    }
+
     
     
 }

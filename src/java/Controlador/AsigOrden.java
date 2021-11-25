@@ -43,8 +43,9 @@ public class AsigOrden extends HttpServlet {
         String FechaFin = request.getParameter("textFechaFin");
         String IdDatosFK = request.getParameter("textIdDatos");
         String IdDetalleOrdenFK= request.getParameter("textIdDetalleOrdenFK");
+        String IdAsigOrden=request.getParameter("textEstado");
         
-        AsigOrdenVO AsigVO = new AsigOrdenVO(AsigOrden,CantidadPrenda,FechaInicio,FechaFin,IdDatosFK,IdDetalleOrdenFK);
+        AsigOrdenVO AsigVO = new AsigOrdenVO(AsigOrden,CantidadPrenda,FechaInicio,FechaFin,IdDatosFK,IdDetalleOrdenFK,IdAsigOrden);
         AsigOrdenDAO AsigDAO = new AsigOrdenDAO(AsigVO);
           
         switch (opcion) {

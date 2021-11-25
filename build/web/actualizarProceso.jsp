@@ -39,10 +39,24 @@
         <link href="assets/plugins/toggle-sidebar/css/sidemenu.css" rel="stylesheet">
     </head>
     <body>
+          <%
+                                rol = usuVO.getIdCargoFK();
+                                if (rol.equals("1")) {
 
-        <%            ProcesoVO ProVO = (ProcesoVO) request.getAttribute("identificacion consultada");
+                            %>
+        <%  ProcesoVO ProVO = (ProcesoVO) request.getAttribute("identificacion consultada");
             if (ProVO != null) {
         %>
+        <center>
+        <div class="container-fluid pt-8">
+                                <div class="page-header mt-0 shadow p-3">
+                                    <ol class="breadcrumb mb-sm-0">
+                                        <li class="breadcrumb-item"><a href="consultarProceso.jsp">Procesos</a></li>
+                                        <li class="breadcrumb-item active">Actualizar Proceso</li>
+
+                                    </ol>
+
+                                </div>
         <form method="post" action="Proceso" class="my-login-validation" id="basic-form" novalidate="">
             <div class="row">
                 <div class="col-md-12">
@@ -110,7 +124,6 @@
             <input type="hidden" value="2" name="opcion">
         </form>
         <% }%>
-        <a href="consultarProceso.jsp" class="btn btn-primary mb-0 btn-block waves-effect waves-light">Volver</a>
         <div style="color: red;">
             <%
                 if (request.getAttribute("MensajeError") != null) { %>
@@ -120,8 +133,12 @@
             <div style="color: greenyellow">${MensajeExito} </div>
             <%  }%>
         </div>
+<%@include file="footer.jsp"%>	  
 
-    </center>
+</div></div></div>
+ 
+    </center><%}%>
+ 
 
      <!-- jQuery first, then Popper.js, then Bootstrap JS -->
         <script src="assets/plugins/jquery/dist/jquery.min.js"></script>

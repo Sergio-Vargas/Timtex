@@ -28,7 +28,7 @@ public class AsigOrdenDAO extends Conexion implements Crud{
     private boolean operacion= false;
     private String sql;
     
-    private String IdAsigOrden="",CantidadPrenda="",FechaInicio="",FechaFin="",IdDatosFK="",IdDetalleOrdenFK="";
+    private String IdAsigOrden="",CantidadPrenda="",FechaInicio="",FechaFin="",IdDatosFK="",IdDetalleOrdenFK="",EstadoAsig="";
 
      
      public AsigOrdenDAO(){
@@ -48,6 +48,7 @@ public class AsigOrdenDAO extends Conexion implements Crud{
             FechaFin=AsigVO.getFechaFin();
             IdDatosFK=AsigVO.getIdDatosFK();
             IdDetalleOrdenFK=AsigVO.getIdDetalleOrdenFK();
+            EstadoAsig=AsigVO.getEstadoAsig();
         } catch (Exception e) {
             Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, e);
             
@@ -61,8 +62,8 @@ public class AsigOrdenDAO extends Conexion implements Crud{
     public boolean aregarRegistro() {
         try {
             //Crear la sentencia
-            sql = "insert into AsigOrden(CantidadPrenda,FechaInicio,FechaFin,IdDatosFK,IdDetalleOrdenFK)"
-            + "values(?,?,?,?,?)";
+            sql = "insert into AsigOrden(CantidadPrenda,FechaInicio,FechaFin,IdDatosFK,IdDetalleOrdenFK,EstadoAsig)"
+            + "values(?,?,?,?,?,?)";
              //Crear el puente para esa conexion establecida
             puente = conexion.prepareStatement(sql);
             puente.setString(1,CantidadPrenda);
@@ -70,6 +71,7 @@ public class AsigOrdenDAO extends Conexion implements Crud{
             puente.setString(3,FechaFin);
             puente.setString(4,IdDatosFK);
             puente.setString(5,IdDetalleOrdenFK);
+            puente.setString(6,EstadoAsig);
             puente.executeUpdate();
             operacion = true;
                         
@@ -90,7 +92,7 @@ public class AsigOrdenDAO extends Conexion implements Crud{
         try {
             //Crear la sentancia
             sql="update AsigOrden set CantidadPrenda=?,FechaInicio=?,FechaFin=?,"
-            + "IdDatosFK=?,IdDetalleOrdenFK=? where IdAsigOrden=?";
+            + "IdDatosFK=?,IdDetalleOrdenFK=? EstadoAsig=? where IdAsigOrden=?";
             //Crear el puente para esa conexion establecida
             puente= conexion.prepareStatement(sql);
             puente.setString(1,CantidadPrenda);
@@ -98,7 +100,8 @@ public class AsigOrdenDAO extends Conexion implements Crud{
             puente.setString(3,FechaFin);
             puente.setString(4,IdDatosFK);
             puente.setString(5,IdDetalleOrdenFK);
-            puente.setString(6,IdAsigOrden);
+            puente.setString(6,IdDetalleOrdenFK);
+            puente.setString(7,IdAsigOrden);
             puente.executeUpdate();
             operacion= true;
             
@@ -135,7 +138,7 @@ public class AsigOrdenDAO extends Conexion implements Crud{
                 
                 AsigVO= new AsigOrdenVO(mensajero.getString(1), mensajero.getString(2), 
                         mensajero.getString(3),mensajero.getString(4), mensajero.getString(5), 
-                        mensajero.getString(6));
+                        mensajero.getString(6),mensajero.getString(7));
                 
             }
             
@@ -160,7 +163,7 @@ public class AsigOrdenDAO extends Conexion implements Crud{
 
         try {
             conexion = this.obtenerConexion();
-            sql = "select * from AsigOrden";
+            sql = "select * from AsigOrden where EstadoAsig='Activa'";
             puente = conexion.prepareStatement(sql);
             mensajero = puente.executeQuery();
             
@@ -168,7 +171,7 @@ public class AsigOrdenDAO extends Conexion implements Crud{
                 
                 AsigOrdenVO AsigVO = new AsigOrdenVO(mensajero.getString(1), mensajero.getString(2), 
                         mensajero.getString(3),mensajero.getString(4), mensajero.getString(5), 
-                        mensajero.getString(6));
+                        mensajero.getString(6),mensajero.getString(7));
                 
                     listaAsig.add(AsigVO);
             }
@@ -186,6 +189,41 @@ public class AsigOrdenDAO extends Conexion implements Crud{
 
         return listaAsig;
     }
+    
+    // genera lista
+    public ArrayList<AsigOrdenVO> Realizadas() {
+
+        ArrayList<AsigOrdenVO> listaAsig = new ArrayList<>();
+
+        try {
+            conexion = this.obtenerConexion();
+            sql = "select * from AsigOrden where EstadoAsig='Realizada'";
+            puente = conexion.prepareStatement(sql);
+            mensajero = puente.executeQuery();
+            
+            while (mensajero.next()) {                
+                
+                AsigOrdenVO AsigVO = new AsigOrdenVO(mensajero.getString(1), mensajero.getString(2), 
+                        mensajero.getString(3),mensajero.getString(4), mensajero.getString(5), 
+                        mensajero.getString(6),mensajero.getString(7));
+                
+                    listaAsig.add(AsigVO);
+            }
+
+        } catch (Exception e) {
+            Logger.getLogger(AsigOrdenDAO.class.getName()).log(Level.SEVERE, null, e);
+        } finally {
+            try {
+                this.cerrarConexion();
+            } catch (SQLException e) {
+                Logger.getLogger(AsigOrdenDAO.class.getName()).log(Level.SEVERE, null, e);
+            }
+
+        }
+
+        return listaAsig;
+    }
+    
     
     
 }

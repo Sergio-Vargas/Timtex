@@ -8,63 +8,30 @@
 <%@page import="ModeloDAO.ProcesoDAO"%>
 <%@page import="ModeloVO.ProcesoVO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@include file="Sesiones.jsp"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Proceso</title>
-        
-        
-         <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:300,400,600,700,800" rel="stylesheet">
-
-        <!-- Icons -->
-        <link href="assets/css/icons.css" rel="stylesheet">
-
-        <!--Bootstrap.min css-->
-        <link rel="stylesheet" href="assets/plugins/bootstrap/css/bootstrap.min.css">
-
-        <!-- Ansta CSS -->
-        <link href="assets/css/dashboard.css" rel="stylesheet" type="text/css">
-
-        <!-- Tabs CSS -->
-        <link href="assets/plugins/tabs/style.css" rel="stylesheet" type="text/css">
-
-        <!-- jvectormap CSS -->
-        <link href="assets/plugins/jvectormap/jquery-jvectormap-2.0.2.css" rel="stylesheet" />
-
-        <!-- Custom scroll bar css-->
-        <link href="assets/plugins/customscroll/jquery.mCustomScrollbar.css" rel="stylesheet" />
-
-        <!-- Sidemenu Css -->
-        <link href="assets/plugins/toggle-sidebar/css/sidemenu.css" rel="stylesheet">
-    </head>
+        <title>Proceso</title>   
+        </head>
    
     <body>
+        <%
+                                rol = usuVO.getIdCargoFK();
+                                if (rol.equals("1") || rol.equals("3")) {
+
+                            %>
     <center>
-        <h1>Lista de Procesos</h1>
-         <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-          Nuevo Proceso
-        </button>
-        <!-- Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                <div class="modal-header">
-                <h3 class="modal-title" id="exampleModalLabel">Registrar Proceso</h3>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                    <%@include file="registrarProceso.jsp"%>
-                    
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                  </div>
-                </div>
-            </div>
+        <div class="container-fluid pt-8">
+        <div class="page-header mt-0 shadow p-3">
+                                    <ol class="breadcrumb mb-sm-0">
+                                        <li class="breadcrumb-item"><a href="Usuario.jsp">Inicio</a></li>
+                                        <li class="breadcrumb-item active" aria-current="page">Procesos</li>
+                                    </ol>
+
         </div>
+        
         <a href="inactivoProceso.jsp"><button class="btn btn-primary">Inactivos</button></a>
         <div style="color: red;">
 
@@ -82,7 +49,7 @@
         <div class="col-md-12">
             <div class="card shadow">
                 <div class="card-header">
-                    <h2 class="mb-0">Proceso</h2>
+                    <h2 class="mb-0">Lista de Procesos</h2>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -140,46 +107,11 @@
                         </table>
                     </div>
                 </div>
-            </div>                       
-   <form method="post" action="GenerarPDF.jsp" target="_blank">
-            
-            <input type="submit" value="Generar Reporte" button class="btn btn-primary">
-            <input type="hidden" value="Reportes/ReporteProcesos.jasper" name="nombreReporte">
-            
-        </form>
-     <!-- Ansta Scripts -->
-            <!-- Core -->
-            <script src="assets/js/popper.js"></script>
-            <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
-
-            <!-- Optional JS -->
-            <script src="assets/plugins/chart.js/dist/Chart.min.js"></script>
-            <script src="assets/plugins/chart.js/dist/Chart.extension.js"></script>
-
-            <!-- Data tables -->
-            <script src="assets/plugins/datatable/jquery.dataTables.min.js"></script>
-            <script src="assets/plugins/datatable/dataTables.bootstrap4.min.js"></script>
-
-            <!-- Fullside-menu Js-->
-            <script src="assets/plugins/toggle-sidebar/js/sidemenu.js"></script>
-
-            <!-- Custom scroll bar Js-->
-            <script src="assets/plugins/customscroll/jquery.mCustomScrollbar.concat.min.js"></script>
-
-            <!-- Ansta JS -->
-            <script src="assets/js/custom.js"></script>
-            <script>
-                $(function (e) {
-                    $('#example').DataTable();
-
-
-                    $('#example2').DataTable({
-                        "scrollY": "200px",
-                        "scrollCollapse": true,
-                        "paging": false
-                    });
-                });
-
-            </script>
+            </div>
+                            </div></div></div>
+  
+                            <%@include file="footer.jsp"%>	  
+<%}%>
+        </body>
 </body>
 </html>

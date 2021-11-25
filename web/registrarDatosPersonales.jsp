@@ -6,9 +6,9 @@
 <%@page import="ModeloVO.UsuarioVO"%>
 <%@page import="ModeloDAO.UsuarioDAO"%>
 <%@page import="ModeloVO.DatosPersonalesVO"%>
-<%@include file="Sesiones.jsp"%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@include file="Sesiones.jsp"%>
 
 <!DOCTYPE html>
 <html lang="es-Es">
@@ -17,32 +17,15 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Registrar Datos Personales</title>
-
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:300,400,600,700,800" rel="stylesheet">
-
-        <!-- Icons -->
-        <link href="assets/css/icons.css" rel="stylesheet" type="text/css"/>
-        <!-- Favicon -->
-        <link href="assets/img/brand/favicon.png" rel="icon" type="image/png">
-
-        <!--Bootstrap.min css-->
-        <link rel="stylesheet" href="assets/plugins/bootstrap/css/bootstrap.min.css">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
-
-        <!-- Ansta CSS -->
-        <link href="assets/css/dashboard.css" rel="stylesheet" type="text/css">
-
-        <!-- Custom scroll bar css-->
-        <link href="assets/plugins/customscroll/jquery.mCustomScrollbar.css" rel="stylesheet" />
-
-        <!-- Sidemenu Css -->
-        <link href="assets/plugins/toggle-sidebar/css/sidemenu.css" rel="stylesheet">
-
     </head>
     <body>
-
+        <div class="container-fluid pt-8">
+        <div class="page-header mt-0 shadow p-3">
+                                    <ol class="breadcrumb mb-sm-0">
+                                        <li class="breadcrumb-item"><a href="Usuario.jsp">Inicio</a></li>
+                                        <li class="breadcrumb-item active" aria-current="page">Registrar Asignacion</li>
+                                    </ol>
+        </div>
         <form id="basic-form" class="my-login-validation"  action="DatosPersonales" method="POST" novalidate="">
             <div class="row">
                 <div class="col-md-12">
@@ -129,6 +112,8 @@
 
                     <%  }%>
                 </div>
+                </div> </div></div>
+                    <%@include file="footer.jsp"%>
 
 
                 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
