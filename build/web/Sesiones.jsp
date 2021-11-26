@@ -165,7 +165,25 @@
                                     </li>
                                 </ul>
 
-                            </li><%}%>
+                            </li>
+                               <%
+
+                                rol = usuVO.getIdCargoFK();
+                                if (rol.equals("1")) {
+
+                            %>
+                            <li class="slide">
+                                <a class="side-menu__item" data-toggle="slide" href="#"><i class="side-menu__icon fas fa-tshirt"></i><span class="side-menu__label">Prenda</span><i class="angle fa fa-angle-right"></i></a>
+                                <ul class="slide-menu">
+                                    <li>
+                                        <a href="registrarPrenda.jsp" class="slide-item">Registrar Prenda</a>
+                                        <a href="consultarPrenda.jsp" class="slide-item">Consultar Prenda</a>
+                                    </li>
+
+                                </ul>
+                            </li>                
+                            <%}%>
+                            <%}%>
                             <%
 
                                 rol = usuVO.getIdCargoFK();
@@ -193,8 +211,8 @@
                                 <ul class="slide-menu">
                                     <li>
                                         <form method="post" action="Orden">
-                                        <input type="hidden" value="<%=id%>" name="textIdDato">     
-                                        <button class="slide-item" class="slide-item">Consultar Ordenes</button>
+                                        <input type="hidden" value="<%=id%>" name="textIdDato"> 
+                                       <button type="submit" class="btn btn-primary">Consultar Ordenes</button>
                                         <input type="hidden" value="5" name="opcion">
                                         </form>
                                     </li>
@@ -220,23 +238,25 @@
                                 </ul>
                             </li>                
                             <%}%>
-                            
-                            <%
+                             <%
 
                                 rol = usuVO.getIdCargoFK();
                                 if (rol.equals("3")) {
 
                             %>
                             <li class="slide">
-                                <a class="side-menu__item" data-toggle="slide" href="#"><i class="side-menu__icon fas fa-user-friends"></i><span class="side-menu__label">Asignar Orden</span><i class="angle fa fa-angle-right"></i></a>
+                                <a class="side-menu__item" data-toggle="slide" href="#"><i class="side-menu__icon fas fa-users"></i><span class="side-menu__label">Asignar Orden</span><i class="angle fa fa-angle-right"></i></a>
                                 <ul class="slide-menu">
                                     <li>
-                                        <a href="registrarAsignar.jsp" class="slide-item">Registrar Asignación</a>
+                                        <a href="registrarAsignar.jsp" class="slide-item">Asignar Orden</a>    
+                                        <a href="consultarAsignar.jsp" class="slide-item">Consultar Asignación</a>    
                                     </li>
 
                                 </ul>
                             </li>                
                             <%}%>
+                            
+                         
                             <li>
                                 <a class="side-menu__item" href="https://themeforest.net/user/sprukosoft/portfolio"><i class="side-menu__icon fa fa-question-circle"></i><span class="side-menu__label">Ayuda y Soporte</span></a>
                             </li>
@@ -419,7 +439,7 @@
                                                 <div class=" dropdown-header noti-title">
                                                     <h6 class="text-overflow m-6">¡Bienvenid@!</h6>
                                                 </div>
-                                                <input class="dropdown-item" type="submit" value="Perfil">
+                                                
                                                 <form method="post" action="Sesiones">
                                                     <input class="dropdown-item" type="submit" value="Cerrar Sesión">
                                                 </form>

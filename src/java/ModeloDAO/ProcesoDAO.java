@@ -84,15 +84,8 @@ public class ProcesoDAO extends Conexion implements Crud{
             
         } catch (SQLException e) {
             Logger.getLogger(ProcesoDAO.class.getName()).log(Level.SEVERE, null, e);
-        }finally {
-            try {
-                this.cerrarConexion();
-            }catch (SQLException e){  
-                Logger.getLogger(ProcesoDAO.class.getName()).log(Level.SEVERE, null, e);
-            }
-            
         }
-
+        
         return operacion;
     }
 
@@ -239,4 +232,55 @@ public class ProcesoDAO extends Conexion implements Crud{
 
         return listaProcesoIna;
     }
+    
+    
+     //CONSULTAR datos
+    public ProcesoVO fecha(String FechaProceso,String IdAsigOrdenFK) {
+        
+        ProcesoVO ProVO = null;
+        try {
+            conexion = this.obtenerConexion();
+            sql = "SELECT * FROM Proceso,AsigOrden WHERE FechaProceso=? && FechaProceso between FechaInicio and FechaFin\n" +
+            "&& IdAsigOrdenFK=? && IdAsigOrden=IdAsigOrdenFK;";
+            puente = conexion.prepareStatement(sql);
+            puente.setString(1,FechaProceso);
+            puente.setString(2,IdAsigOrdenFK);
+            mensajero = puente.executeQuery();  
+            while (mensajero.next()) {                
+                
+                ProVO= new ProcesoVO(mensajero.getString(1), mensajero.getString(2), 
+                        mensajero.getString(3), mensajero.getString(4), 
+                        mensajero.getString(5), mensajero.getString(6), 
+                        mensajero.getString(7), mensajero.getString(8));
+                
+            }
+            
+        } catch (Exception e) {
+        } 
+
+        return ProVO;
+    }
+    
+    //Eliminar dato
+    
+     //CONSULTAR datos
+    public boolean Eliminar() {
+        
+    
+        try {
+           
+            sql = "delete from Proceso where IdProceso=(SELECT max(IdProceso) FROM Proceso)";
+            puente = conexion.prepareStatement(sql);
+            puente.executeUpdate();
+            operacion= true;
+            
+        }  
+        
+        catch (Exception e) {
+            Logger.getLogger(ProcesoDAO.class.getName()).log(Level.SEVERE, null, e);
+        } 
+
+        return operacion;
+    } 
+    
 }

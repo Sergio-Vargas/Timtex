@@ -33,28 +33,7 @@
 
         </div>
           
-         <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-          Nuevos Datos
-        </button>
-                        <a href="inactivoDatosPersonales.jsp"><button class="btn btn-primary">Inactivos</button></a>
-
-        <!-- Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Lista de ordenes</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                    <%@include file="registrarDatosPersonales.jsp"%>
-                    
-                
-                </div>
-            </div>
-        </div>
+       
         <div style="color: red;">
 
             <%if (request.getAttribute("MensajeError") != null) { %>
@@ -66,6 +45,7 @@
             <%  }%>
 
         </div>
+                    <a href="inactivoDatosPersonales.jsp"><button class="btn btn-primary">Inactivos</button></a>
 
     </center>  
 

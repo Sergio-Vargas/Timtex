@@ -9,42 +9,27 @@
 <%@page import="ModeloDAO.PrendaDAO"%>
 <%@page import="ModeloVO.PrendaVO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@include file="Sesiones.jsp"%>
+
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Prenda</title>
 
-
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:300,400,600,700,800" rel="stylesheet">
-
-        <!-- Icons -->
-        <link href="assets/css/icons.css" rel="stylesheet">
-
-        <!--Bootstrap.min css-->
-        <link rel="stylesheet" href="assets/plugins/bootstrap/css/bootstrap.min.css">
-
-        <!-- Ansta CSS -->
-        <link href="assets/css/dashboard.css" rel="stylesheet" type="text/css">
-
-        <!-- Tabs CSS -->
-        <link href="assets/plugins/tabs/style.css" rel="stylesheet" type="text/css">
-
-        <!-- jvectormap CSS -->
-        <link href="assets/plugins/jvectormap/jquery-jvectormap-2.0.2.css" rel="stylesheet" />
-
-        <!-- Custom scroll bar css-->
-        <link href="assets/plugins/customscroll/jquery.mCustomScrollbar.css" rel="stylesheet" />
-
-        <!-- Sidemenu Css -->
-        <link href="assets/plugins/toggle-sidebar/css/sidemenu.css" rel="stylesheet">
     </head>
 
     <body>
 
 
+<div class="container-fluid pt-8">
+        <div class="page-header mt-0 shadow p-3">
+                                    <ol class="breadcrumb mb-sm-0">
+                                        <li class="breadcrumb-item"><a href="consultarPrenda.jsp">Prendas</a></li>
+                                        <li class="breadcrumb-item active" aria-current="page">Prendas Inactivas</li>
+                                    </ol>
 
+        </div> 
 
         <div class="row">
             <div class="col-md-12">
@@ -107,40 +92,7 @@
 
 
 
-                <!-- Ansta Scripts -->
-                <!-- Core -->
-                <script src="assets/plugins/jquery/dist/jquery.min.js"></script>
-                <script src="assets/js/popper.js"></script>
-                <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+           <%@include file="footer.jsp"%>
 
-                <!-- Optional JS -->
-                <script src="assets/plugins/chart.js/dist/Chart.min.js"></script>
-                <script src="assets/plugins/chart.js/dist/Chart.extension.js"></script>
-
-                <!-- Data tables -->
-                <script src="assets/plugins/datatable/jquery.dataTables.min.js"></script>
-                <script src="assets/plugins/datatable/dataTables.bootstrap4.min.js"></script>
-
-                <!-- Fullside-menu Js-->
-                <script src="assets/plugins/toggle-sidebar/js/sidemenu.js"></script>
-
-                <!-- Custom scroll bar Js-->
-                <script src="assets/plugins/customscroll/jquery.mCustomScrollbar.concat.min.js"></script>
-
-                <!-- Ansta JS -->
-                <script src="assets/js/custom.js"></script>
-                <script>
-                    $(function (e) {
-                        $('#example').DataTable();
-
-
-                        $('#example2').DataTable({
-                            "scrollY": "200px",
-                            "scrollCollapse": true,
-                            "paging": false
-                        });
-                    });
-
-                </script>
                 </body> 
                 </html>

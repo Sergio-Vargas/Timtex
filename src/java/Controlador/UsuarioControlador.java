@@ -172,8 +172,10 @@ public class UsuarioControlador extends HttpServlet {
                      request.getRequestDispatcher("Login.jsp").forward(request, response);
                     
                 } 
-                   }
-                 
+                   }else{
+                    request.getRequestDispatcher("Login.jsp").forward(request, response);
+                }
+                  request.getRequestDispatcher("Login.jsp").forward(request, response);
                                 
                 break;
                 

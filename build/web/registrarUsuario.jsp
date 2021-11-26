@@ -31,7 +31,7 @@
                                 <form method="post" action="Usuario" id="basic-form"  class="my-login-validation" novalidate="">
                                     <div class="form-group">
                                         Usuario
-                                        <input type="text" class="form-control" name="textUsuario" pattern="[a-zA-Z ]{2,20}" required>
+                                        <input type="text" class="form-control" name="textUsuario" required>
                                     </div>
                                     <div class="form-group">
                                         Correo
