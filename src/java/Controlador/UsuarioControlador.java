@@ -173,6 +173,7 @@ public class UsuarioControlador extends HttpServlet {
                     
                 } 
                    }else{
+                    request.setAttribute("MensajeError","No se encontro el usuario");
                     request.getRequestDispatcher("Login.jsp").forward(request, response);
                 }
                   request.getRequestDispatcher("Login.jsp").forward(request, response);

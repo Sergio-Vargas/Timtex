@@ -124,44 +124,11 @@
                     </div>
                 </div>
             </div> 
-                
-                
+                            
         </div></div></div>
  
-<%@include file="footer.jsp"%>	  
 <%}%>
+<%@include file="footer.jsp"%>	  
                 
-                
-  <!-- Core -->
-           <script src="assets/js/popper.js"></script>
-	<script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
-         
-            <!-- Optional JS -->
-            <script src="assets/plugins/chart.js/dist/Chart.min.js"></script>
-            <script src="assets/plugins/chart.js/dist/Chart.extension.js"></script>
-
-            <!-- Data tables -->
-            <script src="assets/plugins/datatable/jquery.dataTables.min.js"></script>
-            <script src="assets/plugins/datatable/dataTables.bootstrap4.min.js"></script>
-
-           
-            <!-- Custom scroll bar Js-->
-            <script src="assets/plugins/customscroll/jquery.mCustomScrollbar.concat.min.js"></script>
-
-            <!-- Ansta JS -->
-            <script src="assets/js/custom.js"></script>
-            <script>
-                $(function (e) {
-                    $('#example').DataTable();
-
-
-                    $('#example2').DataTable({
-                        "scrollY": "200px",
-                        "scrollCollapse": true,
-                        "paging": false
-                    });
-                });
-
-            </script>
     </body>
 </html>

@@ -76,7 +76,7 @@
                 %>
                                 <tr>
                                    <td><%=PreVO.getIdPrenda()%></td>
-                    <td><img src="<%=PreVO.getImagenPrenda()%>"width="100px"></td>
+                    <td><img src="Imagenes/<%=PreVO.getImagenPrenda()%>"width="100px"></td>
                     <td><%=PreVO.getNombrePrenda()%></td>
                     <td><%=PreVO.getDescripcionPrenda()%></td>
                     <td><%=PreVO.getPrecioPrenda()%></td>
@@ -104,7 +104,13 @@
        
                 
                 
-                
+                <center>
+                <form method="post" action="GenerarPDF.jsp" target="_blank">
+            
+            <input type="submit" value="Generar Reporte" button class="btn btn-primary">
+            <input type="hidden" value="Reportes/ReportePrenda.jasper" name="nombreReporte">
+            
+                </form></center>
     	<%@include file="footer.jsp"%>
 
     </body> 

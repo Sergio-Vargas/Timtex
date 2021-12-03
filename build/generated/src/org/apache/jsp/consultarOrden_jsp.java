@@ -138,190 +138,240 @@ public final class consultarOrden_jsp extends org.apache.jasper.runtime.HttpJspB
     
       out.write("\r\n");
       out.write("    <body class=\"app sidebar-mini rtl\" >\r\n");
+      out.write("       \r\n");
       out.write("        <div id=\"global-loader\" ></div>\r\n");
+      out.write("       \r\n");
       out.write("        <div class=\"page\">\r\n");
       out.write("            <div class=\"page-main\">\r\n");
-      out.write("                <!-- Sidebar menu-->\r\n");
       out.write("                <div class=\"app-sidebar__overlay\" data-toggle=\"sidebar\"></div>\r\n");
-      out.write("                <aside class=\"app-sidebar \">\r\n");
+      out.write("                <aside class=\"app-sidebar\">\r\n");
       out.write("                    <div class=\"sidebar-img\">\r\n");
       out.write("                        <a class=\"navbar-brand\" href=\"#\"><img alt=\"...\" class=\"navbar-brand-img main-logo\" src=\"assets/img/brand/logo-dark.png\"> <img alt=\"...\" class=\"navbar-brand-img logo\" src=\"assets/img/brand/favicon.png\"></a>\r\n");
+      out.write("                        ");
+    
+                        rol = usuVO.getIdCargoFK();
+                                if (rol.equals("1") || rol.equals("3")) {
+
+                            
       out.write("\r\n");
-      out.write("                        <a class=\"side-menu__item active\" data-toggle=\"slide\" href=\"#\"><i class=\"side-menu__icon fe fe-home\"></i><span class=\"side-menu__label\">Inicio</span></a>\r\n");
+      out.write("                        <a class=\"side-menu__item active\"  href=\"Usuario.jsp\"><i class=\"side-menu__icon fas fa-home\"></i><span class=\"side-menu__label\">Inicio</span></a>\r\n");
+      out.write("                        ");
+}
+      out.write("\r\n");
+      out.write("                        ");
+    
+                        rol = usuVO.getIdCargoFK();
+                                if (rol.equals("2")) {
+
+                            
+      out.write("\r\n");
+      out.write("                        <a class=\"side-menu__item active\"  href=\"Cliente.jsp\"><i class=\"side-menu__icon fas fa-home\"></i><span class=\"side-menu__label\">Inicio</span></a>\r\n");
+      out.write("                        ");
+}
       out.write("\r\n");
       out.write("\r\n");
       out.write("                        <ul class=\"side-menu\">\r\n");
       out.write("                            ");
-    
 
-        rol = usuVO.getIdCargoFK();
-        if (rol.equals("1")||rol.equals("3")) {
+                                rol = usuVO.getIdCargoFK();
+                                if (rol.equals("1") || rol.equals("3")) {
 
-    
+                            
       out.write("\r\n");
       out.write("                            <li class=\"slide\">\r\n");
-      out.write("                                <a class=\"side-menu__item\" data-toggle=\"slide\" href=\"#\"><i class=\"side-menu__icon fe fe-grid\"></i><span class=\"side-menu__label\">Ordenes</span><i class=\"angle fa fa-angle-right\"></i></a>\r\n");
+      out.write("                                <a class=\"side-menu__item\" data-toggle=\"slide\" href=\"#\"><i class=\"side-menu__icon fas fa-shopping-cart\"></i><span class=\"side-menu__label\">Ordenes</span><i class=\"angle fa fa-angle-right\"></i></a>\r\n");
       out.write("                                <ul class=\"slide-menu\">\r\n");
       out.write("                                    <li>\r\n");
       out.write("                                        <a href=\"consultarOrden.jsp\" class=\"slide-item\">Consultar Ordenes</a>\r\n");
       out.write("                                    </li>\r\n");
-      out.write("     \r\n");
+      out.write("\r\n");
       out.write("                                </ul>\r\n");
-      out.write("                               \r\n");
+      out.write("\r\n");
       out.write("                            </li>");
 }
       out.write("\r\n");
-      out.write("                                        ");
-    
+      out.write("                            ");
 
-        rol = usuVO.getIdCargoFK();
-        if (rol.equals("1")) {
 
-    
+                                rol = usuVO.getIdCargoFK();
+                                if (rol.equals("1")) {
+
+                            
       out.write("\r\n");
       out.write("                            <li class=\"slide\">\r\n");
-      out.write("                                <a class=\"side-menu__item\" data-toggle=\"slide\" href=\"#\"><i class=\"side-menu__icon fe fe-grid\"></i><span class=\"side-menu__label\">Procesos</span><i class=\"angle fa fa-angle-right\"></i></a>\r\n");
-      out.write("                               <ul class=\"slide-menu\">\r\n");
+      out.write("                                <a class=\"side-menu__item\" data-toggle=\"slide\" href=\"#\"><i class=\"side-menu__icon fas fa-clock\"></i><span class=\"side-menu__label\">Procesos</span><i class=\"angle fa fa-angle-right\"></i></a>\r\n");
+      out.write("                                <ul class=\"slide-menu\">\r\n");
       out.write("                                    <li>\r\n");
       out.write("                                        <a href=\"consultarProceso.jsp\" class=\"slide-item\">Consultar Procesos</a>\r\n");
       out.write("                                    </li>\r\n");
-      out.write("     \r\n");
+      out.write("\r\n");
       out.write("                                </ul>\r\n");
-      out.write("                               \r\n");
+      out.write("\r\n");
       out.write("                            </li>");
 }
       out.write("\r\n");
-      out.write("                                               ");
-    
+      out.write("                            ");
 
-        rol = usuVO.getIdCargoFK();
-        if (rol.equals("1")) {
 
-    
+                                rol = usuVO.getIdCargoFK();
+                                if (rol.equals("1")) {
+
+                            
       out.write("\r\n");
-      out.write("                              <li class=\"slide\">\r\n");
-      out.write("                                <a class=\"side-menu__item\" data-toggle=\"slide\" href=\"#\"><i class=\"side-menu__icon fe fe-grid\"></i><span class=\"side-menu__label\">Empleado</span><i class=\"angle fa fa-angle-right\"></i></a>\r\n");
-      out.write("                               <ul class=\"slide-menu\">\r\n");
+      out.write("                            <li class=\"slide\">\r\n");
+      out.write("                                <a class=\"side-menu__item\" data-toggle=\"slide\" href=\"#\"><i class=\"side-menu__icon fas fa-users\"></i><span class=\"side-menu__label\">Empleado</span><i class=\"angle fa fa-angle-right\"></i></a>\r\n");
+      out.write("                                <ul class=\"slide-menu\">\r\n");
       out.write("                                    <li>\r\n");
-      out.write("                                        <a href=\"cards.html\" class=\"slide-item\">Consultar Empleados</a>\r\n");
+      out.write("                                        <a href=\"consultarUsuario.jsp\" class=\"slide-item\">Consultar Empleados</a>\r\n");
       out.write("                                    </li>\r\n");
       out.write("                                    <li>\r\n");
       out.write("                                        <a href=\"registrarEmpleado.jsp\" class=\"slide-item\">Registrar Empleados</a>\r\n");
       out.write("                                    </li>\r\n");
-      out.write("     \r\n");
+      out.write("\r\n");
       out.write("                                </ul>\r\n");
-      out.write("                               \r\n");
+      out.write("\r\n");
       out.write("                            </li>");
 }
       out.write("\r\n");
-      out.write("                                               ");
-    
+      out.write("                            ");
 
-        rol = usuVO.getIdCargoFK();
-        if (rol.equals("1")) {
 
-    
+                                rol = usuVO.getIdCargoFK();
+                                if (rol.equals("1")) {
+
+                            
       out.write("\r\n");
       out.write("                            <li class=\"slide\">\r\n");
-      out.write("                                <a class=\"side-menu__item\" data-toggle=\"slide\" href=\"#\"><i class=\"side-menu__icon fe fe-grid\"></i><span class=\"side-menu__label\">Usuario</span><i class=\"angle fa fa-angle-right\"></i></a>\r\n");
-      out.write("                               <ul class=\"slide-menu\">\r\n");
+      out.write("                                <a class=\"side-menu__item\" data-toggle=\"slide\" href=\"#\"><i class=\"side-menu__icon fas fa-user\"></i><span class=\"side-menu__label\">Usuario</span><i class=\"angle fa fa-angle-right\"></i></a>\r\n");
+      out.write("                                <ul class=\"slide-menu\">\r\n");
       out.write("                                    <li>\r\n");
       out.write("                                        <a href=\"consultarDatosPersonales.jsp\" class=\"slide-item\">Consultar Datos</a>\r\n");
       out.write("                                    </li>\r\n");
       out.write("                                    <li>\r\n");
-      out.write("                                        <a href=\"consultarUsuarios.jsp\" class=\"slide-item\">Consultar Usuario</a>\r\n");
+      out.write("                                        <a href=\"consultarIngreso.jsp\" class=\"slide-item\">Consultar Usuario</a>\r\n");
       out.write("                                    </li>\r\n");
       out.write("                                </ul>\r\n");
-      out.write("                               \r\n");
-      out.write("                            </li>");
+      out.write("\r\n");
+      out.write("                            </li>\r\n");
+      out.write("                               ");
+
+
+                                rol = usuVO.getIdCargoFK();
+                                if (rol.equals("1")) {
+
+                            
+      out.write("\r\n");
+      out.write("                            <li class=\"slide\">\r\n");
+      out.write("                                <a class=\"side-menu__item\" data-toggle=\"slide\" href=\"#\"><i class=\"side-menu__icon fas fa-tshirt\"></i><span class=\"side-menu__label\">Prenda</span><i class=\"angle fa fa-angle-right\"></i></a>\r\n");
+      out.write("                                <ul class=\"slide-menu\">\r\n");
+      out.write("                                    <li>\r\n");
+      out.write("                                        <a href=\"registrarPrenda.jsp\" class=\"slide-item\">Registrar Prenda</a>\r\n");
+      out.write("                                        <a href=\"consultarPrenda.jsp\" class=\"slide-item\">Consultar Prenda</a>\r\n");
+      out.write("                                    </li>\r\n");
+      out.write("\r\n");
+      out.write("                                </ul>\r\n");
+      out.write("                            </li>                \r\n");
+      out.write("                            ");
 }
       out.write("\r\n");
-      out.write("                                               ");
-    
-
-        rol = usuVO.getIdCargoFK();
-        if (rol.equals("1")) {
-
-    
+      out.write("                            ");
+}
       out.write("\r\n");
-      out.write("                             <li class=\"slide\">\r\n");
-      out.write("                                <a class=\"side-menu__item\" data-toggle=\"slide\" href=\"#\"><i class=\"side-menu__icon fe fe-grid\"></i><span class=\"side-menu__label\">Reportes</span><i class=\"angle fa fa-angle-right\"></i></a>\r\n");
-      out.write("                               <ul class=\"slide-menu\">\r\n");
+      out.write("                            ");
+
+
+                                rol = usuVO.getIdCargoFK();
+                                if (rol.equals("1")) {
+
+                            
+      out.write("\r\n");
+      out.write("                            <li class=\"slide\">\r\n");
+      out.write("                                <a class=\"side-menu__item\" data-toggle=\"slide\" href=\"#\"><i class=\"side-menu__icon fas fa-file-pdf\"></i><span class=\"side-menu__label\">Reportes</span><i class=\"angle fa fa-angle-right\"></i></a>\r\n");
+      out.write("                                <ul class=\"slide-menu\">\r\n");
       out.write("                                    <li>\r\n");
       out.write("                                        <a href=\"Reportes.jsp\" class=\"slide-item\">Consultar Reportes</a>\r\n");
       out.write("                                    </li>\r\n");
-      out.write("     \r\n");
+      out.write("\r\n");
       out.write("                                </ul>\r\n");
-      out.write("                               \r\n");
+      out.write("\r\n");
       out.write("                            </li>");
 }
       out.write("\r\n");
-      out.write("                                        ");
-    
+      out.write("                            ");
 
-        rol = usuVO.getIdCargoFK();
-        if (rol.equals("2")) {
 
-    
+                                rol = usuVO.getIdCargoFK();
+                                if (rol.equals("2")) {
+
+                            
       out.write("\r\n");
-      out.write("                             <li class=\"slide\">\r\n");
-      out.write("                                <a class=\"side-menu__item\" data-toggle=\"slide\" href=\"#\"><i class=\"side-menu__icon fe fe-grid\"></i><span class=\"side-menu__label\">Ordenes</span><i class=\"angle fa fa-angle-right\"></i></a>\r\n");
+      out.write("                            <li class=\"slide\">\r\n");
+      out.write("                                <a class=\"side-menu__item\" data-toggle=\"slide\" href=\"#\"><i class=\"side-menu__icon fas fa-shopping-cart\"></i><span class=\"side-menu__label\">Ordenes</span><i class=\"angle fa fa-angle-right\"></i></a>\r\n");
       out.write("                                <ul class=\"slide-menu\">\r\n");
       out.write("                                    <li>\r\n");
-      out.write("                                        <a href=\"cards.html\" class=\"slide-item\">Consultar Ordenes</a>\r\n");
+      out.write("                                        <form method=\"post\" action=\"Orden\">\r\n");
+      out.write("                                        <input type=\"hidden\" value=\"");
+      out.print(id);
+      out.write("\" name=\"textIdDato\"> \r\n");
+      out.write("                                       <button type=\"submit\" class=\"btn btn-primary\">Consultar Ordenes</button>\r\n");
+      out.write("                                        <input type=\"hidden\" value=\"5\" name=\"opcion\">\r\n");
+      out.write("                                        </form>\r\n");
       out.write("                                    </li>\r\n");
-      out.write("                                    \r\n");
+      out.write("\r\n");
       out.write("                                </ul>\r\n");
       out.write("                            </li>\r\n");
       out.write("                            ");
 }
       out.write("\r\n");
-      out.write("                                                      ");
-    
+      out.write("                            ");
 
-        rol = usuVO.getIdCargoFK();
-        if (rol.equals("3")) {
 
-    
+                                rol = usuVO.getIdCargoFK();
+                                if (rol.equals("3")) {
+
+                            
       out.write("\r\n");
-      out.write("             <li class=\"slide\">\r\n");
-      out.write("                                <a class=\"side-menu__item\" data-toggle=\"slide\" href=\"#\"><i class=\"side-menu__icon fe fe-grid\"></i><span class=\"side-menu__label\">Registrar Proceso</span><i class=\"angle fa fa-angle-right\"></i></a>\r\n");
+      out.write("                            <li class=\"slide\">\r\n");
+      out.write("                                <a class=\"side-menu__item\" data-toggle=\"slide\" href=\"#\"><i class=\"side-menu__icon fas fa-clock\"></i><span class=\"side-menu__label\">Registrar Proceso</span><i class=\"angle fa fa-angle-right\"></i></a>\r\n");
       out.write("                                <ul class=\"slide-menu\">\r\n");
       out.write("                                    <li>\r\n");
       out.write("                                        <a href=\"registrarProceso.jsp\" class=\"slide-item\">Registrar Proceso</a>\r\n");
+      out.write("                                        \r\n");
       out.write("                                        <a href=\"consultarProceso.jsp\" class=\"slide-item\">Consultar Proceso</a>\r\n");
       out.write("                                    </li>\r\n");
-      out.write("                                    \r\n");
+      out.write("\r\n");
       out.write("                                </ul>\r\n");
       out.write("                            </li>                \r\n");
       out.write("                            ");
 }
       out.write("\r\n");
-      out.write("                                  \r\n");
-      out.write("                                                      ");
-    
+      out.write("                             ");
 
-        rol = usuVO.getIdCargoFK();
-        if (rol.equals("3")) {
 
-    
+                                rol = usuVO.getIdCargoFK();
+                                if (rol.equals("3")) {
+
+                            
       out.write("\r\n");
-      out.write("             <li class=\"slide\">\r\n");
-      out.write("                                <a class=\"side-menu__item\" data-toggle=\"slide\" href=\"#\"><i class=\"side-menu__icon fe fe-grid\"></i><span class=\"side-menu__label\">Asignar Orden</span><i class=\"angle fa fa-angle-right\"></i></a>\r\n");
+      out.write("                            <li class=\"slide\">\r\n");
+      out.write("                                <a class=\"side-menu__item\" data-toggle=\"slide\" href=\"#\"><i class=\"side-menu__icon fas fa-users\"></i><span class=\"side-menu__label\">Asignar Orden</span><i class=\"angle fa fa-angle-right\"></i></a>\r\n");
       out.write("                                <ul class=\"slide-menu\">\r\n");
       out.write("                                    <li>\r\n");
-      out.write("                                        <a href=\"registrarAsignar.jsp\" class=\"slide-item\">Asignar Orden</a>\r\n");
+      out.write("                                        <a href=\"registrarAsignar.jsp\" class=\"slide-item\">Asignar Orden</a>    \r\n");
+      out.write("                                        <a href=\"consultarAsignar.jsp\" class=\"slide-item\">Consultar Asignación</a>    \r\n");
       out.write("                                    </li>\r\n");
-      out.write("                                    \r\n");
+      out.write("\r\n");
       out.write("                                </ul>\r\n");
       out.write("                            </li>                \r\n");
       out.write("                            ");
 }
       out.write("\r\n");
+      out.write("                            \r\n");
+      out.write("                         \r\n");
       out.write("                            <li>\r\n");
       out.write("                                <a class=\"side-menu__item\" href=\"https://themeforest.net/user/sprukosoft/portfolio\"><i class=\"side-menu__icon fa fa-question-circle\"></i><span class=\"side-menu__label\">Ayuda y Soporte</span></a>\r\n");
       out.write("                            </li>\r\n");
-      out.write("                            \r\n");
+      out.write("\r\n");
       out.write("                        </ul>\r\n");
       out.write("                    </div>\r\n");
       out.write("                </aside>\r\n");
@@ -331,7 +381,7 @@ public final class consultarOrden_jsp extends org.apache.jasper.runtime.HttpJspB
       out.write("                <div class=\"app-content \">\r\n");
       out.write("                    <div class=\"side-app\">\r\n");
       out.write("                        <div class=\"main-content\">\r\n");
-      out.write("                           \r\n");
+      out.write("\r\n");
       out.write("                            <!-- Top navbar -->\r\n");
       out.write("                            <nav class=\"navbar navbar-top  navbar-expand-md navbar-dark\" id=\"navbar-main\">\r\n");
       out.write("                                <div class=\"container-fluid\">\r\n");
@@ -339,46 +389,49 @@ public final class consultarOrden_jsp extends org.apache.jasper.runtime.HttpJspB
       out.write("\r\n");
       out.write("                                    <!-- Horizontal Navbar -->\r\n");
       out.write("                                    <ul class=\"navbar-nav align-items-center d-none d-xl-block\">\r\n");
-      out.write("                   ");
-    
+      out.write("                                        ");
 
-        rol = usuVO.getIdCargoFK();
-        if (rol.equals("1")) {
 
-    
+                                            rol = usuVO.getIdCargoFK();
+                                            if (rol.equals("1")) {
+
+                                        
       out.write("\r\n");
       out.write("                                        <li class=\"nav-item dropdown\">\r\n");
       out.write("                                            Administrador\r\n");
       out.write("                                        </li>\r\n");
+      out.write("                                        ");
 }
       out.write("\r\n");
-      out.write("         ");
-    
+      out.write("                                        ");
 
-        rol = usuVO.getIdCargoFK();
-        if (rol.equals("2")) {
 
-    
+                                            rol = usuVO.getIdCargoFK();
+                                            if (rol.equals("2")) {
+
+                                        
       out.write("\r\n");
       out.write("                                        <li class=\"nav-item dropdown\">\r\n");
       out.write("                                            Cliente\r\n");
       out.write("                                        </li>\r\n");
+      out.write("                                        ");
 }
       out.write("\r\n");
-      out.write("         ");
-    
+      out.write("                                        ");
 
-        rol = usuVO.getIdCargoFK();
-        if (rol.equals("3")) {
 
-    
+                                            rol = usuVO.getIdCargoFK();
+                                            if (rol.equals("3")) {
+
+                                        
       out.write("\r\n");
       out.write("                                        <li class=\"nav-item dropdown\">\r\n");
       out.write("                                            Empleado\r\n");
       out.write("                                        </li>\r\n");
+      out.write("                                        ");
 }
       out.write("\r\n");
-      out.write("                                      \r\n");
+      out.write("\r\n");
       out.write("\r\n");
       out.write("                                    </ul>\r\n");
       out.write("\r\n");
@@ -391,7 +444,7 @@ public final class consultarOrden_jsp extends org.apache.jasper.runtime.HttpJspB
       out.write("                                        <div class=\"form-group mb-0\">\r\n");
       out.write("                                            <div class=\"input-group input-group-alternative\">\r\n");
       out.write("                                                <div class=\"input-group-prepend\">\r\n");
-      out.write("                                                    \r\n");
+      out.write("\r\n");
       out.write("                                                </div><input class=\"form-control\" type=\"hidden\">\r\n");
       out.write("                                            </div>\r\n");
       out.write("                                        </div>\r\n");
@@ -511,9 +564,9 @@ public final class consultarOrden_jsp extends org.apache.jasper.runtime.HttpJspB
       out.write("                                                <div class=\" dropdown-header noti-title\">\r\n");
       out.write("                                                    <h6 class=\"text-overflow m-6\">¡Bienvenid@!</h6>\r\n");
       out.write("                                                </div>\r\n");
-      out.write("                                               <input class=\"dropdown-item\" type=\"submit\" value=\"Perfil\">\r\n");
+      out.write("                                                \r\n");
       out.write("                                                <form method=\"post\" action=\"Sesiones\">\r\n");
-      out.write("                                                    <input class=\"dropdown-item\" type=\"submit\" value=\"Cerrar Sesion\">\r\n");
+      out.write("                                                    <input class=\"dropdown-item\" type=\"submit\" value=\"Cerrar Sesión\">\r\n");
       out.write("                                                </form>\r\n");
       out.write("                                                <input type=\"hidden\" value=\"");
       out.print(id);
@@ -522,48 +575,17 @@ public final class consultarOrden_jsp extends org.apache.jasper.runtime.HttpJspB
       out.write("                                        </li>\r\n");
       out.write("                                    </ul>\r\n");
       out.write("                                </div>\r\n");
-      out.write("                            </nav>\r\n");
-      out.write("                            \r\n");
-      out.write("                                      \r\n");
-      out.write("                                </body>\r\n");
-      out.write("                                </html> \r\n");
-      out.write("                                       <!-- Ansta Scripts -->\r\n");
-      out.write("                                <!-- Core -->\r\n");
-      out.write("                                <script src=\"assets/plugins/jquery/dist/jquery.min.js\"></script>\r\n");
-      out.write("                                <script src=\"assets/js/popper.js\"></script>\r\n");
-      out.write("         \r\n");
-      out.write("                                <!-- Echarts JS -->\r\n");
-      out.write("                                <script src=\"assets/plugins/chart-echarts/echarts.js\"></script>\r\n");
-      out.write("\r\n");
-      out.write("                                <!-- Fullside-menu Js-->\r\n");
-      out.write("                                <script src=\"assets/plugins/toggle-sidebar/js/sidemenu.js\"></script>\r\n");
-      out.write("\r\n");
-      out.write("                                <!-- Custom scroll bar Js-->\r\n");
-      out.write("                                <script src=\"assets/plugins/customscroll/jquery.mCustomScrollbar.concat.min.js\"></script>\r\n");
-      out.write("\r\n");
-      out.write("                                <!-- peitychart -->\r\n");
-      out.write("                                <script src=\"assets/plugins/peitychart/jquery.peity.min.js\"></script>\r\n");
-      out.write("                                <script src=\"assets/plugins/peitychart/peitychart.init.js\"></script>\r\n");
-      out.write("\r\n");
-      out.write("                                <!-- Vector Plugin -->\r\n");
-      out.write("                                <script src=\"assets/plugins/jvectormap/jquery-jvectormap-2.0.2.min.js\"></script>\r\n");
-      out.write("                                <script src=\"assets/plugins/jvectormap/jquery-jvectormap-world-mill-en.js\"></script>\r\n");
-      out.write("                                <script src=\"assets/plugins/jvectormap/gdp-data.js\"></script>\r\n");
-      out.write("                                <script src=\"assets/plugins/jvectormap/jquery-jvectormap-us-aea-en.js\"></script>\r\n");
-      out.write("                                <script src=\"assets/plugins/jvectormap/jquery-jvectormap-uk-mill-en.js\"></script>\r\n");
-      out.write("                                <script src=\"assets/plugins/jvectormap/jquery-jvectormap-au-mill.js\"></script>\r\n");
-      out.write("                                <script src=\"assets/plugins/jvectormap/jquery-jvectormap-ca-lcc.js\"></script>\r\n");
-      out.write("                                <script src=\"assets/js/dashboard2map.js\"></script>\r\n");
-      out.write("\r\n");
-      out.write("                                <!-- Ansta JS -->\r\n");
-      out.write("                                <script src=\"assets/js/custom.js\"></script>\r\n");
-      out.write("                                <script src=\"assets/js/dashboard-sales.js\"></script>                          \r\n");
-      out.write("    \r\n");
-      out.write("\r\n");
       out.write("                                            \r\n");
-      out.write("                   \r\n");
-      out.write("        \r\n");
-      out.write("         ");
+      out.write("                            </nav>\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("                            </body>\r\n");
+      out.write(" </html> \r\n");
+      out.write("                                                 \r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
       out.write("\r\n");
       out.write("\r\n");
       out.write("<!DOCTYPE html>\r\n");
@@ -574,6 +596,13 @@ public final class consultarOrden_jsp extends org.apache.jasper.runtime.HttpJspB
       out.write("    </head>\r\n");
       out.write("   \r\n");
       out.write("    <body>\r\n");
+      out.write("        ");
+
+                                rol = usuVO.getIdCargoFK();
+                                if (rol.equals("1") || rol.equals("3")) {
+
+                            
+      out.write("\r\n");
       out.write("    <center>\r\n");
       out.write("        <div class=\"container-fluid pt-8\">\r\n");
       out.write("        <div class=\"page-header mt-0 shadow p-3\">\r\n");
@@ -694,7 +723,7 @@ public final class consultarOrden_jsp extends org.apache.jasper.runtime.HttpJspB
       out.write("                    </div>          \r\n");
       out.write("                </div>    \r\n");
       out.write("            </div>       \r\n");
-      out.write("            <input type=\"hidden\"  value=\"1\" name=\"opcion\">\r\n");
+      out.write("            <input type=\"hidden\"  value=\"4\" name=\"opcion\">\r\n");
       out.write("        </form>\r\n");
       out.write("\r\n");
       out.write("            <div style=\"color: red;\">\r\n");
@@ -837,7 +866,12 @@ if (request.getAttribute("MensajeError") != null) {
       out.write("                </div>\r\n");
       out.write("            </div> \r\n");
       out.write("                \r\n");
-      out.write("                \r\n");
+      out.write("                <form method=\"post\" action=\"GenerarPDF2.jsp\" target=\"_blank\">\r\n");
+      out.write("            \r\n");
+      out.write("            <input type=\"submit\" value=\"Generar Reporte\" button class=\"btn btn-primary\">\r\n");
+      out.write("            <input type=\"hidden\" value=\"Reportes/ReporteOrden.jasper\" name=\"nombreReporte\">\r\n");
+      out.write("            \r\n");
+      out.write("        </form>\r\n");
       out.write("        </div></div></div>\r\n");
       out.write(" \r\n");
       out.write("\n");
@@ -868,41 +902,77 @@ if (request.getAttribute("MensajeError") != null) {
       out.write("</div>\n");
       out.write("<!-- Back to top -->\n");
       out.write("<a href=\"#top\" id=\"back-to-top\"><i class=\"fa fa-angle-up\"></i></a>\n");
+      out.write("  <!-- Ansta Scripts -->\n");
+      out.write("                            \n");
+      out.write("                            <!-- Core -->\n");
+      out.write("                            <script src=\"assets/plugins/jquery/dist/jquery.min.js\"></script>\n");
+      out.write("                            <script src=\"assets/js/popper.js\"></script>\n");
+      out.write("                            \t<script src=\"assets/plugins/bootstrap/js/bootstrap.min.js\"></script>\n");
+      out.write("                                \n");
+      out.write("\n");
+      out.write("                            <!-- Echarts JS -->\n");
+      out.write("                            <script src=\"assets/plugins/chart-echarts/echarts.js\"></script>\n");
+      out.write("\n");
+      out.write("                            <!-- Fullside-menu Js-->\n");
+      out.write("                            <script src=\"assets/plugins/toggle-sidebar/js/sidemenu.js\"></script>\n");
+      out.write("\n");
+      out.write("                            <!-- Custom scroll bar Js-->\n");
+      out.write("                            <script src=\"assets/plugins/customscroll/jquery.mCustomScrollbar.concat.min.js\"></script>\n");
+      out.write("\n");
+      out.write("                            <!-- peitychart -->\n");
+      out.write("                            <script src=\"assets/plugins/peitychart/jquery.peity.min.js\"></script>\n");
+      out.write("                            <script src=\"assets/plugins/peitychart/peitychart.init.js\"></script>\n");
+      out.write("                            \n");
+      out.write("                              <!-- Optional JS -->\n");
+      out.write("            <script src=\"assets/plugins/chart.js/dist/Chart.min.js\"></script>\n");
+      out.write("            <script src=\"assets/plugins/chart.js/dist/Chart.extension.js\"></script>\n");
+      out.write("\n");
+      out.write("            <!-- Data tables -->\n");
+      out.write("            <script src=\"assets/plugins/datatable/jquery.dataTables.min.js\"></script>\n");
+      out.write("            <script src=\"assets/plugins/datatable/dataTables.bootstrap4.min.js\"></script>\n");
+      out.write("\n");
+      out.write("           <script>\n");
+      out.write("                $(function (e) {\n");
+      out.write("                    $('#example').DataTable();\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("                    $('#example2').DataTable({\n");
+      out.write("                        \"scrollY\": \"200px\",\n");
+      out.write("                        \"scrollCollapse\": true,\n");
+      out.write("                        \"paging\": false\n");
+      out.write("                    });\n");
+      out.write("                });\n");
+      out.write("\n");
+      out.write("            </script> \n");
+      out.write("\n");
+      out.write("                            <!-- Vector Plugin -->\n");
+      out.write("                            <script src=\"assets/plugins/jvectormap/jquery-jvectormap-2.0.2.min.js\"></script>\n");
+      out.write("                            <script src=\"assets/plugins/jvectormap/jquery-jvectormap-world-mill-en.js\"></script>\n");
+      out.write("                            <script src=\"assets/plugins/jvectormap/gdp-data.js\"></script>\n");
+      out.write("                            <script src=\"assets/plugins/jvectormap/jquery-jvectormap-us-aea-en.js\"></script>\n");
+      out.write("                            <script src=\"assets/plugins/jvectormap/jquery-jvectormap-uk-mill-en.js\"></script>\n");
+      out.write("                            <script src=\"assets/plugins/jvectormap/jquery-jvectormap-au-mill.js\"></script>\n");
+      out.write("                            <script src=\"assets/plugins/jvectormap/jquery-jvectormap-ca-lcc.js\"></script>\n");
+      out.write("                            <script src=\"assets/js/dashboard2map.js\"></script>\n");
+      out.write("\n");
+      out.write("                            <!-- Ansta JS -->\n");
+      out.write("                            <script src=\"assets/js/custom.js\"></script>\n");
+      out.write("                            <script src=\"assets/js/dashboard-sales.js\"></script>   \n");
+      out.write("                            \n");
+      out.write("         <!-- jQuery first, then Popper.js, then Bootstrap JS -->\n");
+      out.write("        <script src=\"https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js\"></script>\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("        <!-- validacion de formularios -->\n");
+      out.write("        <script src=\"JS/my-login.js\"></script>                      \n");
+      out.write("                            \n");
+      out.write("                            \n");
       out.write("</html>\n");
-      out.write("\t         \r\n");
+      out.write("\t  \r\n");
+}
+      out.write("\r\n");
       out.write("                \r\n");
-      out.write("                \r\n");
-      out.write("  <!-- Core -->\r\n");
-      out.write("          \r\n");
-      out.write("            <!-- Optional JS -->\r\n");
-      out.write("            <script src=\"assets/plugins/chart.js/dist/Chart.min.js\"></script>\r\n");
-      out.write("            <script src=\"assets/plugins/chart.js/dist/Chart.extension.js\"></script>\r\n");
-      out.write("\r\n");
-      out.write("            <!-- Data tables -->\r\n");
-      out.write("            <script src=\"assets/plugins/datatable/jquery.dataTables.min.js\"></script>\r\n");
-      out.write("            <script src=\"assets/plugins/datatable/dataTables.bootstrap4.min.js\"></script>\r\n");
-      out.write("\r\n");
-      out.write("            <!-- Fullside-menu Js-->\r\n");
-      out.write("            <script src=\"assets/plugins/toggle-sidebar/js/sidemenu.js\"></script>\r\n");
-      out.write("\r\n");
-      out.write("            <!-- Custom scroll bar Js-->\r\n");
-      out.write("            <script src=\"assets/plugins/customscroll/jquery.mCustomScrollbar.concat.min.js\"></script>\r\n");
-      out.write("\r\n");
-      out.write("            <!-- Ansta JS -->\r\n");
-      out.write("            <script src=\"assets/js/custom.js\"></script>\r\n");
-      out.write("            <script>\r\n");
-      out.write("                $(function (e) {\r\n");
-      out.write("                    $('#example').DataTable();\r\n");
-      out.write("\r\n");
-      out.write("\r\n");
-      out.write("                    $('#example2').DataTable({\r\n");
-      out.write("                        \"scrollY\": \"200px\",\r\n");
-      out.write("                        \"scrollCollapse\": true,\r\n");
-      out.write("                        \"paging\": false\r\n");
-      out.write("                    });\r\n");
-      out.write("                });\r\n");
-      out.write("\r\n");
-      out.write("            </script>\r\n");
       out.write("    </body>\r\n");
       out.write("</html>\r\n");
     } catch (Throwable t) {

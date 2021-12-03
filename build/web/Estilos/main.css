@@ -4202,7 +4202,7 @@ h2.entry-title {
 --------------------------------------------------------------------------------*/
 .main-header {
   color:black;
-  background-image:url("Imagenes/header.jpg");
+  background-image:url("../Imagenes/header.jpg");
   
   text-align: center;
   padding: 60px 0; }

@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="7115200d-ae0f-4960-9de7-d4cb7348848a">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" forecolor="#FFFFFF" fontName="Times New Roman" fontSize="50" isBold="false" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#CCCCCC" fontName="Times New Roman" fontSize="18" isBold="false" pdfFontName="Times-Roman"/>
+	<style name="Column header" forecolor="#666666" fontName="Times New Roman" fontSize="14" isBold="true" pdfFontName="Times-Roman"/>
+	<style name="Detail" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman"/>
+	<style name="Row" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style mode="Opaque" backcolor="#F0EFEF"/>
+		</conditionalStyle>
+	</style>
+	<queryString>
+		<![CDATA[SELECT
+     tercera_vista.`NombreDatos` AS tercera_vista_NombreDatos,
+     tercera_vista.`ApellidoDatos` AS tercera_vista_ApellidoDatos,
+     tercera_vista.`FechaProceso` AS tercera_vista_FechaProceso,
+     tercera_vista.`HoraInicio` AS tercera_vista_HoraInicio,
+     tercera_vista.`HoraFin` AS tercera_vista_HoraFin,
+     tercera_vista.`TiempoHoras` AS tercera_vista_TiempoHoras
+FROM
+     `tercera_vista` tercera_vista]]>
+	</queryString>
+	<field name="tercera_vista_NombreDatos" class="java.lang.String"/>
+	<field name="tercera_vista_ApellidoDatos" class="java.lang.String"/>
+	<field name="tercera_vista_FechaProceso" class="java.sql.Date"/>
+	<field name="tercera_vista_HoraInicio" class="java.sql.Time"/>
+	<field name="tercera_vista_HoraFin" class="java.sql.Time"/>
+	<field name="tercera_vista_TiempoHoras" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="132" splitType="Stretch">
+			<image>
+				<reportElement x="458" y="11" width="90" height="110" uuid="80652e73-e6f3-44e8-b8ce-098faad1dc79"/>
+				<imageExpression><![CDATA["timtex.jpg"]]></imageExpression>
+			</image>
+			<frame>
+				<reportElement mode="Opaque" x="0" y="0" width="451" height="95" backcolor="#2994BB" uuid="d6e1cd7c-8750-4cf0-a1ea-95c482085159"/>
+				<staticText>
+					<reportElement style="Title" x="15" y="12" width="218" height="66" uuid="b755e3a3-8911-4adb-abcd-f606faff92e2"/>
+					<textElement>
+						<font fontName="Arial" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Procesos]]></text>
+				</staticText>
+				<image>
+					<reportElement x="243" y="7" width="200" height="84" uuid="67aac3de-8083-45fc-90f0-233ae119ad83"/>
+					<imageExpression><![CDATA["C:\\Users\\sergi\\OneDrive\\Documentos\\NetBeansProjects\\Timtex\\web\\Reportes\\timtexlo2.jpg"]]></imageExpression>
+				</image>
+			</frame>
+			<frame>
+				<reportElement mode="Opaque" x="0" y="100" width="451" height="32" forecolor="#000000" backcolor="#45565B" uuid="454eb05a-eda7-4600-a94e-c94e994e9f6a"/>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement x="298" y="7" width="144" height="20" forecolor="#FFFFFF" uuid="92385ba1-f335-40f2-99c8-3ddf4265226a"/>
+					<textElement textAlignment="Right">
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="30" splitType="Stretch">
+			<staticText>
+				<reportElement style="Column header" x="0" y="7" width="126" height="18" forecolor="#000000" uuid="a069e36c-273e-4cc1-beb9-c087773a9047"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nombre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="92" y="7" width="126" height="18" forecolor="#000000" uuid="811041d7-0a51-4b2c-b5b9-179fb8207963"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Apellido]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="184" y="7" width="126" height="18" forecolor="#000000" uuid="7b6c44de-7988-441d-ae3e-d37802c8eb58"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="276" y="7" width="126" height="18" forecolor="#000000" uuid="0a688900-8570-4667-bc08-c36a13ae2bf9"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Hora Inicio]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="368" y="7" width="126" height="18" forecolor="#000000" uuid="b9f38d75-a889-4b86-b1d7-308fbaa0f1d3"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Hora Fin]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="460" y="7" width="126" height="18" forecolor="#000000" uuid="00fa66e1-0cdb-4e51-a2c8-7b44f9365807"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tiempo Total]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="32" splitType="Stretch">
+			<frame>
+				<reportElement style="Row" mode="Opaque" x="0" y="0" width="555" height="18" uuid="ff33d896-577b-4283-9703-2f5315a26fc0"/>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" positionType="Float" x="0" y="0" width="92" height="18" uuid="fecbfa7d-d63b-41b2-ad87-7020d426d18c"/>
+					<textElement>
+						<font fontName="Arial" size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{tercera_vista_NombreDatos}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" positionType="Float" x="92" y="0" width="92" height="18" uuid="fd69cfbd-d2a7-400e-8396-c39db9c9fe51"/>
+					<textElement>
+						<font fontName="Arial" size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{tercera_vista_ApellidoDatos}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" positionType="Float" x="184" y="0" width="92" height="18" uuid="5573a57a-816f-4764-bf57-91da4ee31df8"/>
+					<textElement>
+						<font fontName="Arial" size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{tercera_vista_FechaProceso}.toString()]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" positionType="Float" x="276" y="0" width="92" height="18" uuid="51795634-158e-4d08-b48f-879f0210104b"/>
+					<textElement>
+						<font fontName="Arial" size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{tercera_vista_HoraInicio}.toString()]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" positionType="Float" x="368" y="0" width="92" height="18" uuid="a2b4fced-d07d-40c2-bf09-0a0578c41226"/>
+					<textElement>
+						<font fontName="Arial" size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{tercera_vista_HoraFin}.toString()]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" positionType="Float" x="460" y="0" width="92" height="18" uuid="8baee149-bbff-49f6-abae-57892602f714"/>
+					<textElement>
+						<font fontName="Arial" size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{tercera_vista_TiempoHoras}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="7" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1" uuid="6c90d3b9-92bf-4a7a-bc3c-27db32bfffa1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="25" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="0" y="1" width="555" height="24" forecolor="#D0B48E" backcolor="#2994BB" uuid="599020e0-4075-490d-ad77-afa4e7cdb5f5"/>
+				<textField evaluationTime="Report">
+					<reportElement style="Column header" x="513" y="0" width="40" height="20" forecolor="#FFFFFF" uuid="6e76855d-67fc-4c95-a7d8-52d3e3e1d432"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Column header" x="433" y="0" width="80" height="20" forecolor="#FFFFFF" uuid="ea33f43d-2a18-4d4d-8f50-8e45cc8fcbdc"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Página "+$V{PAGE_NUMBER}+" de "]]></textFieldExpression>
+				</textField>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement style="Column header" x="2" y="1" width="197" height="20" forecolor="#FFFFFF" uuid="1f150958-5e5a-4556-ad0a-2fc1f6a8f0ac"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

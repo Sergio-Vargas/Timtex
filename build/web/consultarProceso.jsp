@@ -108,6 +108,28 @@
                     </div>
                 </div>
             </div>
+            <form method="post" action="GenerarPDF.jsp" target="_blank">
+            
+            <input type="submit" value="Tiempos de producción" button class="btn btn-primary">
+            <input type="hidden" value="Reportes/ReporteProceso.jasper" name="nombreReporte">
+            
+        </form>
+                            <br>
+                <div>
+                    <h2 class="mb-0">Reporte por estado</h2>
+                </div>            
+        <form method="post" action="GenerarPDF.jsp" target="_blank">
+            <div class="col-md-6">
+            <select name="textEstado" class="form-control" >
+                <option value="Activo">Activo</option>
+                <option value="Inactivo">Inactivo</option>
+            </select>
+                <br>
+            <input type="submit" value="Generar Reporte" button class="btn btn-primary">
+            </div>
+            <input type="hidden" value="Reportes/ReporteParametrizado.jasper" name="nombreReporte">
+        </form>
+                            
                             </div></div></div>
   
                             <%@include file="footer.jsp"%>	  

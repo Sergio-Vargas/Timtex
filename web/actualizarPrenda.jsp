@@ -14,28 +14,6 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Actualizar Prenda</title>
-        
-        <!-- Fonts -->
-	<link href="https://fonts.googleapis.com/css?family=Nunito:300,400,600,700,800" rel="stylesheet">
-
-	<!-- Icons -->
-        <link href="assets/css/icons.css" rel="stylesheet" type="text/css"/>
-        <!-- Favicon -->
-	<link href="assets/img/brand/favicon.png" rel="icon" type="image/png">
-        
-	<!--Bootstrap.min css-->
-	<link rel="stylesheet" href="assets/plugins/bootstrap/css/bootstrap.min.css">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
-
-	<!-- Ansta CSS -->
-	<link href="assets/css/dashboard.css" rel="stylesheet" type="text/css">
-
-	<!-- Custom scroll bar css-->
-	<link href="assets/plugins/customscroll/jquery.mCustomScrollbar.css" rel="stylesheet" />
-
-	<!-- Sidemenu Css -->
-	<link href="assets/plugins/toggle-sidebar/css/sidemenu.css" rel="stylesheet">
         <%@include file="Sesiones.jsp"%>
     </head>
     <body>
@@ -58,7 +36,7 @@
                         <input type="hidden" name="textIdPrenda" value="<%=PreVO.getIdPrenda()%>">
                         <div class="form-group">  
                         Imagen
-                        <input type="file" name="textImagenPrenda" class="form-control" required value="Imagenes\<%=PreVO.getImagenPrenda()%>">
+                        <input type="text" name="textImagenPrenda" class="form-control" required value="Imagenes/<%=PreVO.getImagenPrenda()%>">
                   
                         </div>
                         <div class="form-group">  
@@ -127,14 +105,8 @@
             <%  }%>
         </div>
 
-  
-         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-        <script src="assets/plugins/jquery/dist/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
+          <%@include file="footer.jsp"%>
 
-
-
-        <!-- validacion de formularios -->
-        <script src="JS/my-login.js"></script>
+         
 </body>
 </html>

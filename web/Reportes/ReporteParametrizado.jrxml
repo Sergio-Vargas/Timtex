@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="44b6fff6-316c-48db-86f1-c1127a676804">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" forecolor="#FFFFFF" fontName="Times New Roman" fontSize="50" isBold="false" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#CCCCCC" fontName="Times New Roman" fontSize="18" isBold="false" pdfFontName="Times-Roman"/>
+	<style name="Column header" forecolor="#666666" fontName="Times New Roman" fontSize="14" isBold="true" pdfFontName="Times-Roman"/>
+	<style name="Detail" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman"/>
+	<style name="Row" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style mode="Opaque" backcolor="#F0EFEF"/>
+		</conditionalStyle>
+	</style>
+	<parameter name="Estado" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     proceso.`IdProceso` AS proceso_IdProceso,
+     proceso.`DescripcionProceso` AS proceso_DescripcionProceso,
+     proceso.`FechaProceso` AS proceso_FechaProceso,
+     proceso.`HoraInicio` AS proceso_HoraInicio,
+     proceso.`HoraFin` AS proceso_HoraFin,
+     proceso.`PrendasRealizadas` AS proceso_PrendasRealizadas,
+     proceso.`EstadoProceso` AS proceso_EstadoProceso
+FROM
+     `proceso` proceso WHERE EstadoProceso = $P{Estado};]]>
+	</queryString>
+	<field name="proceso_IdProceso" class="java.lang.Integer"/>
+	<field name="proceso_DescripcionProceso" class="java.lang.String"/>
+	<field name="proceso_FechaProceso" class="java.sql.Date"/>
+	<field name="proceso_HoraInicio" class="java.sql.Time"/>
+	<field name="proceso_HoraFin" class="java.sql.Time"/>
+	<field name="proceso_PrendasRealizadas" class="java.lang.Integer"/>
+	<field name="proceso_EstadoProceso" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="132" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="0" y="0" width="451" height="95" backcolor="#2994BB" uuid="71a5a41c-4a68-4f18-864d-ebc56a388812"/>
+				<staticText>
+					<reportElement style="Title" x="4" y="13" width="237" height="66" uuid="f21f2a06-d093-479f-8c06-2db4b2ff07dc"/>
+					<textElement>
+						<font fontName="Arial" size="45" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Parámetros]]></text>
+				</staticText>
+				<image>
+					<reportElement x="249" y="8" width="190" height="80" uuid="084afff8-a524-4ba7-88e0-5dd82d997c16"/>
+					<imageExpression><![CDATA["timtexlo2.jpg"]]></imageExpression>
+				</image>
+			</frame>
+			<frame>
+				<reportElement mode="Opaque" x="0" y="100" width="451" height="32" forecolor="#000000" backcolor="#45565B" uuid="eee096e1-bea1-4bdb-b851-2658a86e9306"/>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement x="297" y="8" width="144" height="20" forecolor="#FFFFFF" uuid="8b2f590b-857a-43c7-b517-78e7c525db03"/>
+					<textElement textAlignment="Right">
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+			<image>
+				<reportElement x="458" y="11" width="90" height="110" uuid="031e26d5-103a-4513-a147-7a07758a6648"/>
+				<imageExpression><![CDATA["timtex.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="26" splitType="Stretch">
+			<staticText>
+				<reportElement style="Column header" x="0" y="7" width="79" height="18" forecolor="#000000" uuid="576aa33f-86eb-48dc-8e46-0540e871496e"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[IdProceso]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="79" y="7" width="84" height="18" forecolor="#000000" uuid="9e8057c4-d041-469e-910e-64bfc632104c"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Descripcion Proceso]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="163" y="7" width="79" height="18" forecolor="#000000" uuid="f48faafa-be21-4ea0-9ad8-75c64e314526"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha Proceso]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="242" y="7" width="79" height="18" forecolor="#000000" uuid="e57553fd-2459-4aca-9366-88ec5b706d49"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Hora Inicio]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="321" y="7" width="79" height="18" forecolor="#000000" uuid="29d6b019-bf23-4644-a20a-750abe04ba99"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Hora Fin]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="400" y="7" width="79" height="18" forecolor="#000000" uuid="e5ed096e-d88a-4e8a-b1bf-2da83dca4ac6"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Prendas Realizadas]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="479" y="7" width="79" height="18" forecolor="#000000" uuid="9189164e-01bd-431f-b949-d42a52596ad1"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Estado Proceso]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="18" splitType="Stretch">
+			<frame>
+				<reportElement style="Row" mode="Opaque" x="0" y="0" width="555" height="18" uuid="150ec62d-f7b4-4f26-aff6-caacc8a8618d"/>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" positionType="Float" x="2" y="0" width="79" height="18" uuid="531c00e5-096a-4aa5-8219-ba5deb336849"/>
+					<textElement>
+						<font fontName="Arial" size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{proceso_IdProceso}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" positionType="Float" x="79" y="0" width="81" height="18" uuid="7db88922-4790-40b3-b094-83f32467aedf"/>
+					<textElement>
+						<font fontName="Arial" size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{proceso_DescripcionProceso}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" positionType="Float" x="160" y="0" width="79" height="18" uuid="0c372e3e-e2c1-4133-a2d5-f93d9c97e481"/>
+					<textElement>
+						<font fontName="Arial" size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{proceso_FechaProceso}.toString()]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" positionType="Float" x="239" y="0" width="79" height="18" uuid="db6c31b8-663b-4421-b41f-6dfd6b3f6ee8"/>
+					<textElement>
+						<font fontName="Arial" size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{proceso_HoraInicio}.toString()]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" positionType="Float" x="318" y="0" width="79" height="18" uuid="9a2e1d02-6769-4ac9-b601-aaa3cd98edf1"/>
+					<textElement>
+						<font fontName="Arial" size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{proceso_HoraFin}.toString()]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" positionType="Float" x="397" y="0" width="79" height="18" uuid="17226778-1b5b-4082-b9d0-ad173aad8f9f"/>
+					<textElement>
+						<font fontName="Arial" size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{proceso_PrendasRealizadas}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" positionType="Float" x="476" y="0" width="79" height="18" uuid="92ca2ad8-b488-4a1d-9c35-618063104782"/>
+					<textElement>
+						<font fontName="Arial" size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{proceso_EstadoProceso}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="7" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1" uuid="70d02fc7-576b-426d-8a1e-4e90d84fbe26"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="25" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="0" y="1" width="555" height="24" forecolor="#D0B48E" backcolor="#2994BB" uuid="5404e668-eb85-48e3-b7a4-6c1183bd6b7b"/>
+				<textField evaluationTime="Report">
+					<reportElement style="Column header" x="513" y="0" width="40" height="20" forecolor="#FFFFFF" uuid="46964630-a909-4852-8517-b207fce56b17"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["  de" + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Column header" x="339" y="0" width="164" height="20" forecolor="#FFFFFF" uuid="cdbcb769-9b6f-4eef-9dbe-5fb3b1de31fb"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Página "+$V{PAGE_NUMBER}+"]]></textFieldExpression>
+				</textField>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement style="Column header" x="2" y="1" width="197" height="20" forecolor="#FFFFFF" uuid="a8061c52-62b8-4e5f-8ab6-d8fc3a322f51"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

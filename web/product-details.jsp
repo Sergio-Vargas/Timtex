@@ -62,7 +62,7 @@
 									<div class="col-md-12"> 
                                     <div class="form-group ">
                                         <center>
-                                                                                                    <img src="<%= producto.getImg()%>" width="200px" height="200px" alt="" />
+                                                                                                    <img src="Imagenes/<%= producto.getImg()%>" width="200px" height="200px" alt="" />
 
 								<h2><%= producto.getNombre()%></h2>
 								<p>Web ID: <%= producto.getId()%></p>

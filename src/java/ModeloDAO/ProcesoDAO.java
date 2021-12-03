@@ -264,12 +264,12 @@ public class ProcesoDAO extends Conexion implements Crud{
     //Eliminar dato
     
      //CONSULTAR datos
-    public boolean Eliminar() {
+    public boolean CambiarEstado() {
         
     
         try {
            
-            sql = "delete from Proceso where IdProceso=(SELECT max(IdProceso) FROM Proceso)";
+            sql = "update Proceso  set EstadoProceso='Inactivo' where IdProceso=(SELECT max(IdProceso) from Proceso);";
             puente = conexion.prepareStatement(sql);
             puente.executeUpdate();
             operacion= true;

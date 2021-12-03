@@ -58,9 +58,9 @@ public class Proceso extends HttpServlet {
                 if (ProDAO.aregarRegistro()) {
                     ProVO=ProDAO.fecha(FechaProceso,IdAsigOrdenFK);
                     if(ProVO==null){
-                        if(ProDAO.Eliminar()){    
+                        if(ProDAO.CambiarEstado()){    
                         request.setAttribute("MensajeError", "La fecha no corresponde a la Asignacion");
-                        }else{request.setAttribute("MensajeError", "No se encontro el ID");}
+                        }
                     }else{
                         request.setAttribute("MensajeExito", "La informacion se registró correctamente");
                     }

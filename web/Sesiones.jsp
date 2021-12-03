@@ -166,6 +166,7 @@
                                 </ul>
 
                             </li>
+                            <%}%>
                                <%
 
                                 rol = usuVO.getIdCargoFK();
@@ -183,23 +184,8 @@
                                 </ul>
                             </li>                
                             <%}%>
-                            <%}%>
-                            <%
-
-                                rol = usuVO.getIdCargoFK();
-                                if (rol.equals("1")) {
-
-                            %>
-                            <li class="slide">
-                                <a class="side-menu__item" data-toggle="slide" href="#"><i class="side-menu__icon fas fa-file-pdf"></i><span class="side-menu__label">Reportes</span><i class="angle fa fa-angle-right"></i></a>
-                                <ul class="slide-menu">
-                                    <li>
-                                        <a href="Reportes.jsp" class="slide-item">Consultar Reportes</a>
-                                    </li>
-
-                                </ul>
-
-                            </li><%}%>
+                            
+                           
                             <%
 
                                 rol = usuVO.getIdCargoFK();
