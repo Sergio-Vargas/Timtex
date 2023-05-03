@@ -91,7 +91,7 @@
                                     %>
 
                                     <tr>
-                                        <td><img src="Imagenes/<%= producto.getImg()%>" alt="" width="120px" height="100px"></td>
+                                        <td><img src="<%= producto.getImg()%>" alt="" width="120px" height="100px"></td>
                                         <td><%= producto.getNombre()%></td>
                                         <td><span>$ <%= producto.getPrecio()%></span></td>                                       
                                         

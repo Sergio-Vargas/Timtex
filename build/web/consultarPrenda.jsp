@@ -76,7 +76,7 @@
                 %>
                                 <tr>
                                    <td><%=PreVO.getIdPrenda()%></td>
-                    <td><img src="Imagenes/<%=PreVO.getImagenPrenda()%>"width="100px"></td>
+                    <td><img src="<%=PreVO.getImagenPrenda()%>"width="100px"></td>
                     <td><%=PreVO.getNombrePrenda()%></td>
                     <td><%=PreVO.getDescripcionPrenda()%></td>
                     <td><%=PreVO.getPrecioPrenda()%></td>

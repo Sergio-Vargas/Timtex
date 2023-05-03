@@ -5,7 +5,6 @@
  */
 package Util;
 
-import com.mysql.jdbc.Connection;
 import java.sql.*;
 
 /**
@@ -25,8 +24,6 @@ public class Conexion {
         password="";
         nombreBd="proyectodifal";
         urlBd="jdbc:mysql://localhost:3306/"+nombreBd;
-        
-        
     //Crear estructura try catch 
     //3. Conexión 
         try {

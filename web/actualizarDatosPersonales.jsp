@@ -29,7 +29,7 @@
                                         <li class="breadcrumb-item active" aria-current="page">Actualizar Datos</li>
                                     </ol>
 
-        </div>
+        </div></div>
 
         <%            DatosPersonalesVO datVO = (DatosPersonalesVO) request.getAttribute("identificacion consultada");
             if (datVO != null) {
@@ -86,14 +86,15 @@
                                        
                                         <input type="hidden" name="textUsuario"  value="<%=datVO.getIdUsuarioFK()%>" readonly  class="form-control" required>
                                         
-                                    </div></div>
-                                <div class=" col-md-6">
+                                    </div></div></div>
+                                        <div class="row">
+                                            <div class=" col-md-4"></div>            
+                                <div class=" col-md-4">
                                     <center>
                                         <button type="submit" class="btn btn-primary mb-0 btn-block waves-effect waves-light">Actualizar</button>
                                     </center>
                                 </div>  
-
-
+                                            <div class=" col-md-4"></div> 
                             </div> </div></div></div>
                 <input type="hidden" value="2" name="opcion">
                 </form><br><br>

@@ -65,6 +65,7 @@
                                     <th class="wd-15p">ID USUARIO</th>
                                     <th class="wd-15p">NOMBRE USUARIO</th>
                                     <th class="wd-15p">CORREO</th>
+                                    <th class="wd-15p">CLAVE</th>
                                     <th class="wd-15p">ESTADO USUARIO</th>
                                     <th class="wd-15p">CARGO</th>
                                     <th></th>
@@ -85,6 +86,7 @@
                                     <td><%=usuVO.getIdUsuario()%></td>
                                     <td><%=usuVO.getNombreUsuario()%></td>
                                     <td><%=usuVO.getCorreoDatos()%></td>
+                                    <td><%=usuVO.getClaveUsuario()%></td>
                                     <td><%=usuVO.getEstadoUsu()%></td>
                                     <td><%=usuVO.getIdCargoFK()%></td>
                                     <td>

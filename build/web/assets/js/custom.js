@@ -45,7 +45,7 @@
 	// ______________Chart-circle
 	if ($('.chart-circle').length) {
 		$('.chart-circle').each(function() {
-			let $this = $(this);
+                        $this = $(this);
 			$this.circleProgress({
 				fill: {
 					color: $this.attr('data-color')

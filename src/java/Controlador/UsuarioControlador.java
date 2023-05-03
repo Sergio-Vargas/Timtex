@@ -59,6 +59,7 @@ public class UsuarioControlador extends HttpServlet {
         String NombreUsuario = request.getParameter("textUsuario");
         String CorreoDatos=request.getParameter("textCorreo");
         String ClaveUsuario = request.getParameter("textClave");
+        
           if (ClaveUsuario == null) {
             ClaveUsuario = PasswordGenerator.getPassword(
                     PasswordGenerator.MINUSCULAS
@@ -243,8 +244,22 @@ public class UsuarioControlador extends HttpServlet {
                 request.getRequestDispatcher("consultarIngreso.jsp").forward(request, response);
                 break;    
                 
+            case 7:
+                UsuarioVO usuVO2 = new UsuarioVO(NombreUsuario,CorreoDatos,ClaveUsuario);
+                UsuarioDAO usuDAO1 = new UsuarioDAO(usuVO2);
+                
+                if(usuDAO1.ActualizarClave()){   
+                    //request.setAttribute("identificacion consultada",usuDAO1);
+                    //request.setAttribute("MensajeExito", "La clave se actualizo");
+                    String mensajeEx="La clave se actualizo";
+                    response.getWriter().print(mensajeEx); 
+                } else{
+                    //request.setAttribute("MensajeError", "La clave no se actualizado");
+                    String mensajeEr="La clave no se actualizo";
+                    response.getWriter().print(mensajeEr);
+                }    
+            break;    
              
-
         }
         
     }

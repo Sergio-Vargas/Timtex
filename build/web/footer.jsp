@@ -92,8 +92,7 @@
 
 
 
-        <!-- validacion de formularios -->
-        <script src="JS/my-login.js"></script>                      
+                           
                             
                             
 </html>

@@ -125,13 +125,13 @@ public class UsuarioDAO extends Conexion implements Crud {
     
     
     
-    public boolean iniciarSesion (String usuario, String clave){
+    public boolean iniciarSesion (String Usuario, String clave){
     
     try {
         conexion=this.obtenerConexion();
         sql="select * from Usuario where NombreUsuario=? and ClaveUsuario=? && EstadoUsu='Activo'";
         puente = conexion.prepareStatement(sql);
-        puente.setString(1, usuario);
+        puente.setString(1, Usuario);
         puente.setString(2, clave);
         mensajero = puente.executeQuery();
         if (mensajero.next()) {
@@ -159,7 +159,7 @@ public class UsuarioDAO extends Conexion implements Crud {
 
         try {
             conexion = this.obtenerConexion();
-            sql = "select * from usuario where EstadoUsu='Activo'";
+            sql = "select * from Usuario where EstadoUsu='Activo'";
             puente = conexion.prepareStatement(sql);
             mensajero = puente.executeQuery();
             
@@ -191,7 +191,8 @@ public class UsuarioDAO extends Conexion implements Crud {
         UsuarioVO usuVO = null;
         try {
             conexion = this.obtenerConexion();
-            sql = "select * from usuario where NombreUsuario=?";
+            sql = "SELECT * FROM usuario WHERE NombreUsuario=?";
+           
             puente = conexion.prepareStatement(sql);
             puente.setString(1,NombreUsuario);
             mensajero = puente.executeQuery();  
@@ -215,7 +216,7 @@ public class UsuarioDAO extends Conexion implements Crud {
         UsuarioVO usuVO = null;
         try {
             conexion = this.obtenerConexion();
-            sql = "select * from usuario where CorreoDatos=?";
+            sql = "select * from Usuario where CorreoDatos=?";
             puente = conexion.prepareStatement(sql);
             puente.setString(1,CorreoDatos);
             mensajero = puente.executeQuery();  
@@ -269,7 +270,7 @@ public class UsuarioDAO extends Conexion implements Crud {
 
         try {
             conexion = this.obtenerConexion();
-            sql = "select * from usuario where EstadoUsu='Inactivo'";
+            sql = "select * from Usuario where EstadoUsu='Inactivo'";
             puente = conexion.prepareStatement(sql);
             mensajero = puente.executeQuery();
             
@@ -331,7 +332,7 @@ public class UsuarioDAO extends Conexion implements Crud {
         UsuarioVO usuVO = null;
         try {
             conexion = this.obtenerConexion();
-            sql = "select usu.IdUsuario,usu.NombreUsuario,usu.CorreoDatos,usu.ClaveUsuario,IdCargoFK,usu.EstadoUsu from usuario usu , "
+            sql = "select usu.IdUsuario,usu.NombreUsuario,usu.CorreoDatos,usu.ClaveUsuario,IdCargoFK,usu.EstadoUsu from Usuario usu , "
                     + "DatosPersonales dat where usu.IdUsuario=dat.IdUsuarioFK and NombreUsuario=?";
             puente = conexion.prepareStatement(sql);
             puente.setString(1,NombreUsuario);
@@ -349,7 +350,27 @@ public class UsuarioDAO extends Conexion implements Crud {
         
         return usuVO;
     }
-    
+
+    //Actualizar clave
+    public boolean ActualizarClave() {
+        
+        try {
+            conexion = this.obtenerConexion();
+            sql = "UPDATE usuario set ClaveUsuario=? where NombreUsuario=? && CorreoDatos=? ";
+           
+            puente = conexion.prepareStatement(sql);
+            puente.setString(1,ClaveUsuario);
+            puente.setString(2,NombreUsuario);
+            puente.setString(3,CorreoDatos);
+            puente.executeUpdate();
+            operacion= true;
+            
+            
+        } catch (SQLException e) {
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, e);
+        }
+        return operacion;
+    }
             
     
    

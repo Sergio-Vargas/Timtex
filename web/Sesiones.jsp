@@ -213,7 +213,7 @@
 
                             %>
                             <li class="slide">
-                                <a class="side-menu__item" data-toggle="slide" href="#"><i class="side-menu__icon fas fa-clock"></i><span class="side-menu__label">Registrar Proceso</span><i class="angle fa fa-angle-right"></i></a>
+                                <a class="side-menu__item" data-toggle="slide" href="#"><i class="side-menu__icon fas fa-clock"></i><span class="side-menu__label">Proceso</span><i class="angle fa fa-angle-right"></i></a>
                                 <ul class="slide-menu">
                                     <li>
                                         <a href="registrarProceso.jsp" class="slide-item">Registrar Proceso</a>
@@ -231,7 +231,7 @@
 
                             %>
                             <li class="slide">
-                                <a class="side-menu__item" data-toggle="slide" href="#"><i class="side-menu__icon fas fa-users"></i><span class="side-menu__label">Asignar Orden</span><i class="angle fa fa-angle-right"></i></a>
+                                <a class="side-menu__item" data-toggle="slide" href="#"><i class="side-menu__icon fas fa-users"></i><span class="side-menu__label">Asignación</span><i class="angle fa fa-angle-right"></i></a>
                                 <ul class="slide-menu">
                                     <li>
                                         <a href="registrarAsignar.jsp" class="slide-item">Asignar Orden</a>    
@@ -425,11 +425,14 @@
                                                 <div class=" dropdown-header noti-title">
                                                     <h6 class="text-overflow m-6">¡Bienvenid@!</h6>
                                                 </div>
-                                                
+                                                  <a href="Actualizarclave.jsp" class="text-left text-muted"><input type="submit" class="dropdown-item" value="Actualizar Clave"></a>
+
                                                 <form method="post" action="Sesiones">
                                                     <input class="dropdown-item" type="submit" value="Cerrar Sesión">
                                                 </form>
                                                 <input type="hidden" value="<%=id%>">
+                                                    
+                                               
                                             </div>
                                         </li>
                                     </ul>

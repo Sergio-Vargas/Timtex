@@ -40,7 +40,6 @@ $(function(e) {
 				mode: 'index',
 				intersect: false,
 			},
-			tooltips: {},
 			hover: {
 				mode: 'nearest',
 				intersect: true

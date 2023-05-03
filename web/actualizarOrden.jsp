@@ -18,44 +18,30 @@
         <title>Actualizar Orden</title>
 
     </head>
-    <style>
-        .abs-center {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            
-        }
-
-        .form {
-            width: 650px;
-        }
-    </style>
     <body>
-         <%
-                                rol = usuVO.getIdCargoFK();
-                                if (rol.equals("1") || rol.equals("3")) {
-
-                            %>
-    <center>
-         <!-- Page content -->
-                            <div class="container-fluid pt-8">
-                                <div class="page-header mt-0 shadow p-3">
-                                    <ol class="breadcrumb mb-sm-0">
-                                        <li class="breadcrumb-item"><a href="consultarOrden.jsp">Ordenes</a></li>
-                                        <li class="breadcrumb-item active">Actualizar</li>
-
-                                    </ol>
-
-                                </div>
         <%
-            OrdenVO OrdeVO = (OrdenVO) request.getAttribute("identificacion consultada");
-            if (OrdeVO != null) {
+            rol = usuVO.getIdCargoFK();
+            if (rol.equals("1") || rol.equals("3")) {
+
         %>
-        <div class="row abs-center">
+    <center>
+        <!-- Page content -->
+        <div class="container-fluid pt-8">
+            <div class="page-header mt-0 shadow p-3">
+                <ol class="breadcrumb mb-sm-0">
+                    <li class="breadcrumb-item"><a href="consultarOrden.jsp">Ordenes</a></li>
+                    <li class="breadcrumb-item active">Actualizar</li>
+
+                </ol>
+
+            </div></div>
+            <%            OrdenVO OrdeVO = (OrdenVO) request.getAttribute("identificacion consultada");
+                if (OrdeVO != null) {
+            %>
         <form method="post" action="Orden" id="basic-form"  class="my-login-validation form"  novalidate="">
-            
-                <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-6">
                     <div class="card shadow">
                         <div class="card-header">
                             <h2 class="mb-0">Actualizar Orden</h2>
@@ -89,15 +75,17 @@
                                     </center>
                                 </div>  
                                 <div class=" col-md-6">
-        <a href="consultarOrden.jsp" class="btn btn-primary mb-0 btn-block waves-effect waves-light">Volver</a>
-        </div>    
+                                    <a href="consultarOrden.jsp" class="btn btn-primary mb-0 btn-block waves-effect waves-light">Volver</a>
+                                </div>    
 
                             </div>    
                         </div>          
                     </div>    
-                </div>  </div>     
+                </div>
+                <div class="col-md-2"></div>
+            </div>     
             <input type="hidden" value="2" name="opcion">
-           
+
         </form>
         <% }%>
         <div style="color: red;">
@@ -110,18 +98,18 @@
             <div style="color: greenyellow">${MensajeExito} </div>
             <%  }%>
         </div>
+
+
+        <%}%>
         <%@include file="footer.jsp"%>	  
 
-</div></div></div>
- 
-    </center><%}%>
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="assets/plugins/jquery/dist/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="assets/plugins/jquery/dist/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
 
 
 
-    <!-- validacion de formularios -->
-    <script src="JS/my-login.js"></script>
-</body>
+        <!-- validacion de formularios -->
+        <script src="JS/my-login.js"></script>
+    </body>
 </html>

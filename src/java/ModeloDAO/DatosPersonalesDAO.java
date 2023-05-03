@@ -63,7 +63,7 @@ public class DatosPersonalesDAO extends Conexion implements Crud {
         try {
             
             //Crear la sentencia
-            sql = "INSERT INTO datospersonales (IdDatos, NombreDatos,ApellidoDatos,"
+            sql = "INSERT INTO DatosPersonales (IdDatos, NombreDatos,ApellidoDatos,"
             + " DireccionDatos,TelefonoDatos,CorreoDatos,EstadoDatos,IdUsuarioFK)"
             + " VALUES (?,?,?,?,?,?,?,?);";
              //Crear el puente para esa conexion establecida
@@ -100,7 +100,7 @@ public class DatosPersonalesDAO extends Conexion implements Crud {
          try {
             
             //Crear la sentancia
-            sql="update datospersonales set NombreDatos=?,ApellidoDatos=?,"
+            sql="update DatosPersonales set NombreDatos=?,ApellidoDatos=?,"
             + "DireccionDatos=?,TelefonoDatos=?,CorreoDatos=?,EstadoDatos=?,"
             + "IdusuarioFK=? where IdDatos=?";
             //Crear el puente para esa conexion establecida
@@ -144,7 +144,7 @@ public class DatosPersonalesDAO extends Conexion implements Crud {
         DatosPersonalesVO datVO = null;
         try {
             conexion = this.obtenerConexion();
-            sql = "select * from datospersonales where IdDatos=?";
+            sql = "select * from DatosPersonales where IdDatos=?";
             puente = conexion.prepareStatement(sql);
             puente.setString(1,IdDatos);
             mensajero = puente.executeQuery();  

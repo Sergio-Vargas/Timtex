@@ -23,7 +23,7 @@ public class ControladorProducto {
                    
                     "<div class=\"col-md-6 col-lg-4\">\n"
                     + "<div class=\"snip1492 card shadow\">\n"
-                    + "<img src=\"Imagenes/"+ producto.getImg() + "\" width=\"440px\" height=\"350px\" alt=\"sample85\" />\n"
+                    + "<img src=\""+ producto.getImg() + "\" width=\"440px\" height=\"350px\" alt=\"sample85\" />\n"
                     + "<div class=\"figcaption\">\n"
                     + "<h3>" + producto.getNombre() + "</h3>\n"
                     + "<p>" + producto.getDescripcionPrenda() + "</p>\n"

@@ -7,13 +7,21 @@ package Controlador;
 
 import ModeloDAO.PrendaDAO;
 import ModeloVO.PrendaVO;
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.annotation.MultipartConfig;
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.FileItemFactory;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 /**
  *
@@ -47,26 +55,48 @@ public class Prenda extends HttpServlet {
         String PrecioPrenda=request.getParameter("textPrecio");
         String EstadoPrenda = request.getParameter("textEstadoPrenda");        
         String IdTipoPrendaFK = request.getParameter("textIdTipoPrendaFK");
-        
-        
+                
         PrendaVO PreVO = new PrendaVO(IdPrenda,ImagenPrenda,NombrePrenda,DescripcionPrenda,PrecioPrenda,EstadoPrenda,IdTipoPrendaFK);
+        PrendaVO PreVO1 = new PrendaVO(ImagenPrenda,NombrePrenda,DescripcionPrenda,PrecioPrenda,EstadoPrenda,IdTipoPrendaFK);
         PrendaDAO PreDAO = new PrendaDAO(PreVO);
           
         switch (opcion) {
-            case 1:
-                if (PreDAO.aregarRegistro()) {
-                    request.setAttribute("MensajeExito", "La informacion se registró correctamente");
-
-                } else {
-
-                    request.setAttribute("MensajeError", "La infromacion no se registró correctamente");
-
-                }
+            case 0:
                 request.getRequestDispatcher("consultarPrenda.jsp").forward(request, response);
+            break;
+            case 1:    
+                ArrayList<String> pro=new ArrayList<>();
+                try {
+                    FileItemFactory factory = new DiskFileItemFactory();
+                    ServletFileUpload fileUpload = new ServletFileUpload(factory);
+                    List items = fileUpload.parseRequest(request);
+                    for (int i = 0; i < items.size(); i++) {
+                        FileItem fileItem = (FileItem) items.get(i);
+                        if(!fileItem.isFormField()){
+                            File file=new File("C:\\Users\\sergi\\OneDrive\\Documentos"
+                            + "\\NetBeansProjects\\Timtex\\web\\Imagenes\\"+fileItem.getName());
+                            fileItem.write(file);
+                            PreVO1.setImagenPrenda("Imagenes/"+fileItem.getName());//como se guarda en bd
+                        }else{
+                            pro.add(fileItem.getString());
+                        }
+                    }
+                    PreVO1.setNombrePrenda(pro.get(0));
+                    PreVO1.setDescripcionPrenda(pro.get(1));
+                    PreVO1.setIdTipoPrendaFK(pro.get(2));
+                    PreVO1.setPrecioPrenda(pro.get(3));
+                    PreVO1.setEstadoPrenda(pro.get(4));
+                    PreDAO.aregarImagen(PreVO1);
+                    request.setAttribute("MensajeExito", "La informacion se registró correctamente");
+                } catch (Exception e) {
+                    System.err.println(""+e);
+                    request.setAttribute("MensajeError", "La informacion no se registró correctamente");
+                }      
+                request.getRequestDispatcher("Prenda?opcion=0").forward(request, response);
                 break;
                 
             case 2: // Actualizar Registro
-
+                
                 if (PreDAO.actualizarRegistro()) {
                     request.setAttribute("MensajeExito", "La informacion se actualizó correctamente");
 
@@ -75,7 +105,7 @@ public class Prenda extends HttpServlet {
                     request.setAttribute("MensajeError", "La infromacion no se actualizó correctamente");
 
                 }
-                request.getRequestDispatcher("actualizarPrenda.jsp").forward(request, response);
+                request.getRequestDispatcher("Prenda?opcion=0").forward(request, response);
                 break;
                 
                 

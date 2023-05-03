@@ -84,7 +84,7 @@ public class OrdenDAO extends Conexion implements Crud{
     public boolean aregarRegistro() {
          try {
             //Crear la sentencia
-            sql = "INSERT INTO orden(FechaOrden,EstadoOrden,"
+            sql = "INSERT INTO Orden(FechaOrden,EstadoOrden,"
             + " IdDatosFK)VALUES(?,?,?);";
    
             //Crear el puente para esa conexion establecida
@@ -94,21 +94,17 @@ public class OrdenDAO extends Conexion implements Crud{
             puente.setString(3, IdDatosFK);
             puente.executeUpdate();
             operacion = true;
-         
             
         } catch (SQLException e) {
             Logger.getLogger(OrdenDAO.class.getName()).log(Level.SEVERE, null, e);
         }finally{
             try{
-                
                 this.cerrarConexion();
-                
             }catch (SQLException e){  
                 Logger.getLogger(OrdenDAO.class.getName()).log(Level.SEVERE, null,e);
             }
               
         }
-        
         return operacion;
     }
 
@@ -117,7 +113,7 @@ public class OrdenDAO extends Conexion implements Crud{
         try {
             
             //Crear la sentancia
-            sql="update orden set FechaOrden=?,EstadoOrden=?,"
+            sql="update Orden set FechaOrden=?,EstadoOrden=?,"
                 + "IdDatosFK=? where IdOrden=?;";
  
             //Crear el puente para esa conexion establecida
@@ -157,7 +153,7 @@ public class OrdenDAO extends Conexion implements Crud{
         OrdenVO OrdeVO = null;
         try {
             conexion = this.obtenerConexion();
-            sql = "select * from orden where IdOrden=?";
+            sql = "select * from Orden where IdOrden=?";
             puente = conexion.prepareStatement(sql);
             puente.setString(1,IdOrden);
             mensajero = puente.executeQuery();  
@@ -188,7 +184,7 @@ public class OrdenDAO extends Conexion implements Crud{
 
         try {
             conexion = this.obtenerConexion();
-            sql = "select * from orden where EstadoOrden='Activo'";
+            sql = "select * from Orden where EstadoOrden='Activo'";
             puente = conexion.prepareStatement(sql);
             mensajero = puente.executeQuery();
             
@@ -222,7 +218,7 @@ public class OrdenDAO extends Conexion implements Crud{
 
         try {
             conexion = this.obtenerConexion();
-            sql = "select * from orden where EstadoOrden='Inactivo'";
+            sql = "select * from Orden where EstadoOrden='Inactivo'";
             puente = conexion.prepareStatement(sql);
             mensajero = puente.executeQuery();
             

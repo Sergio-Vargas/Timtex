@@ -31,7 +31,7 @@ public class PrendaDAO extends Conexion implements Crud{
     String IdPrenda="";
     String ImagenPrenda="",NombrePrenda="",DescripcionPrenda="", PrecioPrenda="", EstadoPrenda="";
     String IdTipoPrendaFK;
-
+    int r=0;
     
     public PrendaDAO(){
      }
@@ -61,36 +61,28 @@ public class PrendaDAO extends Conexion implements Crud{
     
     @Override
     public boolean aregarRegistro() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    public int aregarImagen(PrendaVO pre) {
         try {
             //Crear la sentencia
-            sql = "INSERT INTO prenda(ImagenPrenda,NombrePrenda,DescripcionPrenda,PrecioPrenda,EstadoPrenda,IdTipoPrendaFK)VALUES(?,?,?,?,?,?);";
+            sql = "INSERT INTO Prenda(ImagenPrenda,NombrePrenda,DescripcionPrenda,PrecioPrenda,EstadoPrenda,IdTipoPrendaFK)VALUES(?,?,?,?,?,?);";
 
             //Crear el puente para esa conexion establecida
             puente = conexion.prepareStatement(sql);
-            puente.setString(1, ImagenPrenda);
-            puente.setString(2, NombrePrenda);
-            puente.setString(3, DescripcionPrenda);
-            puente.setString(4,PrecioPrenda);
-            puente.setString(5, EstadoPrenda);
-            puente.setString(6, IdTipoPrendaFK);
+            puente.setString(1,pre.getImagenPrenda());
+            puente.setString(2,pre.getNombrePrenda());
+            puente.setString(3,pre.getDescripcionPrenda());
+            puente.setString(4,pre.getPrecioPrenda());
+            puente.setString(5,pre.getEstadoPrenda());
+            puente.setString(6,pre.getIdTipoPrendaFK());
             puente.executeUpdate();
-            operacion = true;
          
             
         } catch (SQLException e) {
-            Logger.getLogger(PrendaDAO.class.getName()).log(Level.SEVERE, null, e);
-        }finally{
-            try{
-                
-                this.cerrarConexion();
-                
-            }catch (SQLException e){  
-                Logger.getLogger(PrendaDAO.class.getName()).log(Level.SEVERE, null,e);
-            }
-              
         }
-        
-        return operacion;
+        return r;
     }
 
     @Override
@@ -98,7 +90,7 @@ public class PrendaDAO extends Conexion implements Crud{
         try {
             
             //Crear la sentancia
-            sql="update prenda set ImagenPrenda=?,NombrePrenda=?,"
+            sql="update Prenda set ImagenPrenda=?,NombrePrenda=?,"
             + "DescripcionPrenda=?,PrecioPrenda=?,EstadoPrenda=?,IdTipoPrendaFK=? where IdPrenda=?;";
  
             //Crear el puente para esa conexion establecida
@@ -128,7 +120,9 @@ public class PrendaDAO extends Conexion implements Crud{
         
         return operacion;
     }
-
+    
+    
+    
     @Override
     public boolean eliminarRegistro() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -140,7 +134,7 @@ public class PrendaDAO extends Conexion implements Crud{
         PrendaVO PreVO = null;
         try {
             conexion = this.obtenerConexion();
-            sql = "select * from prenda where IdPrenda=?";
+            sql = "select * from Prenda where IdPrenda=?";
             puente = conexion.prepareStatement(sql);
             puente.setString(1,IdPrenda);
             mensajero = puente.executeQuery();  
@@ -234,7 +228,7 @@ public class PrendaDAO extends Conexion implements Crud{
         PrendaVO PreVO = null;
         try {
             conexion = this.obtenerConexion();
-            sql = "select * from prenda where IdPrenda=?";
+            sql = "select * from Prenda where IdPrenda=?";
             puente = conexion.prepareStatement(sql);
             puente.setString(1,IdPrenda);
             mensajero = puente.executeQuery();  
@@ -251,5 +245,6 @@ public class PrendaDAO extends Conexion implements Crud{
 
         return PreVO;
     }
+
     
 }

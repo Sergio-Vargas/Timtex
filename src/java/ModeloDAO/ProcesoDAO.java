@@ -65,7 +65,7 @@ public class ProcesoDAO extends Conexion implements Crud{
         try {
             
             //Crear la sentencia
-            sql = "INSERT INTO proceso (DescripcionProceso,FechaProceso,"
+            sql = "INSERT INTO Proceso (DescripcionProceso,FechaProceso,"
             + "HoraInicio,HoraFin,PrendasRealizadas,EstadoProceso,IdAsigOrdenFK)"
             + " VALUES (?,?,?,?,?,?,?);";
              //Crear el puente para esa conexion establecida
@@ -94,7 +94,7 @@ public class ProcesoDAO extends Conexion implements Crud{
         try {
             
             //Crear la sentancia
-            sql="update proceso set DescripcionProceso=?,"
+            sql="update Proceso set DescripcionProceso=?,"
             + "FechaProceso=?,HoraInicio=?,HoraFin=?," +
 "           PrendasRealizadas=?,EstadoProceso=?,IdAsigOrdenFK=? where IdProceso=?";
             //Crear el puente para esa conexion establecida
@@ -138,7 +138,7 @@ public class ProcesoDAO extends Conexion implements Crud{
         ProcesoVO ProVO = null;
         try {
             conexion = this.obtenerConexion();
-            sql = "select * from proceso where IdProceso=?";
+            sql = "select * from Proceso where IdProceso=?";
             puente = conexion.prepareStatement(sql);
             puente.setString(1,IdProceso);
             mensajero = puente.executeQuery();  
@@ -170,7 +170,7 @@ public class ProcesoDAO extends Conexion implements Crud{
 
         try {
             conexion = this.obtenerConexion();
-            sql = "select * from proceso where EstadoProceso='Activo'";
+            sql = "select * from Proceso where EstadoProceso='Activo'";
             puente = conexion.prepareStatement(sql);
             mensajero = puente.executeQuery();
             
@@ -205,7 +205,7 @@ public class ProcesoDAO extends Conexion implements Crud{
 
         try {
             conexion = this.obtenerConexion();
-            sql = "select * from proceso where EstadoProceso='Inactivo'";
+            sql = "select * from Proceso where EstadoProceso='Inactivo'";
             puente = conexion.prepareStatement(sql);
             mensajero = puente.executeQuery();
             
@@ -266,7 +266,6 @@ public class ProcesoDAO extends Conexion implements Crud{
      //CONSULTAR datos
     public boolean CambiarEstado() {
         
-    
         try {
            
             sql = "update Proceso  set EstadoProceso='Inactivo' where IdProceso=(SELECT max(IdProceso) from Proceso);";

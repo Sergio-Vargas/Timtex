@@ -55,7 +55,7 @@ $(function() {
 	});
         
         
-        //validacion de campos
+        // envio y comprobacion de campos
 	$(".my-login-validation").submit(function() {
 		var form = $(this);
         if (form[0].checkValidity() === false) {
@@ -64,6 +64,46 @@ $(function() {
         }
 		form.addClass('was-validated');
 	});
+        
+       $(".my-alertas-validation").submit(function() {
+		var form = $(this);
+       if (form[0].checkValidity() === false) {
+          event.preventDefault();
+          event.stopPropagation();
+        }         
+       else if($('#textUsuario').val() != "" && $('#textCorreo').val() != "" && $('#textClave').val() != ""){
+        event.preventDefault();
+        event.stopPropagation();
+        swal({
+            title: "¿Está Seguro de Actualizar?",
+            text: "",
+            type: "info",
+            showCancelButton: true,
+            confirmButtonClass: "btn-danger",
+            confirmButtonText: "Sí, Actualizar!",
+            cancelButtonText: "No, Cancelar!",
+            closeOnConfirm: false,
+            closeOnCancel: false
+        },
+                function (isConfirm) {
+                    if (isConfirm) {                                         
+                        swal("Actualizado!", "La clave se ha actualizado correctamente", "success");
+                        ActualizarClave();
+//                        setTimeout(function (){
+//                            parent.location.href = "Actualizarclave.jsp"
+//                }, 1800); 
+                        $('#textUsuario').val('');
+                        $('#textCorreo').val('');
+                        $('#textClave').val('');
+                        form.removeClass('was-validated'); 
+                    } else {
+                        swal("Cancelado", "Cancelaste la Actualización", "error");
+                    }
+                });   
+        }
+             form.addClass('was-validated'); 
+             
+	});  
         
         $.validator.addMethod("formAlphanumeric", function(value, element) {
             var pattern = /^[a-zA-Z ]+/;
@@ -74,8 +114,8 @@ $(function() {
             var pattern = /^([a-zA-Z0-9_.-])+@([a-zA-Z0-9_.-])+\.([a-zA-Z])+([a-zA-Z])+/;
             return this.optional(element) || pattern.test(value);
         }, "Formato del email incorrecto ejemplo:pepito@gmail.com");
-
-
+        
+        
         $("#basic-form").validate({
             rules: {
                 textNombre:{
@@ -345,13 +385,32 @@ $(function() {
                   required:"Debe ingresar un cargo"    
                  }
             }
-
-        });
-      
+        })
         
-        
-	
-        
-      
 
 });
+
+
+//Alertas 
+//Alerta de actualizar clave
+function ActualizarClave() {
+        var NombreUsuario=$('#textUsuario').val();
+        var CorreoDatos = $('#textCorreo').val();
+        var ClaveUsuario =$('#textClave').val();
+        $.ajax({   
+            type: 'POST',
+            url:'Usuario?opcion=7',
+            async: true,
+            data:{
+                textUsuario:NombreUsuario,
+                textCorreo:CorreoDatos,
+                textClave:ClaveUsuario
+            },
+            success: function (r) {
+               $('#exito').text(r);
+               $('#error').text(r);
+            }
+        });
+    }
+    
+    

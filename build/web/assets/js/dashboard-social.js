@@ -11,7 +11,6 @@ $(function(e) {
 				borderWidth: 2,
 				backgroundColor: 'transparent',
 				borderColor: '#00c3ed',
-				borderWidth: 4,
 				pointBackgroundColor: '#ffffff',
 				pointRadius: 8
 			}]
@@ -37,7 +36,6 @@ $(function(e) {
 				mode: 'index',
 				intersect: false,
 			},
-			tooltips: {},
 			hover: {
 				mode: 'nearest',
 				intersect: true

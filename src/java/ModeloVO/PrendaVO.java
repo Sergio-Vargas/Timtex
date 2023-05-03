@@ -31,6 +31,14 @@ public class PrendaVO {
         this.IdTipoPrendaFK = IdTipoPrendaFK;
     }
 
+    public PrendaVO(String ImagenPrenda, String NombrePrenda, String DescripcionPrenda, String PrecioPrenda, String EstadoPrenda, String IdTipoPrendaFK) {
+        this.ImagenPrenda = ImagenPrenda;
+        this.NombrePrenda = NombrePrenda;
+        this.DescripcionPrenda = DescripcionPrenda;
+        this.PrecioPrenda = PrecioPrenda;
+        this.EstadoPrenda = EstadoPrenda;
+        this.IdTipoPrendaFK = IdTipoPrendaFK;
+    }
     public String getIdPrenda() {
         return IdPrenda;
     }

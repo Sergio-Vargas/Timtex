@@ -78,14 +78,17 @@
                                         </select>
                                         
                                     </div></div>
-                                <div class=" col-md-6">
+
+                            </div>
+                                        <div class="row">
+                                            <div class=" col-md-3"></div>
+                                            <div class=" col-md-6">
                                     <center>
                                         <button type="submit" class="btn btn-primary mb-0 btn-block waves-effect waves-light">Registrar</button>
                                     </center>
-                                </div>  
-
-
-                            </div>    
+                                </div>
+                                            <div class=" col-md-3"></div>
+                                        </div>
                         </div> </div></div></div>
             <input type="hidden" value="1" name="opcion">
         </form>

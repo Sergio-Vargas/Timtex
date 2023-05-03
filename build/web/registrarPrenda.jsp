@@ -17,21 +17,21 @@
     </head>
     <body>
         <%
-                                rol = usuVO.getIdCargoFK();
-                                if (rol.equals("1")) {
-
-                            %>
+            rol = usuVO.getIdCargoFK();
+            if (rol.equals("1")) {
+        %>
         <div class="container-fluid pt-8">
-        <div class="page-header mt-0 shadow p-3">
-                                    <ol class="breadcrumb mb-sm-0">
-                                        <li class="breadcrumb-item"><a href="Usuario.jsp">Inicio</a></li>
-                                        <li class="breadcrumb-item active" aria-current="page">Registrar Prenda</li>
-                                    </ol>
-
+            <div class="page-header mt-0 shadow p-3">
+                <ol class="breadcrumb mb-sm-0">
+                    <li class="breadcrumb-item"><a href="Usuario.jsp">Inicio</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Registrar Prenda</li>
+                </ol>
+            </div>
         </div>
-        <form method="post" action="Prenda" class="my-login-validation" id="basic-form"  novalidate="">
+        <form method="post" action="Prenda?opcion=1" class="my-login-validation" id="basic-form" novalidate="" enctype="multipart/form-data">
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
                     <div class="card shadow">
                         <div class="card-header">
                             <h2 class="mb-0">Registrar Prenda</h2>
@@ -39,8 +39,7 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <input type="hidden" value="1" name="textIdPrenda">
-                                    
+
                                     <div class="form-group">               
                                         <label>Imagen</label>
                                         <input type="file" name="textImagenPrenda"  class="form-control" required>
@@ -81,25 +80,28 @@
                                     </div>      
                                     <input type="hidden" name="textEstadoPrenda" class="form-control" value="Activo">
                                 </div>
-                                <div class=" col-md-6">
-                                    <center>
-                                        <button type="submit" class="btn btn-primary mb-0 btn-block waves-effect waves-light">Registrar</button>
-                                    </center>
-                                </div>  
 
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3"></div>        
+                                <div class=" col-md-6">                                        
+                                    <button type="submit" class="btn btn-primary mb-0 btn-block waves-effect waves-light">Registrar</button>                                        
+                                </div>  
+                                <div class="col-md-3"></div>
                             </div>
                         </div>    
                     </div>          
-                </div>    
+                </div> 
+                <div class="col-md-2"></div>
             </div>       
-            <input type="hidden" value="1" name="opcion">
+            <!--       <input type="hidden" value="1" name="opcion">-->
         </form>
 
 
 
         <div style="color: red;">
             <%
-                if (request.getAttribute("MensajeError") != null) { %>
+                    if (request.getAttribute("MensajeError") != null) { %>
             ${MensajeError}     
 
             <%} else {%>

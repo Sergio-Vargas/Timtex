@@ -11,7 +11,6 @@ $(function() {
 				borderWidth: 2,
 				backgroundColor: 'transparent',
 				borderColor: '#00c3ed',
-				borderWidth: 4,
 				pointBackgroundColor: '#ffffff',
 				pointRadius: 8
 			}]
@@ -51,7 +50,6 @@ $(function() {
 				borderWidth: 2,
 				backgroundColor: '#00c3ed',
 				borderColor: '#00c3ed',
-				borderWidth: 2.0,
 				pointBackgroundColor: '#ffffff',
 				pointRadius: 4
 			}]

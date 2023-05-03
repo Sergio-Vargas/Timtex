@@ -37,6 +37,13 @@ public class UsuarioVO {
         this.EstadoUsu = EstadoUsu;
     }
 
+    public UsuarioVO(String NombreUsuario, String CorreoDatos, String ClaveUsuario) {
+        this.NombreUsuario = NombreUsuario;
+        this.CorreoDatos = CorreoDatos;
+        this.ClaveUsuario = ClaveUsuario;
+    }
+    
+    
     public String getIdUsuario() {
         return IdUsuario;
     }

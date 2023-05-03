@@ -41,7 +41,7 @@
         <div class="row">
             
         <!--Cargar productos-->
-        <%= cp.getProductos()%>		
+        <%= cp.getProductos()%>	
         
         </div></div></div>
  

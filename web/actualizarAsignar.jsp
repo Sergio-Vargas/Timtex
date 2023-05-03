@@ -12,6 +12,8 @@
 <%@page import="ModeloDAO.OrdenDAO"%>
 <%@page import="ModeloVO.AsigOrdenVO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@include file="Sesiones.jsp"%>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -48,6 +50,14 @@
             AsigOrdenVO AsigVO = (AsigOrdenVO) request.getAttribute("identificacion consultada");
             if (AsigVO != null) {
         %>
+        <div class="container-fluid pt-8">
+            <div class="page-header mt-0 shadow p-3">
+                <ol class="breadcrumb mb-sm-0">
+                    <li class="breadcrumb-item"><a href="Usuario.jsp">Inicio</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Registrar Asignacion</li>
+                </ol>
+            </div>
+        </div>
         <form method="post" action="AsigOrden" class="my-login-validation" id="basic-form" novalidate="">
             <div class="row">
                 <div class="col-md-12">
@@ -63,17 +73,17 @@
                                     <div class="form-group">    
                                         Cantidad Prenda
                                         <input type="number"  name="textCantidadAsignar" value="<%=AsigVO.getCantidadPrenda()%>" class="form-control" required>
-                                      
+
                                     </div>
                                     <div class="form-group">    
                                         Fecha Inicio<br>
                                         <input type="date" name="textFechaInicio" value="<%=AsigVO.getFechaInicio()%>" class="form-control" required>
-                                       
+
                                     </div>
                                     <div class="form-group">    
                                         Fecha Fin
                                         <input type="date" name="textFechaFin" value="<%=AsigVO.getFechaFin()%>" class="form-control" required>
-                                       
+
                                     </div></div> 
                                 <div class="col-md-6"> 
                                     <div class="form-group">    
@@ -87,8 +97,8 @@
                                             <option value="<%=datVO.getIdDatos()%>"><%=datVO.getNombreDatos()%></option>
                                             <% }%>
                                         </select>
-                                       
-                                    </div>
+                                    </div>   
+
                                     <div class="form-group">    
                                         Id Detalle FK
                                         <select name="textIdDetalleOrdenFK" class="form-control" required>
@@ -100,31 +110,40 @@
                                             <option value="<%=DetaVO.getIdDetalleOrden()%>"><%=DetaVO.getIdDetalleOrden()%></option>
                                             <% }%>
                                         </select>
-                                    <input type="hidden" value="Activa" name="textEstado">
-                                
-                                      <div class="form-group">    
+                                        <input type="hidden" value="Activa" name="textEstado">
+                                    </div>
+                                    <div class="form-group">    
                                         Estado
                                         <select name="textEstado" class="form-control" required>
                                             <option></option>
-                                            
+
                                             <option value="Activa">Activa</option>
                                             <option value="Realizada">Realizada</option>
                                         </select>
-                                        
-                                        
-                                        
-                                       
-                                    </div></div>
-                                <div class=" col-md-6">
-                                    <center>
-                                        <button type="submit" class="btn btn-primary mb-0 btn-block waves-effect waves-light">Actualizar</button>
-                                    </center>
-                                </div>  
-                            </div></div></div></div></div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                            <div class="row">
+                                <div class=" col-md-3"></div>
+                                <div class=" col-md-3">
+
+                                    <button type="submit" class="btn btn-primary mb-0 btn-block waves-effect waves-light">Actualizar</button> 
+                                </div>
+                                <div class=" col-md-3">               
+                                    <a href="consultarAsignar.jsp" class="btn btn-primary mb-0 btn-block waves-effect waves-light">Volver</a>
+                                </div>
+                                <div class=" col-md-3"></div>
+                            </div>     
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <input type="hidden" value="2" name="opcion">
         </form>
         <% }%>
-        <a href="consultarAsignar.jsp" class="btn btn-primary mb-0 btn-block waves-effect waves-light">Volver</a>
         <div style="color: red;">
 
             <%
@@ -136,10 +155,10 @@
             <%  }%>
         </div>
 
-  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
         <script src="assets/plugins/jquery/dist/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
-
+        <%@include file="footer.jsp"%>
 
 
         <!-- validacion de formularios -->

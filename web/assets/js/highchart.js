@@ -120,9 +120,7 @@ $(function(e) {
 			shared: true,
 			valueSuffix: ' units'
 		},
-		credits: {
-			enabled: false
-		},
+		
 		plotOptions: {
 			areaspline: {
 				fillOpacity: 0.5
@@ -193,9 +191,7 @@ $(function(e) {
 			backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
 			shadow: true
 		},
-		credits: {
-			enabled: false
-		},
+		
 		series: [{
 			name: 'Year 1800',
 			data: [107, 31, 635, 203, 2],
