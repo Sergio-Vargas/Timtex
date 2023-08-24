@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="48e40951-838d-4e80-913d-29fc21ed1417">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="48"/>
+	<style name="Title" forecolor="#FFFFFF" fontName="Times New Roman" fontSize="50" isBold="false" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#CCCCCC" fontName="Times New Roman" fontSize="18" isBold="false" pdfFontName="Times-Roman"/>
+	<style name="Column header" forecolor="#666666" fontName="Times New Roman" fontSize="14" isBold="true" pdfFontName="Times-Roman"/>
+	<style name="Detail" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman"/>
+	<style name="Row" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style mode="Opaque" backcolor="#F0EFEF"/>
+		</conditionalStyle>
+	</style>
+	<queryString>
+		<![CDATA[SELECT
+     prenda.`IdPrenda` AS prenda_IdPrenda,
+     prenda.`ImagenPrenda` AS prenda_ImagenPrenda,
+     prenda.`NombrePrenda` AS prenda_NombrePrenda,
+     prenda.`DescripcionPrenda` AS prenda_DescripcionPrenda,
+     prenda.`PrecioPrenda` AS prenda_PrecioPrenda,
+     prenda.`EstadoPrenda` AS prenda_EstadoPrenda,
+     prenda.`IdTipoPrendaFK` AS prenda_IdTipoPrendaFK
+FROM
+     `prenda` prenda]]>
+	</queryString>
+	<field name="prenda_IdPrenda" class="java.lang.Integer"/>
+	<field name="prenda_ImagenPrenda" class="java.lang.String"/>
+	<field name="prenda_NombrePrenda" class="java.lang.String"/>
+	<field name="prenda_DescripcionPrenda" class="java.lang.String"/>
+	<field name="prenda_PrecioPrenda" class="java.lang.Integer"/>
+	<field name="prenda_EstadoPrenda" class="java.lang.String"/>
+	<field name="prenda_IdTipoPrendaFK" class="java.lang.Integer"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="132" splitType="Stretch">
+			<image>
+				<reportElement x="458" y="11" width="90" height="110" uuid="d5172053-dcea-4dd9-a5a1-8b7c3c7e62e1"/>
+				<imageExpression><![CDATA["timtex.jpg"]]></imageExpression>
+			</image>
+			<frame>
+				<reportElement mode="Opaque" x="0" y="0" width="451" height="95" backcolor="#2994BB" uuid="ac076a68-f59f-4ad7-86e4-5aba2041b15a"/>
+				<staticText>
+					<reportElement style="Title" x="20" y="15" width="199" height="66" uuid="8a61a9a9-b02e-4265-b171-470ea1380a55"/>
+					<textElement>
+						<font fontName="Arial" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Prendas]]></text>
+				</staticText>
+				<image>
+					<reportElement x="237" y="7" width="200" height="84" uuid="84014bfe-c869-4146-a574-cedbd2737dec"/>
+					<imageExpression><![CDATA["C:\\Users\\sergi\\OneDrive\\Documentos\\NetBeansProjects\\Timtex\\web\\Reportes\\timtexlo2.jpg"]]></imageExpression>
+				</image>
+			</frame>
+			<frame>
+				<reportElement mode="Opaque" x="0" y="100" width="451" height="32" forecolor="#000000" backcolor="#45565B" uuid="5ea1ef78-a618-4e8d-8676-10ba67d26517"/>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement x="302" y="7" width="144" height="20" forecolor="#FFFFFF" uuid="f01d44b8-cee0-4315-b827-fedf2c38fbb8"/>
+					<textElement textAlignment="Right">
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="35" splitType="Stretch">
+			<staticText>
+				<reportElement style="Column header" x="44" y="8" width="69" height="18" forecolor="#000000" uuid="5061d5dc-3070-4e96-96f8-ca57c3d26aeb"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[IdPrenda]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="112" y="9" width="69" height="18" forecolor="#000000" uuid="72a297ea-0506-4fab-9fc6-52c3d68939b0"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nombre Prenda]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="182" y="9" width="96" height="18" forecolor="#000000" uuid="edcbed92-f742-4d1b-9a9b-05a4e792c0fb"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Descripción]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="278" y="9" width="69" height="18" forecolor="#000000" uuid="5e92d643-24be-4415-8478-1ecd4eadeb55"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Precio]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="347" y="9" width="69" height="18" forecolor="#000000" uuid="2808a3a1-d4cf-443a-a832-c66e56e52ac8"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Estado]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="42" splitType="Stretch">
+			<frame>
+				<reportElement style="Row" mode="Opaque" x="42" y="12" width="413" height="18" uuid="8f05f9f8-4afb-4fd2-bc11-c102987c50e1"/>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" positionType="Float" x="0" y="0" width="69" height="18" uuid="25d58623-9582-491d-a48f-f3f38151bf06"/>
+					<textElement>
+						<font fontName="Arial" size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{prenda_IdPrenda}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" positionType="Float" x="69" y="0" width="69" height="18" uuid="0c9c69e4-d883-4afc-9fda-e41f37d8ed74"/>
+					<textElement>
+						<font fontName="Arial" size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{prenda_NombrePrenda}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" positionType="Float" x="139" y="0" width="99" height="18" uuid="83ae42ab-0897-4d7d-afd1-75210d8da4c7"/>
+					<textElement>
+						<font fontName="Arial" size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{prenda_DescripcionPrenda}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" positionType="Float" x="238" y="0" width="69" height="18" uuid="c02ce500-7878-44b3-ab70-51b15d22557a"/>
+					<textElement>
+						<font fontName="Arial" size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{prenda_PrecioPrenda}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" positionType="Float" x="305" y="0" width="69" height="18" uuid="452237b0-7c39-4b0f-9a28-091d378955f5"/>
+					<textElement>
+						<font fontName="Arial" size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{prenda_EstadoPrenda}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="52" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1" uuid="e66085db-b7bc-4a30-a8ae-04dea9fe1b38"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<frame>
+				<reportElement mode="Opaque" x="1" y="4" width="555" height="24" forecolor="#D0B48E" backcolor="#2994BB" uuid="bbc971e6-3d98-4182-acce-4cdf945f7e11"/>
+				<textField evaluationTime="Report">
+					<reportElement style="Column header" x="513" y="0" width="40" height="20" forecolor="#FFFFFF" uuid="c19fca2d-18c1-49e3-a17a-7d6053188237"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Column header" x="433" y="0" width="80" height="20" forecolor="#FFFFFF" uuid="b8acbaee-ca11-496f-9db1-ac349578dcdc"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Página"+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+				</textField>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement style="Column header" x="2" y="2" width="197" height="20" forecolor="#FFFFFF" uuid="c306d2e2-7c41-461c-bf08-028a42b3cb3a"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
